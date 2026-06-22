@@ -1,29 +1,63 @@
+import type { PointerEvent as ReactPointerEvent } from "react";
 import type { PartySlot } from "../domain/types";
 
 interface PartyCardProps {
+  isDragging: boolean;
+  isDropTarget: boolean;
   index: number;
   slot: PartySlot;
   onChoose: () => void;
   onClear: () => void;
+  onPointerDown: (event: ReactPointerEvent<HTMLElement>) => void;
+  onPointerMove: (event: ReactPointerEvent<HTMLElement>) => void;
+  onPointerUp: (event: ReactPointerEvent<HTMLElement>) => void;
   onSwapWithSupport: () => void;
 }
 
 export const PartyCard = ({
+  isDragging,
+  isDropTarget,
   index,
   slot,
   onChoose,
   onClear,
+  onPointerDown,
+  onPointerMove,
+  onPointerUp,
   onSwapWithSupport,
 }: PartyCardProps) => (
-  <article className={`party-card ${slot.servant ? "is-filled" : ""}`}>
+  <article
+    aria-label={`${slot.kind === "support" ? "助战" : "自有"}卡槽 ${index + 1}${slot.servant ? `：${slot.servant.name}` : "：空"}`}
+    className={[
+      "party-card",
+      slot.servant ? "is-filled" : "",
+      isDragging ? "is-dragging" : "",
+      isDropTarget ? "is-drop-target" : "",
+    ]
+      .filter(Boolean)
+      .join(" ")}
+    data-slot-index={index}
+    onPointerCancel={onPointerUp}
+    onPointerDown={slot.servant ? onPointerDown : undefined}
+    onPointerMove={slot.servant ? onPointerMove : undefined}
+    onPointerUp={slot.servant ? onPointerUp : undefined}
+  >
     <div className="slot-label">
       <span>{slot.kind === "support" ? "SUPPORT" : `SLOT 0${index + 1}`}</span>
       <small>{slot.kind === "support" ? "助战" : index < 3 ? "前排" : "后备"}</small>
     </div>
     {slot.servant ? (
       <>
+        <div className="drag-hint" aria-hidden="true">
+          <span>⠿</span>
+          按住拖动
+        </div>
         <button className="servant-portrait" onClick={onChoose}>
-          <img alt={slot.servant.name} src={slot.servant.face} />
+          <img
+            alt={slot.servant.name}
+            draggable={false}
+            src={slot.servant.face}
+          />
           <span className="rarity">{"★".repeat(slot.servant.rarity)}</span>
         </button>
         <div className="servant-name">

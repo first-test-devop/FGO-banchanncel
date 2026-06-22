@@ -1,4 +1,10 @@
-import { useCallback, useMemo, useState } from "react";
+import {
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { AnalysisResult } from "./components/AnalysisResult";
 import { PartyCard } from "./components/PartyCard";
 import { ServantPicker } from "./components/ServantPicker";
@@ -6,6 +12,7 @@ import { SettingsPanel } from "./components/SettingsPanel";
 import { DEFAULT_AVAILABLE_CE_IDS } from "./data/bondCraftEssences";
 import servantsData from "./data/servants.json";
 import { analyzeBond } from "./domain/analyzeBond";
+import { reorderParty } from "./domain/reorderParty";
 import type {
   BondAnalysis,
   BondSettings,
@@ -26,6 +33,17 @@ export const App = () => {
   const [pickerIndex, setPickerIndex] = useState<number | null>(null);
   const [analysis, setAnalysis] = useState<BondAnalysis | null>(null);
   const [error, setError] = useState("");
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dropTargetIndex, setDropTargetIndex] = useState<number | null>(null);
+  const pointerDragRef = useRef<{
+    index: number;
+    pointerId: number;
+    startX: number;
+    startY: number;
+    dragging: boolean;
+    targetIndex: number;
+  } | null>(null);
+  const suppressChooseRef = useRef(false);
   const [settings, setSettings] = useState<BondSettings>({
     baseBond: 815,
     availableCeIds: DEFAULT_AVAILABLE_CE_IDS,
@@ -101,6 +119,74 @@ export const App = () => {
   const selectedCount = party.filter(({ servant }) => servant !== null).length;
   const supportIndex = party.findIndex(({ kind }) => kind === "support");
 
+  const movePartySlot = (fromIndex: number, toIndex: number) => {
+    if (fromIndex === toIndex) return;
+    setParty((current) => reorderParty(current, fromIndex, toIndex));
+    setAnalysis(null);
+  };
+
+  const startPointerDrag = (
+    index: number,
+    event: ReactPointerEvent<HTMLElement>,
+  ) => {
+    const target = event.target as HTMLElement;
+    if (target.closest(".clear-slot, .swap-support")) return;
+    pointerDragRef.current = {
+      index,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      dragging: false,
+      targetIndex: index,
+    };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const updatePointerDrag = (event: ReactPointerEvent<HTMLElement>) => {
+    const current = pointerDragRef.current;
+    if (!current || current.pointerId !== event.pointerId) return;
+
+    const distance = Math.hypot(
+      event.clientX - current.startX,
+      event.clientY - current.startY,
+    );
+    if (!current.dragging && distance < 8) return;
+    if (!current.dragging) {
+      current.dragging = true;
+      suppressChooseRef.current = true;
+      setDraggedIndex(current.index);
+      setAnalysis(null);
+    }
+
+    event.preventDefault();
+    const target = document
+      .elementFromPoint(event.clientX, event.clientY)
+      ?.closest<HTMLElement>("[data-slot-index]");
+    const targetIndex = target
+      ? Number(target.dataset.slotIndex)
+      : current.index;
+    if (Number.isInteger(targetIndex)) {
+      current.targetIndex = targetIndex;
+      setDropTargetIndex(targetIndex);
+    }
+  };
+
+  const finishPointerDrag = (event: ReactPointerEvent<HTMLElement>) => {
+    const current = pointerDragRef.current;
+    if (!current || current.pointerId !== event.pointerId) return;
+    if (current.dragging) {
+      movePartySlot(current.index, current.targetIndex);
+    }
+    pointerDragRef.current = null;
+    setDraggedIndex(null);
+    setDropTargetIndex(null);
+    if (suppressChooseRef.current) {
+      window.setTimeout(() => {
+        suppressChooseRef.current = false;
+      }, 0);
+    }
+  };
+
   return (
     <main>
       <nav className="topbar">
@@ -154,9 +240,15 @@ export const App = () => {
         <div className="party-grid">
           {party.map((slot, index) => (
             <PartyCard
+              isDragging={draggedIndex === index}
+              isDropTarget={
+                dropTargetIndex === index && draggedIndex !== index
+              }
               index={index}
               key={index}
-              onChoose={() => setPickerIndex(index)}
+              onChoose={() => {
+                if (!suppressChooseRef.current) setPickerIndex(index);
+              }}
               onClear={() => {
                 setParty((current) =>
                   current.map((item, itemIndex) =>
@@ -165,6 +257,9 @@ export const App = () => {
                 );
                 setAnalysis(null);
               }}
+              onPointerDown={(event) => startPointerDrag(index, event)}
+              onPointerMove={updatePointerDrag}
+              onPointerUp={finishPointerDrag}
               onSwapWithSupport={() => {
                 if (supportIndex < 0 || supportIndex === index) return;
                 setParty((current) => {

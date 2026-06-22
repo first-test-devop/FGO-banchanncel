@@ -335,9 +335,71 @@ footer {
   transition: border-color 180ms, transform 180ms;
 }
 
+.party-card.is-filled {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.party-card.is-filled:active {
+  cursor: grabbing;
+}
+
 .party-card:hover {
   border-color: rgba(102, 227, 232, 0.48);
   transform: translateY(-3px);
+}
+
+.party-card.is-dragging {
+  opacity: 0.35;
+  transform: scale(0.97);
+  border-color: rgba(102, 227, 232, 0.22);
+}
+
+.party-card.is-drop-target {
+  border-color: var(--cyan);
+  box-shadow:
+    inset 0 0 0 1px rgba(102, 227, 232, 0.35),
+    0 0 28px rgba(102, 227, 232, 0.18);
+  transform: translateY(-5px);
+}
+
+.party-card.is-drop-target::after {
+  content: "释放以移动到这里";
+  position: absolute;
+  z-index: 6;
+  inset: auto 8px 8px;
+  padding: 6px;
+  background: rgba(7, 24, 34, 0.92);
+  border: 1px solid var(--cyan);
+  color: var(--cyan-bright);
+  text-align: center;
+  font-size: 8px;
+}
+
+.drag-hint {
+  position: absolute;
+  z-index: 5;
+  top: 27px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: #69828f;
+  font-size: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms, color 180ms;
+}
+
+.drag-hint span {
+  color: var(--cyan);
+  font-size: 12px;
+}
+
+.party-card:hover .drag-hint,
+.party-card:focus-within .drag-hint {
+  opacity: 1;
 }
 
 .slot-label {
