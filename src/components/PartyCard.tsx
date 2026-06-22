@@ -5,6 +5,7 @@ interface PartyCardProps {
   slot: PartySlot;
   onChoose: () => void;
   onClear: () => void;
+  onSwapWithSupport: () => void;
 }
 
 export const PartyCard = ({
@@ -12,6 +13,7 @@ export const PartyCard = ({
   slot,
   onChoose,
   onClear,
+  onSwapWithSupport,
 }: PartyCardProps) => (
   <article className={`party-card ${slot.servant ? "is-filled" : ""}`}>
     <div className="slot-label">
@@ -35,6 +37,11 @@ export const PartyCard = ({
         >
           ×
         </button>
+        {slot.kind === "owned" && (
+          <button className="swap-support" onClick={onSwapWithSupport}>
+            与助战换位
+          </button>
+        )}
       </>
     ) : (
       <button className="empty-slot" onClick={onChoose}>

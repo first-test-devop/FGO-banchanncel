@@ -34,8 +34,11 @@ export const AnalysisResult = ({
         <strong>+{analysis.flatBonus}</strong>
       </div>
       <div>
-        <span>首发位置加成</span>
-        <strong>+20%</strong>
+        <span>站位规则</span>
+        <strong>
+          首发 +20%
+          {analysis.supportInStartingLineup ? " · 全队 +4%" : ""}
+        </strong>
       </div>
       <div>
         <span>单名实际羁绊</span>
@@ -80,10 +83,37 @@ export const AnalysisResult = ({
             </div>
             <p>
               {item.reason}
-              {item.finalBond !== null && (
-                <b> 本名英灵预计获得 {item.finalBond} 羁绊。</b>
-              )}
             </p>
+            {item.calculation && (
+              <ol className="calculation-steps">
+                <li>
+                  <span>礼装乘区</span>
+                  <code>
+                    ⌊{item.calculation.baseBond} × (1 +{" "}
+                    {item.calculation.equipmentPercent}% +{" "}
+                    {item.calculation.activityPercent}%)⌋ ={" "}
+                    {item.calculation.afterEquipment}
+                  </code>
+                </li>
+                <li>
+                  <span>站位乘区</span>
+                  <code>
+                    ⌊{item.calculation.afterEquipment} × (1 +{" "}
+                    {item.calculation.startingMemberPercent}% +{" "}
+                    {item.calculation.supportSharePercent}%)⌋ ={" "}
+                    {item.calculation.afterPosition}
+                  </code>
+                </li>
+                <li>
+                  <span>固定羁绊</span>
+                  <code>
+                    {item.calculation.afterPosition} +{" "}
+                    {item.calculation.fixedBonus} ={" "}
+                    <b>{item.calculation.finalBond}</b>
+                  </code>
+                </li>
+              </ol>
+            )}
           </article>
         );
       })}

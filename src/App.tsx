@@ -99,6 +99,7 @@ export const App = () => {
   };
 
   const selectedCount = party.filter(({ servant }) => servant !== null).length;
+  const supportIndex = party.findIndex(({ kind }) => kind === "support");
 
   return (
     <main>
@@ -162,6 +163,18 @@ export const App = () => {
                     itemIndex === index ? { ...item, servant: null } : item,
                   ),
                 );
+                setAnalysis(null);
+              }}
+              onSwapWithSupport={() => {
+                if (supportIndex < 0 || supportIndex === index) return;
+                setParty((current) => {
+                  const next = [...current];
+                  [next[index], next[supportIndex]] = [
+                    next[supportIndex],
+                    next[index],
+                  ];
+                  return next;
+                });
                 setAnalysis(null);
               }}
               slot={slot}
