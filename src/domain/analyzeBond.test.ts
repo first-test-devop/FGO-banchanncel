@@ -33,8 +33,13 @@ describe("analyzeBond", () => {
     );
     expect(result.percentBonus).toBe(40);
     expect(result.flatBonus).toBe(50);
-    expect(result.finalPerEligibleServant).toBe(1191);
-    expect(result.totalPartyBond).toBe(5955);
+    expect(result.recommendations.slice(0, 3).map(({ finalBond }) => finalBond))
+      .toEqual([1354, 1354, 1354]);
+    expect(result.recommendations.slice(3, 5).map(({ finalBond }) => finalBond))
+      .toEqual([1191, 1191]);
+    expect(result.minServantBond).toBe(1191);
+    expect(result.maxServantBond).toBe(1354);
+    expect(result.totalPartyBond).toBe(6444);
   });
 
   it("prefers the flat portrait over a 5% CE on low-bond quests", () => {
@@ -55,5 +60,18 @@ describe("analyzeBond", () => {
     });
 
     expect(result.eligibleServantCount).toBe(5);
+    expect(result.recommendations[5].finalBond).toBeNull();
+    expect(result.recommendations[5].positionBonusPercent).toBe(0);
+  });
+
+  it("only applies the starting-member bonus to the first three slots", () => {
+    const result = analyzeBond(fullParty, {
+      baseBond: 1000,
+      availableCeIds: DEFAULT_AVAILABLE_CE_IDS,
+    });
+
+    expect(
+      result.recommendations.map(({ positionBonusPercent }) => positionBonusPercent),
+    ).toEqual([20, 20, 20, 0, 0, 0]);
   });
 });

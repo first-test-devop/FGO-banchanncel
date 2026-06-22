@@ -7,6 +7,9 @@ import type {
   SlotKind,
 } from "./types";
 
+const STARTING_MEMBER_SLOT_COUNT = 3;
+const STARTING_MEMBER_BOND_BONUS = 20;
+
 const valueForSlot = (
   craftEssence: BondCraftEssence,
   kind: SlotKind,
@@ -133,18 +136,23 @@ export const analyzeBond = (
     else flatBonus += value;
   });
 
-  const percentagePoints = Math.floor(
-    (settings.baseBond * percentBonus) / 100,
-  );
-  const bonusPerEligibleServant = percentagePoints + flatBonus;
-  const finalPerEligibleServant =
-    settings.baseBond + bonusPerEligibleServant;
   const baseTotal = settings.baseBond * eligibleServantCount;
-  const totalPartyBond = finalPerEligibleServant * eligibleServantCount;
+  const recommendations = selectedSlots.map((slot, index) => {
+    const slotIndex = party.indexOf(slot);
+    const positionBonusPercent =
+      slot.kind === "owned" && slotIndex < STARTING_MEMBER_SLOT_COUNT
+        ? STARTING_MEMBER_BOND_BONUS
+        : 0;
+    const finalBond =
+      slot.kind === "owned" && slot.servant.bondEligible
+        ? Math.floor(
+            settings.baseBond *
+              (1 + (percentBonus + positionBonusPercent) / 100),
+          ) + flatBonus
+        : null;
 
-  return {
-    recommendations: selectedSlots.map((slot, index) => ({
-      slotIndex: party.indexOf(slot),
+    return {
+      slotIndex,
       servant: slot.servant,
       craftEssence: assignment[index],
       reason: describeContribution(
@@ -155,16 +163,32 @@ export const analyzeBond = (
       contributionPerServant: Math.floor(
         valueForSlot(assignment[index], slot.kind, settings.baseBond),
       ),
-    })),
+      positionBonusPercent,
+      finalBond,
+    };
+  });
+  const servantBondValues = recommendations.flatMap(({ finalBond }) =>
+    finalBond === null ? [] : [finalBond],
+  );
+  const totalPartyBond = servantBondValues.reduce(
+    (total, value) => total + value,
+    0,
+  );
+
+  return {
+    recommendations,
     baseTotal,
-    bonusPerEligibleServant,
-    finalPerEligibleServant,
     totalPartyBond,
     eligibleServantCount,
     percentBonus,
     flatBonus,
+    minServantBond:
+      servantBondValues.length > 0 ? Math.min(...servantBondValues) : 0,
+    maxServantBond:
+      servantBondValues.length > 0 ? Math.max(...servantBondValues) : 0,
     notes: [
-      "羁绊加成礼装对后备成员同样生效；助战英灵自身不计入你的羁绊收益。",
+      "前三个首发槽位中的自有英灵享受八周年实装的常驻羁绊获得量 +20%；后备成员没有此位置加成。",
+      "羁绊加成礼装对首发与后备成员均生效；助战英灵自身不计入你的羁绊收益。",
       "同类百分比加成先合计后对基础羁绊计算，显示结果按整数向下取整。",
       eligibleServantCount < selectedSlots.filter(({ kind }) => kind === "owned").length
         ? "玛修当前按无法通过普通关卡获得羁绊处理，但她佩戴的礼装仍可为其他成员提供全队加成。"

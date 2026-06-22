@@ -37,16 +37,18 @@ export interface SlotRecommendation {
   craftEssence: BondCraftEssence;
   reason: string;
   contributionPerServant: number;
+  positionBonusPercent: number;
+  finalBond: number | null;
 }
 
 export interface BondAnalysis {
   recommendations: SlotRecommendation[];
   baseTotal: number;
-  bonusPerEligibleServant: number;
-  finalPerEligibleServant: number;
   totalPartyBond: number;
   eligibleServantCount: number;
   percentBonus: number;
   flatBonus: number;
+  minServantBond: number;
+  maxServantBond: number;
   notes: string[];
 }

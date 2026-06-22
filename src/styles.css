@@ -784,6 +784,11 @@ footer {
   line-height: 1.65;
 }
 
+.recommendation-card p b {
+  color: var(--cyan-bright);
+  font-weight: 600;
+}
+
 .analysis-notes {
   margin-top: 22px;
   padding: 18px 20px;

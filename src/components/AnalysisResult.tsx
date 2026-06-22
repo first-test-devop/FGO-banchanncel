@@ -34,12 +34,16 @@ export const AnalysisResult = ({
         <strong>+{analysis.flatBonus}</strong>
       </div>
       <div>
-        <span>每名可获羁绊英灵</span>
-        <strong>{analysis.finalPerEligibleServant}</strong>
+        <span>首发位置加成</span>
+        <strong>+20%</strong>
       </div>
       <div>
-        <span>计入英灵数</span>
-        <strong>{analysis.eligibleServantCount}</strong>
+        <span>单名实际羁绊</span>
+        <strong>
+          {analysis.minServantBond === analysis.maxServantBond
+            ? analysis.minServantBond
+            : `${analysis.minServantBond}–${analysis.maxServantBond}`}
+        </strong>
       </div>
     </div>
 
@@ -55,7 +59,11 @@ export const AnalysisResult = ({
               <img alt="" src={item.servant.face} />
               <span>
                 <small>
-                  {slot.kind === "support" ? "助战位" : `自有位 ${item.slotIndex + 1}`}
+                  {slot.kind === "support"
+                    ? "助战位"
+                    : item.slotIndex < 3
+                      ? `首发位 ${item.slotIndex + 1} · 羁绊 +20%`
+                      : `后备位 ${item.slotIndex + 1}`}
                 </small>
                 <strong>{item.servant.name}</strong>
               </span>
@@ -70,7 +78,12 @@ export const AnalysisResult = ({
                 <strong>{item.craftEssence.name}</strong>
               </span>
             </div>
-            <p>{item.reason}</p>
+            <p>
+              {item.reason}
+              {item.finalBond !== null && (
+                <b> 本名英灵预计获得 {item.finalBond} 羁绊。</b>
+              )}
+            </p>
           </article>
         );
       })}
