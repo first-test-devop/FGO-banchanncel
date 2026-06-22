@@ -365,7 +365,7 @@ footer {
 }
 
 .party-card.is-drop-target::after {
-  content: "释放以移动到这里";
+  content: "释放以交换位置";
   position: absolute;
   z-index: 6;
   inset: auto 8px 8px;

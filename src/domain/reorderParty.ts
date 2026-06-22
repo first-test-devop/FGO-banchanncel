@@ -16,7 +16,6 @@ export const reorderParty = (
   }
 
   const next = [...party];
-  const [moved] = next.splice(fromIndex, 1);
-  next.splice(toIndex, 0, moved);
+  [next[fromIndex], next[toIndex]] = [next[toIndex], next[fromIndex]];
   return next;
 };
