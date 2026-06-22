@@ -26,8 +26,14 @@ export const AnalysisResult = ({
 
     <div className="result-metrics">
       <div>
-        <span>全队加成</span>
-        <strong>+{analysis.percentBonus}%</strong>
+        <span>礼装百分比</span>
+        <strong>
+          +
+          {analysis.minEquipmentPercent === analysis.maxEquipmentPercent
+            ? analysis.minEquipmentPercent
+            : `${analysis.minEquipmentPercent}–${analysis.maxEquipmentPercent}`}
+          %
+        </strong>
       </div>
       <div>
         <span>固定加成</span>
@@ -88,6 +94,13 @@ export const AnalysisResult = ({
               <ol className="calculation-steps">
                 <li>
                   <span>礼装乘区</span>
+                  {item.calculation.equipmentBreakdown.length > 0 && (
+                    <small>
+                      {item.calculation.equipmentBreakdown
+                        .map(({ name, value }) => `${name} ${value}%`)
+                        .join(" + ")}
+                    </small>
+                  )}
                   <code>
                     ⌊{item.calculation.baseBond} × (1 +{" "}
                     {item.calculation.equipmentPercent}% +{" "}

@@ -4,6 +4,7 @@ import type {
   BondCraftEssence,
   BondSettings,
   PartySlot,
+  Servant,
   SlotKind,
 } from "./types";
 
@@ -12,50 +13,151 @@ const STARTING_MEMBER_BOND_BONUS = 20;
 const SUPPORT_SHARE_BOND_BONUS = 4;
 const ACTIVITY_BOND_BONUS = 0;
 
-const valueForSlot = (
+const valueForEquippedSlot = (
   craftEssence: BondCraftEssence,
   kind: SlotKind,
-  baseBond: number,
-) => {
-  const value =
-    kind === "support"
-      ? craftEssence.supportValue
-      : craftEssence.ownedValue;
+) =>
+  kind === "support"
+    ? craftEssence.supportValue
+    : craftEssence.ownedValue;
 
-  return craftEssence.effect === "flat" ? value : (baseBond * value) / 100;
+const appliesToServant = (
+  craftEssence: BondCraftEssence,
+  servant: Servant,
+) => {
+  const target = craftEssence.target;
+  if (!target) return true;
+
+  const matchesTraits =
+    !target.allTraits ||
+    target.allTraits.every((trait) => servant.traits.includes(trait));
+  const matchesClass =
+    !target.classNames || target.classNames.includes(servant.className);
+  return matchesTraits && matchesClass;
+};
+
+const assignCraftEssences = (
+  slots: PartySlot[],
+  selected: BondCraftEssence[],
+) => {
+  const supportIndex = slots.findIndex(({ kind }) => kind === "support");
+  if (supportIndex < 0) return [...selected];
+
+  let bestSupportIndex = 0;
+  let bestSupportDelta = Number.NEGATIVE_INFINITY;
+  selected.forEach((craftEssence, index) => {
+    const delta = craftEssence.supportValue - craftEssence.ownedValue;
+    if (delta > bestSupportDelta) {
+      bestSupportDelta = delta;
+      bestSupportIndex = index;
+    }
+  });
+
+  const supportCraftEssence = selected[bestSupportIndex];
+  const remaining = selected.filter((_, index) => index !== bestSupportIndex);
+  const assignment: BondCraftEssence[] = [];
+  let remainingIndex = 0;
+  slots.forEach((_, index) => {
+    if (index === supportIndex) assignment.push(supportCraftEssence);
+    else assignment.push(remaining[remainingIndex++]);
+  });
+  return assignment;
+};
+
+const getEquipmentBonus = (
+  servant: Servant,
+  assignment: BondCraftEssence[],
+  equippedSlots: PartySlot[],
+) => {
+  const equipmentBreakdown: { name: string; value: number }[] = [];
+  let percent = 0;
+  let fixed = 0;
+
+  assignment.forEach((craftEssence, index) => {
+    if (!appliesToServant(craftEssence, servant)) return;
+    const value = valueForEquippedSlot(
+      craftEssence,
+      equippedSlots[index].kind,
+    );
+    if (craftEssence.effect === "percent") {
+      percent += value;
+      equipmentBreakdown.push({ name: craftEssence.name, value });
+    } else {
+      fixed += value;
+    }
+  });
+
+  return { percent, fixed, equipmentBreakdown };
 };
 
 const describeContribution = (
   craftEssence: BondCraftEssence,
   kind: SlotKind,
-  baseBond: number,
+  ownedServants: Servant[],
 ) => {
-  const value =
-    kind === "support"
-      ? craftEssence.supportValue
-      : craftEssence.ownedValue;
+  const value = valueForEquippedSlot(craftEssence, kind);
   const secondary = craftEssence.secondaryBenefit
     ? `，并兼顾${craftEssence.secondaryBenefit}`
     : "";
 
   if (craftEssence.effect === "flat") {
-    return `固定为每名可获得羁绊的自有英灵增加 ${value} 点；在当前基础羁绊下优于剩余百分比礼装${secondary}。`;
+    return `在所有百分比乘算完成后，为每名可获得羁绊的自有英灵固定增加 ${value} 点${secondary}。`;
   }
 
-  const estimated = Math.floor((baseBond * value) / 100);
   const supportNote =
     kind === "support" && craftEssence.id === "chaldea-teatime"
       ? "；该礼装在助战位由 5% 提升至 15%"
       : "";
-  return `为全队每名可获得羁绊的自有英灵增加 ${value}%（当前约 ${estimated} 点）${supportNote}${secondary}。`;
+  if (!craftEssence.target) {
+    return `为全队每名可获得羁绊的自有英灵增加 ${value}%${supportNote}${secondary}。`;
+  }
+
+  const matched = ownedServants.filter((servant) =>
+    appliesToServant(craftEssence, servant),
+  );
+  const names =
+    matched.length > 0 ? matched.map(({ name }) => name).join("、") : "无";
+  return `仅为〔${craftEssence.target.label}〕增加 ${value}%；当前命中 ${matched.length} 名：${names}${secondary}。`;
+};
+
+const calculateServantBond = (
+  servant: Servant,
+  slotIndex: number,
+  assignment: BondCraftEssence[],
+  equippedSlots: PartySlot[],
+  baseBond: number,
+  supportInStartingLineup: boolean,
+) => {
+  const equipment = getEquipmentBonus(servant, assignment, equippedSlots);
+  const afterEquipment = Math.floor(
+    baseBond * (1 + (equipment.percent + ACTIVITY_BOND_BONUS) / 100),
+  );
+  const startingMemberPercent =
+    slotIndex < STARTING_MEMBER_SLOT_COUNT
+      ? STARTING_MEMBER_BOND_BONUS
+      : 0;
+  const supportSharePercent = supportInStartingLineup
+    ? SUPPORT_SHARE_BOND_BONUS
+    : 0;
+  const afterPosition = Math.floor(
+    afterEquipment *
+      (1 + (startingMemberPercent + supportSharePercent) / 100),
+  );
+
+  return {
+    ...equipment,
+    afterEquipment,
+    startingMemberPercent,
+    supportSharePercent,
+    afterPosition,
+    finalBond: afterPosition + equipment.fixed,
+  };
 };
 
 /**
- * Finds the maximum-value one-to-one CE assignment.
- *
- * There are at most six slots and a small CE pool, so exhaustive search is
- * intentionally preferred over a heuristic. It is deterministic, auditable,
- * and remains correct when support-only values or flat bonuses are added.
+ * Selects the globally best CE set, then puts the CE with the largest
+ * support-only uplift onto the support slot. CE effects are party-wide, so
+ * other placements do not affect score.
  */
 const optimizeAssignments = (
   slots: PartySlot[],
@@ -63,71 +165,54 @@ const optimizeAssignments = (
   baseBond: number,
   party: PartySlot[],
 ) => {
+  const supportInStartingLineup = party
+    .slice(0, STARTING_MEMBER_SLOT_COUNT)
+    .some(({ kind, servant }) => kind === "support" && servant !== null);
   let bestScore = Number.NEGATIVE_INFINITY;
   let best: BondCraftEssence[] = [];
 
-  const scoreAssignment = (selected: BondCraftEssence[]) => {
-    let percentBonus = 0;
-    let flatBonus = 0;
-    selected.forEach((craftEssence, index) => {
-      const value =
-        slots[index].kind === "support"
-          ? craftEssence.supportValue
-          : craftEssence.ownedValue;
-      if (craftEssence.effect === "percent") percentBonus += value;
-      else flatBonus += value;
-    });
-
-    const afterEquipment = Math.floor(
-      baseBond * (1 + (percentBonus + ACTIVITY_BOND_BONUS) / 100),
-    );
-    const supportInStartingLineup = party
-      .slice(0, STARTING_MEMBER_SLOT_COUNT)
-      .some(({ kind, servant }) => kind === "support" && servant !== null);
-
+  const scoreSelection = (selected: BondCraftEssence[]) => {
+    const assignment = assignCraftEssences(slots, selected);
     return slots.reduce((total, slot) => {
-      const slotIndex = party.indexOf(slot);
       if (slot.kind !== "owned" || !slot.servant?.bondEligible) return total;
-      const startingMemberPercent =
-        slotIndex < STARTING_MEMBER_SLOT_COUNT
-          ? STARTING_MEMBER_BOND_BONUS
-          : 0;
-      const supportSharePercent = supportInStartingLineup
-        ? SUPPORT_SHARE_BOND_BONUS
-        : 0;
-      const afterPosition = Math.floor(
-        afterEquipment *
-          (1 + (startingMemberPercent + supportSharePercent) / 100),
+      const slotIndex = party.indexOf(slot);
+      return (
+        total +
+        calculateServantBond(
+          slot.servant,
+          slotIndex,
+          assignment,
+          slots,
+          baseBond,
+          supportInStartingLineup,
+        ).finalBond
       );
-      return total + afterPosition + flatBonus;
     }, 0);
   };
 
-  const visit = (
-    index: number,
-    used: Set<string>,
-    selected: BondCraftEssence[],
-  ) => {
-    if (index === slots.length) {
-      const score = scoreAssignment(selected);
+  const visit = (startIndex: number, selected: BondCraftEssence[]) => {
+    if (selected.length === slots.length) {
+      const score = scoreSelection(selected);
       if (score > bestScore) {
         bestScore = score;
-        best = [...selected];
+        best = assignCraftEssences(slots, selected);
       }
       return;
     }
 
-    for (const craftEssence of craftEssences) {
-      if (used.has(craftEssence.id)) continue;
-      used.add(craftEssence.id);
-      selected.push(craftEssence);
-      visit(index + 1, used, selected);
+    const remainingNeeded = slots.length - selected.length;
+    for (
+      let index = startIndex;
+      index <= craftEssences.length - remainingNeeded;
+      index += 1
+    ) {
+      selected.push(craftEssences[index]);
+      visit(index + 1, selected);
       selected.pop();
-      used.delete(craftEssence.id);
     }
   };
 
-  visit(0, new Set(), []);
+  visit(0, []);
   return best;
 };
 
@@ -150,7 +235,9 @@ export const analyzeBond = (
     throw new Error("阵容中必须且只能有一名助战英灵。");
   }
   if (availableCraftEssences.length < selectedSlots.length) {
-    throw new Error("可用羁绊礼装数量不足，请在礼装库存中至少启用与阵容人数相同的礼装。");
+    throw new Error(
+      "可用羁绊礼装数量不足，请在礼装库存中至少启用与阵容人数相同的礼装。",
+    );
   }
 
   const assignment = optimizeAssignments(
@@ -159,63 +246,28 @@ export const analyzeBond = (
     settings.baseBond,
     party,
   );
-  const eligibleServantCount = selectedSlots.filter(
-    ({ kind, servant }) => kind === "owned" && servant.bondEligible,
-  ).length;
-
-  let percentBonus = 0;
-  let flatBonus = 0;
-  assignment.forEach((craftEssence, index) => {
-    const slot = selectedSlots[index];
-    const value =
-      slot.kind === "support"
-        ? craftEssence.supportValue
-        : craftEssence.ownedValue;
-    if (craftEssence.effect === "percent") percentBonus += value;
-    else flatBonus += value;
-  });
-
-  const baseTotal = settings.baseBond * eligibleServantCount;
-  const afterEquipment = Math.floor(
-    settings.baseBond *
-      (1 + (percentBonus + ACTIVITY_BOND_BONUS) / 100),
+  const ownedServants = selectedSlots.flatMap(({ kind, servant }) =>
+    kind === "owned" && servant.bondEligible ? [servant] : [],
   );
+  const eligibleServantCount = ownedServants.length;
+  const baseTotal = settings.baseBond * eligibleServantCount;
   const supportInStartingLineup = party
     .slice(0, STARTING_MEMBER_SLOT_COUNT)
     .some(({ kind, servant }) => kind === "support" && servant !== null);
-  const supportSharePercent = supportInStartingLineup
-    ? SUPPORT_SHARE_BOND_BONUS
-    : 0;
 
   const recommendations = selectedSlots.map((slot, index) => {
     const slotIndex = party.indexOf(slot);
-    const startingMemberPercent =
-      slot.kind === "owned" && slotIndex < STARTING_MEMBER_SLOT_COUNT
-        ? STARTING_MEMBER_BOND_BONUS
-        : 0;
-    const afterPosition =
+    const result =
       slot.kind === "owned" && slot.servant.bondEligible
-        ? Math.floor(
-            afterEquipment *
-              (1 + (startingMemberPercent + supportSharePercent) / 100),
+        ? calculateServantBond(
+            slot.servant,
+            slotIndex,
+            assignment,
+            selectedSlots,
+            settings.baseBond,
+            supportInStartingLineup,
           )
         : null;
-    const finalBond = afterPosition === null ? null : afterPosition + flatBonus;
-
-    const calculation =
-      afterPosition === null
-        ? null
-        : {
-            baseBond: settings.baseBond,
-            equipmentPercent: percentBonus,
-            activityPercent: ACTIVITY_BOND_BONUS,
-            afterEquipment,
-            startingMemberPercent,
-            supportSharePercent,
-            afterPosition,
-            fixedBonus: flatBonus,
-            finalBond: afterPosition + flatBonus,
-          };
 
     return {
       slotIndex,
@@ -224,21 +276,45 @@ export const analyzeBond = (
       reason: describeContribution(
         assignment[index],
         slot.kind,
-        settings.baseBond,
+        ownedServants,
       ),
       contributionPerServant: Math.floor(
-        valueForSlot(assignment[index], slot.kind, settings.baseBond),
+        (settings.baseBond *
+          valueForEquippedSlot(assignment[index], slot.kind)) /
+          100,
       ),
-      positionBonusPercent:
-        slot.kind === "owned"
-          ? startingMemberPercent + supportSharePercent
-          : 0,
-      finalBond,
-      calculation,
+      positionBonusPercent: result
+        ? result.startingMemberPercent + result.supportSharePercent
+        : 0,
+      finalBond: result?.finalBond ?? null,
+      calculation: result
+        ? {
+            baseBond: settings.baseBond,
+            equipmentPercent: result.percent,
+            equipmentBreakdown: result.equipmentBreakdown,
+            activityPercent: ACTIVITY_BOND_BONUS,
+            afterEquipment: result.afterEquipment,
+            startingMemberPercent: result.startingMemberPercent,
+            supportSharePercent: result.supportSharePercent,
+            afterPosition: result.afterPosition,
+            fixedBonus: result.fixed,
+            finalBond: result.finalBond,
+          }
+        : null,
     };
   });
-  const servantBondValues = recommendations.flatMap(({ finalBond }) =>
-    finalBond === null ? [] : [finalBond],
+  const servantRecommendations = recommendations.filter(
+    (item): item is typeof item & { finalBond: number; calculation: NonNullable<typeof item.calculation> } =>
+      item.finalBond !== null && item.calculation !== null,
+  );
+  const servantBondValues = servantRecommendations.map(
+    ({ finalBond }) => finalBond,
+  );
+  const equipmentPercentValues = servantRecommendations.map(
+    ({ calculation }) => calculation.equipmentPercent,
+  );
+  const fixedValues = servantRecommendations.map(
+    ({ calculation }) => calculation.fixedBonus,
   );
   const totalPartyBond = servantBondValues.reduce(
     (total, value) => total + value,
@@ -250,8 +326,15 @@ export const analyzeBond = (
     baseTotal,
     totalPartyBond,
     eligibleServantCount,
-    percentBonus,
-    flatBonus,
+    minEquipmentPercent:
+      equipmentPercentValues.length > 0
+        ? Math.min(...equipmentPercentValues)
+        : 0,
+    maxEquipmentPercent:
+      equipmentPercentValues.length > 0
+        ? Math.max(...equipmentPercentValues)
+        : 0,
+    flatBonus: fixedValues.length > 0 ? Math.max(...fixedValues) : 0,
     minServantBond:
       servantBondValues.length > 0 ? Math.min(...servantBondValues) : 0,
     maxServantBond:
@@ -259,15 +342,16 @@ export const analyzeBond = (
     supportInStartingLineup,
     activityPercent: ACTIVITY_BOND_BONUS,
     notes: [
-      "第一步：基础羁绊 ×（1 + 全队礼装百分比 + 活动百分比），结果向下取整。当前活动百分比暂按 0% 计算。",
+      "第一步：每名英灵分别汇总对其生效的礼装百分比，再计算基础羁绊 ×（1 + 礼装百分比 + 活动百分比），结果向下取整。特性礼装只计入满足对应职阶或特性的英灵。",
       supportInStartingLineup
         ? "第二步：助战位于前三个首发槽位，其 20% 首发加成平摊给五名自有英灵，每名获得 4%；首发自有英灵再叠加自身 20%，因此首发乘 1.24、后备乘 1.04，结果向下取整。"
         : "第二步：助战位于后备，无法获得首发 20% 且不触发平摊；首发自有英灵乘 1.20，后备自有英灵乘 1.00，结果向下取整。",
       "第三步：在前两步完成后，再加上英灵肖像等固定羁绊值；固定值不参与前面的百分比乘算。",
-      "羁绊加成礼装对首发与后备成员均生效；助战英灵自身不计入你的羁绊收益。",
-      eligibleServantCount < selectedSlots.filter(({ kind }) => kind === "owned").length
-        ? "玛修当前按无法通过普通关卡获得羁绊处理，但她佩戴的礼装仍可为其他成员提供全队加成。"
-        : "当前按常驻关卡规则计算，暂未叠加活动或主线的特性羁绊奖励。",
+      "礼装效果对首发与后备成员均生效；助战英灵自身不计入你的羁绊收益。当前礼装按满破效果计算。",
+      eligibleServantCount <
+      selectedSlots.filter(({ kind }) => kind === "owned").length
+        ? "玛修当前按无法通过普通关卡获得羁绊处理，但她佩戴的礼装仍可为其他成员提供加成。"
+        : "当前按常驻关卡规则计算，活动加成暂按 0% 处理。",
     ],
   };
 };

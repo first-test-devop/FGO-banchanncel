@@ -639,6 +639,9 @@ footer {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  max-height: 280px;
+  overflow: auto;
+  padding-right: 4px;
 }
 
 .ce-inventory label {
@@ -650,6 +653,15 @@ footer {
   border: 1px solid var(--line);
   font-size: 10px;
   cursor: pointer;
+}
+
+.ce-inventory label > span {
+  display: grid;
+}
+
+.ce-inventory label small {
+  color: var(--cyan);
+  font-size: 7px;
 }
 
 .ce-inventory label:has(input:not(:checked)) {
@@ -899,6 +911,12 @@ footer {
 .calculation-steps span {
   color: var(--cyan);
   font-size: 9px;
+}
+
+.calculation-steps small {
+  color: #718b97;
+  font-size: 8px;
+  line-height: 1.5;
 }
 
 .calculation-steps code {

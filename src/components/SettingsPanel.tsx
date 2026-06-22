@@ -55,7 +55,14 @@ export const SettingsPanel = ({
                   type="checkbox"
                 />
                 <img alt="" src={craftEssence.image} />
-                <span>{craftEssence.shortName}</span>
+                <span>
+                  {craftEssence.shortName}
+                  {craftEssence.target && (
+                    <small>
+                      {craftEssence.target.label} +{craftEssence.ownedValue}%
+                    </small>
+                  )}
+                </span>
               </label>
             ))}
           </div>

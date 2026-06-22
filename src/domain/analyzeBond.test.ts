@@ -11,6 +11,7 @@ const servant = (id: number): Servant => ({
   rarity: 5,
   face: "",
   bondEligible: true,
+  traits: [],
 });
 
 const fullParty: PartySlot[] = [
@@ -31,7 +32,8 @@ describe("analyzeBond", () => {
     expect(result.recommendations[5].craftEssence.id).toBe(
       "chaldea-teatime",
     );
-    expect(result.percentBonus).toBe(40);
+    expect(result.minEquipmentPercent).toBe(40);
+    expect(result.maxEquipmentPercent).toBe(40);
     expect(result.flatBonus).toBe(50);
     expect(result.recommendations.slice(0, 3).map(({ finalBond }) => finalBond))
       .toEqual([1419, 1419, 1419]);
@@ -43,6 +45,13 @@ describe("analyzeBond", () => {
     expect(result.recommendations[0].calculation).toEqual({
       baseBond: 815,
       equipmentPercent: 40,
+      equipmentBreakdown: [
+        { name: "迦勒底午餐时光", value: 10 },
+        { name: "名侦探芙尔摩斯", value: 5 },
+        { name: "迦勒底晚餐时光", value: 5 },
+        { name: "格兰·卡瓦洛", value: 5 },
+        { name: "迦勒底午茶时光", value: 15 },
+      ],
       activityPercent: 0,
       afterEquipment: 1141,
       startingMemberPercent: 20,
@@ -115,5 +124,43 @@ describe("analyzeBond", () => {
       1236,
     ]);
     expect(result.totalPartyBond).toBe(6636);
+  });
+
+  it("only applies targeted bond CEs to matching servants", () => {
+    const lawfulGood = {
+      ...servant(1),
+      name: "秩序善从者",
+      traits: ["alignmentLawful", "alignmentGood"],
+    };
+    const unmatched = {
+      ...servant(2),
+      name: "不匹配从者",
+    };
+    const result = analyzeBond(
+      [
+        { kind: "owned", servant: lawfulGood },
+        { kind: "owned", servant: unmatched },
+        { kind: "support", servant: servant(3) },
+      ],
+      {
+        baseBond: 1000,
+        availableCeIds: [
+          "inspection-report",
+          "chaldea-lunchtime",
+          "chaldea-teatime",
+        ],
+      },
+    );
+
+    expect(
+      result.recommendations.find(({ servant }) => servant.id === 1)
+        ?.calculation?.equipmentPercent,
+    ).toBe(45);
+    expect(
+      result.recommendations.find(({ servant }) => servant.id === 2)
+        ?.calculation?.equipmentPercent,
+    ).toBe(25);
+    expect(result.minEquipmentPercent).toBe(25);
+    expect(result.maxEquipmentPercent).toBe(45);
   });
 });

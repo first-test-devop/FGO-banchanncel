@@ -23,6 +23,7 @@ const servants = raw
     rarity: item.rarity,
     face: item.face,
     bondEligible: item.collectionNo !== 1,
+    traits: item.traits.map((trait) => trait.name),
   }))
   .sort((left, right) => left.collectionNo - right.collectionNo);
 

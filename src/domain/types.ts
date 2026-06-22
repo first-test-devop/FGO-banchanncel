@@ -8,6 +8,7 @@ export interface Servant {
   rarity: number;
   face: string;
   bondEligible: boolean;
+  traits: string[];
 }
 
 export interface PartySlot {
@@ -24,6 +25,11 @@ export interface BondCraftEssence {
   supportValue: number;
   image: string;
   secondaryBenefit?: string;
+  target?: {
+    label: string;
+    allTraits?: string[];
+    classNames?: string[];
+  };
 }
 
 export interface BondSettings {
@@ -42,6 +48,10 @@ export interface SlotRecommendation {
   calculation: {
     baseBond: number;
     equipmentPercent: number;
+    equipmentBreakdown: {
+      name: string;
+      value: number;
+    }[];
     activityPercent: number;
     afterEquipment: number;
     startingMemberPercent: number;
@@ -57,7 +67,8 @@ export interface BondAnalysis {
   baseTotal: number;
   totalPartyBond: number;
   eligibleServantCount: number;
-  percentBonus: number;
+  minEquipmentPercent: number;
+  maxEquipmentPercent: number;
   flatBonus: number;
   minServantBond: number;
   maxServantBond: number;
