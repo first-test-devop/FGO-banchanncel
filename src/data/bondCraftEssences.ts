@@ -199,6 +199,11 @@ export const resolveCraftEssence = (
 export const DEFAULT_CRAFT_ESSENCE_STATES: Record<
   string,
   CraftEssenceState
+> = {};
+
+export const ALL_MLB_CRAFT_ESSENCE_STATES: Record<
+  string,
+  CraftEssenceState
 > = Object.fromEntries(
   BOND_CRAFT_ESSENCES.map(({ id }) => [id, "mlb"]),
 );

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_CRAFT_ESSENCE_STATES } from "../data/bondCraftEssences";
+import { ALL_MLB_CRAFT_ESSENCE_STATES } from "../data/bondCraftEssences";
 import { analyzeBond } from "./analyzeBond";
 import type { PartySlot, Servant } from "./types";
 
@@ -26,7 +26,7 @@ describe("analyzeBond", () => {
   it("puts Teatime on support and maximizes a high-bond quest", () => {
     const result = analyzeBond(fullParty, {
       baseBond: 815,
-      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
+      craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
     });
 
     expect(result.recommendations[5].craftEssence.id).toBe(
@@ -67,7 +67,7 @@ describe("analyzeBond", () => {
       [fullParty[0], fullParty[5]],
       {
       baseBond: 200,
-      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
+      craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
       },
     );
 
@@ -79,7 +79,7 @@ describe("analyzeBond", () => {
   it("does not count support servant as an owned bond recipient", () => {
     const result = analyzeBond(fullParty, {
       baseBond: 815,
-      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
+      craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
     });
 
     expect(result.eligibleServantCount).toBe(5);
@@ -90,7 +90,7 @@ describe("analyzeBond", () => {
   it("only applies the starting-member bonus to the first three slots", () => {
     const result = analyzeBond(fullParty, {
       baseBond: 1000,
-      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
+      craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
     });
 
     expect(
@@ -108,7 +108,7 @@ describe("analyzeBond", () => {
     ];
     const result = analyzeBond(supportFirst, {
       baseBond: 815,
-      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
+      craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
     });
 
     expect(result.supportInStartingLineup).toBe(true);

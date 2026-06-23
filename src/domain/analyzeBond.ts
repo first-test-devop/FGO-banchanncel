@@ -267,7 +267,7 @@ export const analyzeBond = (
   }
   if (availableCraftEssences.length < selectedSlots.length) {
     throw new Error(
-      "可用羁绊礼装数量不足，请在礼装库存中至少启用与阵容人数相同的礼装。",
+      `已选羁绊礼装只有 ${availableCraftEssences.length} 张，请至少选择 ${selectedSlots.length} 张以覆盖当前阵容。`,
     );
   }
 

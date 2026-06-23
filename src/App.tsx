@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -27,6 +28,32 @@ const EMPTY_PARTY: PartySlot[] = Array.from({ length: 6 }, (_, index) => ({
 }));
 
 const DEMO_COLLECTION_NUMBERS = [385, 314, 215, 150, 236, 314];
+const SETTINGS_STORAGE_KEY = "chaldea-bond-planner.settings";
+
+const loadInitialSettings = (): BondSettings => {
+  const fallback: BondSettings = {
+    baseBond: 815,
+    craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
+  };
+  try {
+    const stored = window.localStorage.getItem(SETTINGS_STORAGE_KEY);
+    if (!stored) return fallback;
+    const parsed = JSON.parse(stored) as Partial<BondSettings>;
+    return {
+      baseBond:
+        typeof parsed.baseBond === "number" && parsed.baseBond >= 0
+          ? parsed.baseBond
+          : fallback.baseBond,
+      craftEssenceStates:
+        parsed.craftEssenceStates &&
+        typeof parsed.craftEssenceStates === "object"
+          ? parsed.craftEssenceStates
+          : fallback.craftEssenceStates,
+    };
+  } catch {
+    return fallback;
+  }
+};
 
 export const App = () => {
   const [party, setParty] = useState<PartySlot[]>(EMPTY_PARTY);
@@ -44,10 +71,18 @@ export const App = () => {
     targetIndex: number;
   } | null>(null);
   const suppressChooseRef = useRef(false);
-  const [settings, setSettings] = useState<BondSettings>({
-    baseBond: 815,
-    craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
-  });
+  const [settings, setSettings] = useState<BondSettings>(loadInitialSettings);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(
+        SETTINGS_STORAGE_KEY,
+        JSON.stringify(settings),
+      );
+    } catch {
+      logger.warn("settings_persistence_failed");
+    }
+  }, [settings]);
 
   const selectedIds = useMemo(
     () => {

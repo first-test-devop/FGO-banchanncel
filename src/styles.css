@@ -630,12 +630,29 @@ footer {
   margin: 0;
 }
 
-.ce-inventory legend {
+.ce-inventory-heading > span {
   font-size: 12px;
-  margin-bottom: 8px;
 }
 
-.ce-inventory > div {
+.ce-inventory-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.ce-inventory-heading button,
+.ce-picker-footer button {
+  border: 1px solid rgba(102, 227, 232, 0.35);
+  background: rgba(102, 227, 232, 0.08);
+  color: var(--cyan);
+  padding: 7px 11px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.ce-selected-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -644,9 +661,9 @@ footer {
   padding-right: 4px;
 }
 
-.ce-inventory label {
+.ce-selected-list label {
   display: grid;
-  grid-template-columns: auto minmax(90px, 1fr) auto;
+  grid-template-columns: auto minmax(90px, 1fr) auto auto;
   align-items: center;
   gap: 6px;
   padding: 5px 8px 5px 5px;
@@ -656,26 +673,22 @@ footer {
   cursor: pointer;
 }
 
-.ce-inventory label > span {
+.ce-selected-list label > span {
   display: grid;
 }
 
-.ce-inventory label small {
+.ce-selected-list label small {
   color: var(--cyan);
   font-size: 7px;
 }
 
-.ce-inventory label.is-unavailable {
-  opacity: 0.42;
-}
-
-.ce-inventory img {
+.ce-selected-list img {
   width: 24px;
   height: 30px;
   object-fit: cover;
 }
 
-.ce-inventory select {
+.ce-selected-list select {
   max-width: 82px;
   border: 1px solid rgba(102, 227, 232, 0.22);
   background: #081522;
@@ -683,6 +696,141 @@ footer {
   padding: 5px;
   font-size: 9px;
   cursor: pointer;
+}
+
+.ce-remove-button {
+  border: 0;
+  background: transparent;
+  color: #708a93;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.ce-remove-button:hover {
+  color: #ff9898;
+}
+
+.ce-empty-state {
+  width: 100%;
+  min-height: 92px;
+  border: 1px dashed rgba(102, 227, 232, 0.24);
+  background: rgba(3, 12, 19, 0.32);
+  color: #bdd0d6;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.ce-empty-state > span {
+  color: var(--cyan);
+  font-size: 18px;
+}
+
+.ce-empty-state strong {
+  font-size: 11px;
+}
+
+.ce-empty-state small {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.picker-header p {
+  color: var(--muted);
+  font-size: 10px;
+  margin: 5px 0 0;
+}
+
+.ce-picker-modal {
+  width: min(700px, calc(100vw - 24px));
+}
+
+.ce-picker-summary {
+  color: var(--muted);
+  font-size: 10px;
+  margin: 12px 0 8px;
+}
+
+.ce-picker-summary strong {
+  color: var(--cyan);
+}
+
+.ce-picker-results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  max-height: min(52vh, 460px);
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.ce-picker-result {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 22px;
+  align-items: center;
+  gap: 9px;
+  padding: 7px;
+  border: 1px solid var(--line);
+  background: rgba(3, 12, 19, 0.55);
+  color: #d8e8eb;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ce-picker-result:hover,
+.ce-picker-result.is-selected {
+  border-color: rgba(102, 227, 232, 0.55);
+  background: rgba(102, 227, 232, 0.08);
+}
+
+.ce-picker-result img {
+  width: 34px;
+  height: 43px;
+  object-fit: cover;
+}
+
+.ce-picker-result > span {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.ce-picker-result strong,
+.ce-picker-result small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ce-picker-result strong {
+  font-size: 11px;
+}
+
+.ce-picker-result small {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.ce-picker-result i {
+  color: var(--cyan);
+  font-size: 15px;
+  font-style: normal;
+  text-align: center;
+}
+
+.ce-picker-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 9px;
 }
 
 .error-message {
@@ -1209,6 +1357,18 @@ footer p {
   .settings-content {
     grid-template-columns: 1fr;
     gap: 18px;
+  }
+
+  .ce-picker-results {
+    grid-template-columns: 1fr;
+  }
+
+  .ce-picker-footer span {
+    display: none;
+  }
+
+  .ce-picker-footer button {
+    width: 100%;
   }
 
   .result-heading {
