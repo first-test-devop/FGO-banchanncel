@@ -1,5 +1,5 @@
 import type { PointerEvent as ReactPointerEvent } from "react";
-import type { PartySlot } from "../domain/types";
+import type { BattleMode, PartySlot } from "../domain/types";
 import { getServantBondTraits } from "../domain/servantTraits";
 import { BOND_CRAFT_ESSENCES } from "../data/bondCraftEssences";
 
@@ -8,12 +8,14 @@ interface PartyCardProps {
   isDropTarget: boolean;
   index: number;
   slot: PartySlot;
+  battleMode: BattleMode;
   onChoose: () => void;
   onClear: () => void;
   onPointerDown: (event: ReactPointerEvent<HTMLElement>) => void;
   onPointerMove: (event: ReactPointerEvent<HTMLElement>) => void;
   onPointerUp: (event: ReactPointerEvent<HTMLElement>) => void;
   onSwapWithSupport: () => void;
+  onToggleGrand: () => void;
 }
 
 export const PartyCard = ({
@@ -21,17 +23,25 @@ export const PartyCard = ({
   isDropTarget,
   index,
   slot,
+  battleMode,
   onChoose,
   onClear,
   onPointerDown,
   onPointerMove,
   onPointerUp,
   onSwapWithSupport,
+  onToggleGrand,
 }: PartyCardProps) => {
   const supportCraftEssence =
     slot.kind === "support" && slot.supportCraftEssence?.id
       ? BOND_CRAFT_ESSENCES.find(
           ({ id }) => id === slot.supportCraftEssence?.id,
+        )
+      : null;
+  const supportRewardCraftEssence =
+    slot.kind === "support" && slot.supportRewardCraftEssence?.id
+      ? BOND_CRAFT_ESSENCES.find(
+          ({ id }) => id === slot.supportRewardCraftEssence?.id,
         )
       : null;
 
@@ -41,6 +51,7 @@ export const PartyCard = ({
     className={[
       "party-card",
       slot.servant ? "is-filled" : "",
+      battleMode === "grand" && slot.isGrand ? "is-grand" : "",
       isDragging ? "is-dragging" : "",
       isDropTarget ? "is-drop-target" : "",
     ]
@@ -53,7 +64,15 @@ export const PartyCard = ({
     onPointerUp={slot.servant ? onPointerUp : undefined}
   >
     <div className="slot-label">
-      <span>{slot.kind === "support" ? "SUPPORT" : `SLOT 0${index + 1}`}</span>
+      <span>
+        {battleMode === "grand" && slot.isGrand
+          ? slot.kind === "support"
+            ? "GRAND SUPPORT"
+            : "GRAND SERVANT"
+          : slot.kind === "support"
+            ? "SUPPORT"
+            : `SLOT 0${index + 1}`}
+      </span>
       <small>{slot.kind === "support" ? "助战" : index < 3 ? "前排" : "后备"}</small>
     </div>
     {slot.servant ? (
@@ -113,6 +132,20 @@ export const PartyCard = ({
               </span>
             </div>
           )}
+        {battleMode === "grand" &&
+          slot.kind === "support" &&
+          slot.isGrand && (
+            <div className="support-reward-ce-badge">
+              {supportRewardCraftEssence ? (
+                <img alt="" src={supportRewardCraftEssence.image} />
+              ) : (
+                <span>—</span>
+              )}
+              <small>
+                位 3：{supportRewardCraftEssence?.shortName ?? "空"}
+              </small>
+            </div>
+          )}
         <button
           aria-label={`移除${slot.servant.name}`}
           className="clear-slot"
@@ -123,6 +156,11 @@ export const PartyCard = ({
         {slot.kind === "owned" && (
           <button className="swap-support" onClick={onSwapWithSupport}>
             与助战换位
+          </button>
+        )}
+        {battleMode === "grand" && (
+          <button className="grand-toggle" onClick={onToggleGrand}>
+            {slot.isGrand ? "已设为冠位" : "设为冠位"}
           </button>
         )}
       </>

@@ -26,7 +26,9 @@ import { logger } from "./lib/logger";
 const EMPTY_PARTY: PartySlot[] = Array.from({ length: 6 }, (_, index) => ({
   kind: index === 5 ? "support" : "owned",
   servant: null,
+  isGrand: false,
   supportCraftEssence: null,
+  supportRewardCraftEssence: null,
 }));
 
 const DEMO_COLLECTION_NUMBERS = [385, 314, 215, 150, 236, 314];
@@ -34,6 +36,7 @@ const SETTINGS_STORAGE_KEY = "chaldea-bond-planner.settings";
 
 const loadInitialSettings = (): BondSettings => {
   const fallback: BondSettings = {
+    battleMode: "normal",
     baseBond: 815,
     maxPartyCost: 120,
     craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
@@ -43,6 +46,8 @@ const loadInitialSettings = (): BondSettings => {
     if (!stored) return fallback;
     const parsed = JSON.parse(stored) as Partial<BondSettings>;
     return {
+      battleMode:
+        parsed.battleMode === "grand" ? "grand" : fallback.battleMode,
       baseBond:
         typeof parsed.baseBond === "number" && parsed.baseBond >= 0
           ? parsed.baseBond
@@ -74,6 +79,9 @@ export const App = () => {
     servant: Servant;
     initialCraftEssenceId?: string | null;
     initialState?: "base" | "mlb";
+    initialIsGrand?: boolean;
+    initialRewardCraftEssenceId?: string | null;
+    initialRewardState?: "base" | "mlb";
   } | null>(null);
   const pointerDragRef = useRef<{
     index: number;
@@ -122,6 +130,9 @@ export const App = () => {
         servant,
         initialCraftEssenceId: slot.supportCraftEssence?.id,
         initialState: slot.supportCraftEssence?.state,
+        initialIsGrand: slot.isGrand,
+        initialRewardCraftEssenceId: slot.supportRewardCraftEssence?.id,
+        initialRewardState: slot.supportRewardCraftEssence?.state,
       });
       closePicker();
       return;
@@ -149,6 +160,8 @@ export const App = () => {
           slot.kind === "support"
             ? { id: "chaldea-teatime", state: "mlb" }
             : null,
+        supportRewardCraftEssence: null,
+        isGrand: false,
       })),
     );
     setAnalysis(null);
@@ -193,7 +206,7 @@ export const App = () => {
     event: ReactPointerEvent<HTMLElement>,
   ) => {
     const target = event.target as HTMLElement;
-    if (target.closest(".clear-slot, .swap-support")) return;
+    if (target.closest(".clear-slot, .swap-support, .grand-toggle")) return;
     pointerDragRef.current = {
       index,
       pointerId: event.pointerId,
@@ -302,6 +315,37 @@ export const App = () => {
           </button>
         </div>
 
+        <div className="battle-mode-switch" aria-label="关卡模式">
+          <button
+            className={settings.battleMode === "normal" ? "is-active" : ""}
+            onClick={() => {
+              setSettings((current) => ({
+                ...current,
+                battleMode: "normal",
+              }));
+              setAnalysis(null);
+            }}
+            type="button"
+          >
+            <strong>普通关卡</strong>
+            <small>每名英灵使用一个礼装位</small>
+          </button>
+          <button
+            className={settings.battleMode === "grand" ? "is-active" : ""}
+            onClick={() => {
+              setSettings((current) => ({
+                ...current,
+                battleMode: "grand",
+              }));
+              setAnalysis(null);
+            }}
+            type="button"
+          >
+            <strong>冠位战</strong>
+            <small>指定冠位英灵并开放额外礼装位</small>
+          </button>
+        </div>
+
         <div className="party-grid">
           {party.map((slot, index) => (
             <PartyCard
@@ -310,6 +354,7 @@ export const App = () => {
                 dropTargetIndex === index && draggedIndex !== index
               }
               index={index}
+              battleMode={settings.battleMode}
               key={index}
               onChoose={() => {
                 if (!suppressChooseRef.current) setPickerIndex(index);
@@ -321,7 +366,9 @@ export const App = () => {
                       ? {
                           ...item,
                           servant: null,
+                          isGrand: false,
                           supportCraftEssence: null,
+                          supportRewardCraftEssence: null,
                         }
                       : item,
                   ),
@@ -341,6 +388,20 @@ export const App = () => {
                   ];
                   return next;
                 });
+                setAnalysis(null);
+              }}
+              onToggleGrand={() => {
+                setParty((current) =>
+                  current.map((item, itemIndex) => ({
+                    ...item,
+                    isGrand:
+                      itemIndex === index
+                        ? !item.isGrand
+                        : item.kind === "owned" && slot.kind === "owned"
+                          ? false
+                          : item.isGrand,
+                  })),
+                );
                 setAnalysis(null);
               }}
               slot={slot}
@@ -390,18 +451,26 @@ export const App = () => {
         selectedIds={selectedIds}
       />
       <SupportCraftEssencePicker
+        allowGrand={settings.battleMode === "grand"}
+        initialIsGrand={pendingSupport?.initialIsGrand}
         initialCraftEssenceId={pendingSupport?.initialCraftEssenceId}
+        initialRewardCraftEssenceId={
+          pendingSupport?.initialRewardCraftEssenceId
+        }
+        initialRewardState={pendingSupport?.initialRewardState}
         initialState={pendingSupport?.initialState}
         onCancel={() => setPendingSupport(null)}
-        onConfirm={(craftEssenceId, state) => {
+        onConfirm={(value) => {
           if (!pendingSupport) return;
           setParty((current) =>
             current.map((slot, index) =>
               index === pendingSupport.index
-                ? {
+                  ? {
                     ...slot,
                     servant: pendingSupport.servant,
-                    supportCraftEssence: { id: craftEssenceId, state },
+                    isGrand: value.isGrand,
+                    supportCraftEssence: value.primary,
+                    supportRewardCraftEssence: value.reward,
                   }
                 : slot,
             ),

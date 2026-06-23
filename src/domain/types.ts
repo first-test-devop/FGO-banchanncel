@@ -1,5 +1,10 @@
 export type SlotKind = "owned" | "support";
 export type CraftEssenceState = "none" | "base" | "mlb";
+export type BattleMode = "normal" | "grand";
+export type CraftEssenceSelection = {
+  id: string | null;
+  state: Exclude<CraftEssenceState, "none">;
+};
 
 export interface Servant {
   id: number;
@@ -16,10 +21,9 @@ export interface Servant {
 export interface PartySlot {
   kind: SlotKind;
   servant: Servant | null;
-  supportCraftEssence?: {
-    id: string | null;
-    state: Exclude<CraftEssenceState, "none">;
-  } | null;
+  isGrand?: boolean;
+  supportCraftEssence?: CraftEssenceSelection | null;
+  supportRewardCraftEssence?: CraftEssenceSelection | null;
 }
 
 export interface BondCraftEssence {
@@ -52,6 +56,7 @@ export interface ResolvedBondCraftEssence extends BondCraftEssence {
 }
 
 export interface BondSettings {
+  battleMode: BattleMode;
   baseBond: number;
   maxPartyCost: number;
   craftEssenceStates: Record<string, CraftEssenceState>;
@@ -61,6 +66,18 @@ export interface SlotRecommendation {
   slotIndex: number;
   servant: Servant;
   craftEssence: ResolvedBondCraftEssence;
+  equippedCraftEssences: {
+    slotLabel: string;
+    craftEssence: ResolvedBondCraftEssence;
+    effectiveCost: number;
+    reason: string;
+    matchedBeneficiaries: {
+      servantId: number;
+      servantName: string;
+      matchedTraits: string[];
+    }[];
+  }[];
+  isGrand: boolean;
   reason: string;
   servantTraits: {
     id: string;
@@ -95,6 +112,7 @@ export interface SlotRecommendation {
 }
 
 export interface BondAnalysis {
+  battleMode: BattleMode;
   recommendations: SlotRecommendation[];
   baseTotal: number;
   totalPartyBond: number;

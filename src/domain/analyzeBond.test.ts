@@ -30,6 +30,7 @@ const fullParty: PartySlot[] = [
 describe("analyzeBond", () => {
   it("puts Teatime on support and maximizes a high-bond quest", () => {
     const result = analyzeBond(fullParty, {
+      battleMode: "normal",
       baseBond: 815,
       maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
@@ -72,6 +73,7 @@ describe("analyzeBond", () => {
     const result = analyzeBond(
       [fullParty[0], fullParty[5]],
       {
+      battleMode: "normal",
       baseBond: 200,
       maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
@@ -85,6 +87,7 @@ describe("analyzeBond", () => {
 
   it("does not count support servant as an owned bond recipient", () => {
     const result = analyzeBond(fullParty, {
+      battleMode: "normal",
       baseBond: 815,
       maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
@@ -97,6 +100,7 @@ describe("analyzeBond", () => {
 
   it("only applies the starting-member bonus to the first three slots", () => {
     const result = analyzeBond(fullParty, {
+      battleMode: "normal",
       baseBond: 1000,
       maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
@@ -120,6 +124,7 @@ describe("analyzeBond", () => {
       })),
     ];
     const result = analyzeBond(supportFirst, {
+      battleMode: "normal",
       baseBond: 815,
       maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
@@ -161,6 +166,7 @@ describe("analyzeBond", () => {
         },
       ],
       {
+        battleMode: "normal",
         baseBond: 1000,
         maxPartyCost: 999,
         craftEssenceStates: {
@@ -206,6 +212,7 @@ describe("analyzeBond", () => {
         : slot,
     );
     const result = analyzeBond(partyWithBaseSupport, {
+      battleMode: "normal",
       baseBond: 1000,
       maxPartyCost: 999,
       craftEssenceStates: {
@@ -237,6 +244,7 @@ describe("analyzeBond", () => {
 
   it("leaves owned CE slots empty when the party Cost limit is tight", () => {
     const result = analyzeBond(fullParty, {
+      battleMode: "normal",
       baseBond: 1000,
       maxPartyCost: 104,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
@@ -259,6 +267,7 @@ describe("analyzeBond", () => {
   it("rejects a party whose owned servants alone exceed the Cost limit", () => {
     expect(() =>
       analyzeBond(fullParty, {
+        battleMode: "normal",
         baseBond: 1000,
         maxPartyCost: 79,
         craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
@@ -276,17 +285,82 @@ describe("analyzeBond", () => {
         : slot,
     );
     const result = analyzeBond(partyWithoutSupportCe, {
+      battleMode: "normal",
       baseBond: 1000,
       maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
     });
 
     expect(result.recommendations[5].craftEssence.isEmpty).toBe(true);
-    expect(result.recommendations[5].reason).toContain("未携带礼装");
+    expect(result.recommendations[5].reason).toContain("礼装位为空");
     expect(
       result.recommendations[0].calculation?.equipmentBreakdown.some(
         ({ name, value }) => name === "迦勒底午茶时光" && value === 15,
       ),
     ).toBe(false);
+  });
+
+  it("uses two configurable CE slots on the owned Grand Servant", () => {
+    const grandParty = fullParty.map((slot, index) =>
+      index === 0 ? { ...slot, isGrand: true } : slot,
+    );
+    const result = analyzeBond(grandParty, {
+      battleMode: "grand",
+      baseBond: 1000,
+      maxPartyCost: 92,
+      craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
+    });
+    const grandRecommendation = result.recommendations[0];
+
+    expect(grandRecommendation.isGrand).toBe(true);
+    expect(grandRecommendation.equippedCraftEssences).toHaveLength(2);
+    expect(
+      grandRecommendation.equippedCraftEssences.map(
+        ({ effectiveCost }) => effectiveCost,
+      ),
+    ).toContain(0);
+    expect(result.craftEssenceCost).toBeLessThanOrEqual(12);
+    expect(
+      result.recommendations
+        .flatMap(({ equippedCraftEssences }) => equippedCraftEssences)
+        .filter(({ craftEssence }) => !craftEssence.isEmpty),
+    ).toHaveLength(2 + 1);
+  });
+
+  it("requires exactly one owned Grand Servant in Grand Battle mode", () => {
+    expect(() =>
+      analyzeBond(fullParty, {
+        battleMode: "grand",
+        baseBond: 1000,
+        maxPartyCost: 999,
+        craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
+      }),
+    ).toThrow("必须且只能指定一名自有冠位英灵");
+  });
+
+  it("applies both fixed CEs from a Grand support", () => {
+    const grandParty = fullParty.map((slot, index) =>
+      index === 0
+        ? { ...slot, isGrand: true }
+        : slot.kind === "support"
+          ? {
+              ...slot,
+              isGrand: true,
+              supportRewardCraftEssence: {
+                id: "chaldea-lunchtime",
+                state: "mlb" as const,
+              },
+            }
+          : slot,
+    );
+    const result = analyzeBond(grandParty, {
+      battleMode: "grand",
+      baseBond: 1000,
+      maxPartyCost: 999,
+      craftEssenceStates: {},
+    });
+
+    expect(result.recommendations[5].equippedCraftEssences).toHaveLength(2);
+    expect(result.recommendations[0].calculation?.equipmentPercent).toBe(25);
   });
 });

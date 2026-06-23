@@ -83,8 +83,14 @@ export const AnalysisResult = ({
               <img alt="" src={item.servant.face} />
               <span>
                 <small>
-                  {slot.kind === "support"
-                    ? "助战位"
+                  {item.isGrand
+                    ? slot.kind === "support"
+                      ? "冠位助战"
+                      : item.slotIndex < 3
+                        ? `自有冠位 · 首发位 ${item.slotIndex + 1}`
+                        : `自有冠位 · 后备位 ${item.slotIndex + 1}`
+                    : slot.kind === "support"
+                      ? "助战位"
                     : item.slotIndex < 3
                       ? `首发位 ${item.slotIndex + 1} · 羁绊 +20%`
                       : `后备位 ${item.slotIndex + 1}`}
@@ -102,53 +108,56 @@ export const AnalysisResult = ({
             <div className="equip-arrow" aria-hidden="true">
               →
             </div>
-            <div className="recommendation-ce">
-              {item.craftEssence.image ? (
-                <img alt="" src={item.craftEssence.image} />
-              ) : (
-                <div className="empty-ce-image" aria-hidden="true">
-                  —
+            <div className="recommendation-loadout">
+              {item.equippedCraftEssences.map((equipment) => (
+                <div
+                  className="recommendation-ce"
+                  key={equipment.slotLabel}
+                >
+                  {equipment.craftEssence.image ? (
+                    <img alt="" src={equipment.craftEssence.image} />
+                  ) : (
+                    <div className="empty-ce-image" aria-hidden="true">
+                      —
+                    </div>
+                  )}
+                  <span>
+                    <small>
+                      {equipment.slotLabel} · Cost {equipment.effectiveCost}
+                    </small>
+                    <strong>{equipment.craftEssence.name}</strong>
+                  </span>
+                </div>
+              ))}
+              {item.isGrand && (
+                <div className="locked-bond-ce">
+                  <span>2</span>
+                  <small>礼装位 2</small>
+                  <strong>自身羁绊礼装</strong>
+                  <i>固定 · Cost 0 · 不参与优化</i>
                 </div>
               )}
-              <span>
-                <small>
-                  {slot.kind === "support"
-                    ? item.craftEssence.isEmpty
-                      ? "助战已固定 · 不携带礼装"
-                      : "助战已固定礼装"
-                    : item.craftEssence.isEmpty
-                      ? "Cost 限制 · 空礼装位"
-                      : item.craftEssence.target &&
-                          item.matchedBeneficiaries.length === 0
-                        ? "补位礼装 · 当前无特性收益"
-                        : `推荐礼装 · Cost ${item.craftEssence.cost}`}
-                </small>
-                <strong>{item.craftEssence.name}</strong>
-              </span>
             </div>
-            <p>
-              {item.reason}
-            </p>
-            {item.craftEssence.target && (
-              <div className="beneficiary-explanation">
-                <strong>特性限定效果的受益对象</strong>
-                {item.matchedBeneficiaries.length > 0 ? (
-                  <ul>
-                    {item.matchedBeneficiaries.map((beneficiary) => (
-                      <li key={beneficiary.servantId}>
-                        <span>{beneficiary.servantName}</span>
-                        <small>
-                          命中：{beneficiary.matchedTraits.join(" + ")}
-                        </small>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <small>当前阵容中没有符合条件的自有英灵。</small>
-                )}
-                <p>佩戴者无需符合该特性，礼装效果按全队受益对象计算。</p>
-              </div>
-            )}
+            <div className="equipment-reasons">
+              {item.equippedCraftEssences.map((equipment) => (
+                <div key={equipment.slotLabel}>
+                  <strong>{equipment.slotLabel}</strong>
+                  <p>{equipment.reason}</p>
+                  {equipment.craftEssence.target &&
+                    equipment.matchedBeneficiaries.length > 0 && (
+                      <small>
+                        受益：
+                        {equipment.matchedBeneficiaries
+                          .map(
+                            ({ servantName, matchedTraits }) =>
+                              `${servantName}（${matchedTraits.join(" + ")}）`,
+                          )
+                          .join("、")}
+                      </small>
+                    )}
+                </div>
+              ))}
+            </div>
             {item.calculation && (
               <ol className="calculation-steps">
                 <li>

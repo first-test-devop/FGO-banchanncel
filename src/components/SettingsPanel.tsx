@@ -59,7 +59,8 @@ export const SettingsPanel = ({
           <span>
             <strong>计算条件</strong>
             <small>
-              基础羁绊 · Cost {value.maxPartyCost} · 已选{" "}
+              {value.battleMode === "grand" ? "冠位战" : "普通关卡"} · Cost{" "}
+              {value.maxPartyCost} · 已选{" "}
               {selectedCraftEssences.length} 张自有礼装
             </small>
           </span>
