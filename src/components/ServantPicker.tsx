@@ -87,7 +87,7 @@ export const ServantPicker = ({
           <strong>特性说明</strong>
           <span>
             下方仅展示会影响羁绊礼装判断的职阶、阵营、性别等特性。
-            “有可开放灵衣”不要求你的账号已解锁，也不要求当前穿着。
+            “拥有灵衣之人”是系统固定特性，即使账号没有灵衣开放权也符合条件。
           </span>
         </div>
         <div className="servant-results">

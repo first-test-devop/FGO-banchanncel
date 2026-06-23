@@ -46,9 +46,9 @@ const TRAIT_LABELS: Record<string, DisplayTrait> = {
   },
   hasCostume: {
     id: "hasCostume",
-    label: "有可开放灵衣",
+    label: "拥有灵衣之人",
     description:
-      "表示该英灵在游戏中存在可开放的灵衣，不要求你的账号已解锁，也不要求当前穿着。",
+      "系统固定特性。即使你的账号尚未取得灵衣开放权、尚未开放或当前未穿着，也符合条件。",
   },
   FSNServant: {
     id: "FSNServant",
