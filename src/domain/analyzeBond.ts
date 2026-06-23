@@ -1,9 +1,12 @@
-import { BOND_CRAFT_ESSENCES } from "../data/bondCraftEssences";
+import {
+  BOND_CRAFT_ESSENCES,
+  resolveCraftEssence,
+} from "../data/bondCraftEssences";
 import type {
   BondAnalysis,
-  BondCraftEssence,
   BondSettings,
   PartySlot,
+  ResolvedBondCraftEssence,
   Servant,
   SlotKind,
 } from "./types";
@@ -14,7 +17,7 @@ const SUPPORT_SHARE_BOND_BONUS = 4;
 const ACTIVITY_BOND_BONUS = 0;
 
 const valueForEquippedSlot = (
-  craftEssence: BondCraftEssence,
+  craftEssence: ResolvedBondCraftEssence,
   kind: SlotKind,
 ) =>
   kind === "support"
@@ -22,7 +25,7 @@ const valueForEquippedSlot = (
     : craftEssence.ownedValue;
 
 const appliesToServant = (
-  craftEssence: BondCraftEssence,
+  craftEssence: ResolvedBondCraftEssence,
   servant: Servant,
 ) => {
   const target = craftEssence.target;
@@ -38,7 +41,7 @@ const appliesToServant = (
 
 const assignCraftEssences = (
   slots: PartySlot[],
-  selected: BondCraftEssence[],
+  selected: ResolvedBondCraftEssence[],
 ) => {
   const supportIndex = slots.findIndex(({ kind }) => kind === "support");
   if (supportIndex < 0) return [...selected];
@@ -55,7 +58,7 @@ const assignCraftEssences = (
 
   const supportCraftEssence = selected[bestSupportIndex];
   const remaining = selected.filter((_, index) => index !== bestSupportIndex);
-  const assignment: BondCraftEssence[] = [];
+  const assignment: ResolvedBondCraftEssence[] = [];
   let remainingIndex = 0;
   slots.forEach((_, index) => {
     if (index === supportIndex) assignment.push(supportCraftEssence);
@@ -66,10 +69,15 @@ const assignCraftEssences = (
 
 const getEquipmentBonus = (
   servant: Servant,
-  assignment: BondCraftEssence[],
+  assignment: ResolvedBondCraftEssence[],
   equippedSlots: PartySlot[],
 ) => {
-  const equipmentBreakdown: { name: string; value: number }[] = [];
+  const equipmentBreakdown: {
+    name: string;
+    value: number;
+    state: ResolvedBondCraftEssence["state"];
+    stateLabel: string;
+  }[] = [];
   let percent = 0;
   let fixed = 0;
 
@@ -81,7 +89,16 @@ const getEquipmentBonus = (
     );
     if (craftEssence.effect === "percent") {
       percent += value;
-      equipmentBreakdown.push({ name: craftEssence.name, value });
+      equipmentBreakdown.push({
+        name: craftEssence.name,
+        value,
+        state: craftEssence.state,
+        stateLabel: craftEssence.hasMlbEffect
+          ? craftEssence.state === "mlb"
+            ? "满破"
+            : "未满破"
+          : "已持有",
+      });
     } else {
       fixed += value;
     }
@@ -91,17 +108,22 @@ const getEquipmentBonus = (
 };
 
 const describeContribution = (
-  craftEssence: BondCraftEssence,
+  craftEssence: ResolvedBondCraftEssence,
   kind: SlotKind,
   ownedServants: Servant[],
 ) => {
   const value = valueForEquippedSlot(craftEssence, kind);
+  const stateLabel = craftEssence.hasMlbEffect
+    ? craftEssence.state === "mlb"
+      ? "满破"
+      : "未满破"
+    : "已持有";
   const secondary = craftEssence.secondaryBenefit
     ? `，并兼顾${craftEssence.secondaryBenefit}`
     : "";
 
   if (craftEssence.effect === "flat") {
-    return `在所有百分比乘算完成后，为每名可获得羁绊的自有英灵固定增加 ${value} 点${secondary}。`;
+    return `装备状态：${stateLabel}。在所有百分比乘算完成后，为每名可获得羁绊的自有英灵固定增加 ${value} 点${secondary}。`;
   }
 
   const supportNote =
@@ -109,7 +131,7 @@ const describeContribution = (
       ? "；该礼装在助战位由 5% 提升至 15%"
       : "";
   if (!craftEssence.target) {
-    return `为全队每名可获得羁绊的自有英灵增加 ${value}%${supportNote}${secondary}。`;
+    return `装备状态：${stateLabel}。为全队每名可获得羁绊的自有英灵增加 ${value}%${supportNote}${secondary}。`;
   }
 
   const matched = ownedServants.filter((servant) =>
@@ -117,13 +139,13 @@ const describeContribution = (
   );
   const names =
     matched.length > 0 ? matched.map(({ name }) => name).join("、") : "无";
-  return `仅为〔${craftEssence.target.label}〕增加 ${value}%；当前命中 ${matched.length} 名：${names}${secondary}。`;
+  return `装备状态：${stateLabel}。仅为〔${craftEssence.target.label}〕增加 ${value}%；当前命中 ${matched.length} 名：${names}${secondary}。`;
 };
 
 const calculateServantBond = (
   servant: Servant,
   slotIndex: number,
-  assignment: BondCraftEssence[],
+  assignment: ResolvedBondCraftEssence[],
   equippedSlots: PartySlot[],
   baseBond: number,
   supportInStartingLineup: boolean,
@@ -161,7 +183,7 @@ const calculateServantBond = (
  */
 const optimizeAssignments = (
   slots: PartySlot[],
-  craftEssences: BondCraftEssence[],
+  craftEssences: ResolvedBondCraftEssence[],
   baseBond: number,
   party: PartySlot[],
 ) => {
@@ -169,9 +191,9 @@ const optimizeAssignments = (
     .slice(0, STARTING_MEMBER_SLOT_COUNT)
     .some(({ kind, servant }) => kind === "support" && servant !== null);
   let bestScore = Number.NEGATIVE_INFINITY;
-  let best: BondCraftEssence[] = [];
+  let best: ResolvedBondCraftEssence[] = [];
 
-  const scoreSelection = (selected: BondCraftEssence[]) => {
+  const scoreSelection = (selected: ResolvedBondCraftEssence[]) => {
     const assignment = assignCraftEssences(slots, selected);
     return slots.reduce((total, slot) => {
       if (slot.kind !== "owned" || !slot.servant?.bondEligible) return total;
@@ -190,7 +212,10 @@ const optimizeAssignments = (
     }, 0);
   };
 
-  const visit = (startIndex: number, selected: BondCraftEssence[]) => {
+  const visit = (
+    startIndex: number,
+    selected: ResolvedBondCraftEssence[],
+  ) => {
     if (selected.length === slots.length) {
       const score = scoreSelection(selected);
       if (score > bestScore) {
@@ -224,8 +249,14 @@ export const analyzeBond = (
     (slot): slot is PartySlot & { servant: NonNullable<PartySlot["servant"]> } =>
       slot.servant !== null,
   );
-  const availableCraftEssences = BOND_CRAFT_ESSENCES.filter((craftEssence) =>
-    settings.availableCeIds.includes(craftEssence.id),
+  const availableCraftEssences = BOND_CRAFT_ESSENCES.flatMap(
+    (craftEssence) => {
+      const state =
+        settings.craftEssenceStates[craftEssence.id] ?? "none";
+      return state === "none"
+        ? []
+        : [resolveCraftEssence(craftEssence, state)];
+    },
   );
 
   if (selectedSlots.length === 0) {
@@ -347,7 +378,7 @@ export const analyzeBond = (
         ? "第二步：助战位于前三个首发槽位，其 20% 首发加成平摊给五名自有英灵，每名获得 4%；首发自有英灵再叠加自身 20%，因此首发乘 1.24、后备乘 1.04，结果向下取整。"
         : "第二步：助战位于后备，无法获得首发 20% 且不触发平摊；首发自有英灵乘 1.20，后备自有英灵乘 1.00，结果向下取整。",
       "第三步：在前两步完成后，再加上英灵肖像等固定羁绊值；固定值不参与前面的百分比乘算。",
-      "礼装效果对首发与后备成员均生效；助战英灵自身不计入你的羁绊收益。当前礼装按满破效果计算。",
+      "礼装效果对首发与后备成员均生效；助战英灵自身不计入你的羁绊收益。每张礼装按库存中选择的未满破或满破效果计算。",
       eligibleServantCount <
       selectedSlots.filter(({ kind }) => kind === "owned").length
         ? "玛修当前按无法通过普通关卡获得羁绊处理，但她佩戴的礼装仍可为其他成员提供加成。"

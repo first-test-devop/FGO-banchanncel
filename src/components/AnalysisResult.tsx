@@ -97,7 +97,10 @@ export const AnalysisResult = ({
                   {item.calculation.equipmentBreakdown.length > 0 && (
                     <small>
                       {item.calculation.equipmentBreakdown
-                        .map(({ name, value }) => `${name} ${value}%`)
+                        .map(
+                          ({ name, value, stateLabel }) =>
+                            `${name}（${stateLabel}）${value}%`,
+                        )
                         .join(" + ")}
                     </small>
                   )}

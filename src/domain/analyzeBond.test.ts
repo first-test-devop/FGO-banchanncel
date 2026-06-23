@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_AVAILABLE_CE_IDS } from "../data/bondCraftEssences";
+import { DEFAULT_CRAFT_ESSENCE_STATES } from "../data/bondCraftEssences";
 import { analyzeBond } from "./analyzeBond";
 import type { PartySlot, Servant } from "./types";
 
@@ -26,7 +26,7 @@ describe("analyzeBond", () => {
   it("puts Teatime on support and maximizes a high-bond quest", () => {
     const result = analyzeBond(fullParty, {
       baseBond: 815,
-      availableCeIds: DEFAULT_AVAILABLE_CE_IDS,
+      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
     });
 
     expect(result.recommendations[5].craftEssence.id).toBe(
@@ -46,11 +46,11 @@ describe("analyzeBond", () => {
       baseBond: 815,
       equipmentPercent: 40,
       equipmentBreakdown: [
-        { name: "迦勒底午餐时光", value: 10 },
-        { name: "名侦探芙尔摩斯", value: 5 },
-        { name: "迦勒底晚餐时光", value: 5 },
-        { name: "格兰·卡瓦洛", value: 5 },
-        { name: "迦勒底午茶时光", value: 15 },
+        { name: "迦勒底午餐时光", value: 10, state: "mlb", stateLabel: "满破" },
+        { name: "名侦探芙尔摩斯", value: 5, state: "mlb", stateLabel: "满破" },
+        { name: "迦勒底晚餐时光", value: 5, state: "mlb", stateLabel: "满破" },
+        { name: "格兰·卡瓦洛", value: 5, state: "mlb", stateLabel: "满破" },
+        { name: "迦勒底午茶时光", value: 15, state: "mlb", stateLabel: "满破" },
       ],
       activityPercent: 0,
       afterEquipment: 1141,
@@ -67,7 +67,7 @@ describe("analyzeBond", () => {
       [fullParty[0], fullParty[5]],
       {
       baseBond: 200,
-      availableCeIds: DEFAULT_AVAILABLE_CE_IDS,
+      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
       },
     );
 
@@ -79,7 +79,7 @@ describe("analyzeBond", () => {
   it("does not count support servant as an owned bond recipient", () => {
     const result = analyzeBond(fullParty, {
       baseBond: 815,
-      availableCeIds: DEFAULT_AVAILABLE_CE_IDS,
+      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
     });
 
     expect(result.eligibleServantCount).toBe(5);
@@ -90,7 +90,7 @@ describe("analyzeBond", () => {
   it("only applies the starting-member bonus to the first three slots", () => {
     const result = analyzeBond(fullParty, {
       baseBond: 1000,
-      availableCeIds: DEFAULT_AVAILABLE_CE_IDS,
+      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
     });
 
     expect(
@@ -108,7 +108,7 @@ describe("analyzeBond", () => {
     ];
     const result = analyzeBond(supportFirst, {
       baseBond: 815,
-      availableCeIds: DEFAULT_AVAILABLE_CE_IDS,
+      craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
     });
 
     expect(result.supportInStartingLineup).toBe(true);
@@ -144,11 +144,11 @@ describe("analyzeBond", () => {
       ],
       {
         baseBond: 1000,
-        availableCeIds: [
-          "inspection-report",
-          "chaldea-lunchtime",
-          "chaldea-teatime",
-        ],
+        craftEssenceStates: {
+          "inspection-report": "mlb",
+          "chaldea-lunchtime": "mlb",
+          "chaldea-teatime": "mlb",
+        },
       },
     );
 
@@ -162,5 +162,35 @@ describe("analyzeBond", () => {
     ).toBe(25);
     expect(result.minEquipmentPercent).toBe(25);
     expect(result.maxEquipmentPercent).toBe(45);
+  });
+
+  it("uses non-MLB values when the inventory marks a CE as base", () => {
+    const result = analyzeBond(fullParty, {
+      baseBond: 1000,
+      craftEssenceStates: {
+        "chaldea-lunchtime": "base",
+        "chaldea-teatime": "base",
+        "detective-foumes": "base",
+        "chaldea-dinnertime": "base",
+        "gran-cavallo": "base",
+        "heroic-spirit-portrait": "mlb",
+      },
+    });
+
+    expect(result.minEquipmentPercent).toBe(8);
+    expect(result.maxEquipmentPercent).toBe(8);
+    expect(result.flatBonus).toBe(50);
+    expect(result.recommendations[5].craftEssence).toMatchObject({
+      id: "chaldea-teatime",
+      state: "base",
+      supportValue: 3,
+    });
+    expect(result.recommendations[0].calculation?.equipmentBreakdown).toEqual([
+      { name: "迦勒底午餐时光", value: 2, state: "base", stateLabel: "未满破" },
+      { name: "名侦探芙尔摩斯", value: 1, state: "base", stateLabel: "未满破" },
+      { name: "迦勒底晚餐时光", value: 1, state: "base", stateLabel: "未满破" },
+      { name: "格兰·卡瓦洛", value: 1, state: "base", stateLabel: "未满破" },
+      { name: "迦勒底午茶时光", value: 3, state: "base", stateLabel: "未满破" },
+    ]);
   });
 });

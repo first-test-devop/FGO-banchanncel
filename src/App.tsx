@@ -9,7 +9,7 @@ import { AnalysisResult } from "./components/AnalysisResult";
 import { PartyCard } from "./components/PartyCard";
 import { ServantPicker } from "./components/ServantPicker";
 import { SettingsPanel } from "./components/SettingsPanel";
-import { DEFAULT_AVAILABLE_CE_IDS } from "./data/bondCraftEssences";
+import { DEFAULT_CRAFT_ESSENCE_STATES } from "./data/bondCraftEssences";
 import servantsData from "./data/servants.json";
 import { analyzeBond } from "./domain/analyzeBond";
 import { reorderParty } from "./domain/reorderParty";
@@ -46,7 +46,7 @@ export const App = () => {
   const suppressChooseRef = useRef(false);
   const [settings, setSettings] = useState<BondSettings>({
     baseBond: 815,
-    availableCeIds: DEFAULT_AVAILABLE_CE_IDS,
+    craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
   });
 
   const selectedIds = useMemo(

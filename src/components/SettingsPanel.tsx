@@ -1,5 +1,8 @@
 import { BOND_CRAFT_ESSENCES } from "../data/bondCraftEssences";
-import type { BondSettings } from "../domain/types";
+import type {
+  BondSettings,
+  CraftEssenceState,
+} from "../domain/types";
 
 interface SettingsPanelProps {
   value: BondSettings;
@@ -10,11 +13,17 @@ export const SettingsPanel = ({
   value,
   onChange,
 }: SettingsPanelProps) => {
-  const toggleCraftEssence = (id: string) => {
-    const availableCeIds = value.availableCeIds.includes(id)
-      ? value.availableCeIds.filter((item) => item !== id)
-      : [...value.availableCeIds, id];
-    onChange({ ...value, availableCeIds });
+  const updateCraftEssence = (
+    id: string,
+    state: CraftEssenceState,
+  ) => {
+    onChange({
+      ...value,
+      craftEssenceStates: {
+        ...value.craftEssenceStates,
+        [id]: state,
+      },
+    });
   };
 
   return (
@@ -22,7 +31,7 @@ export const SettingsPanel = ({
       <summary>
         <span>
           <strong>计算条件</strong>
-          <small>基础羁绊与已持有满破礼装</small>
+          <small>基础羁绊与礼装突破状态</small>
         </span>
         <span className="settings-chevron">⌄</span>
       </summary>
@@ -45,26 +54,53 @@ export const SettingsPanel = ({
           <small>示例：典位级常用 815；请以关卡实际值为准</small>
         </label>
         <fieldset className="ce-inventory">
-          <legend>可用满破羁绊礼装</legend>
+          <legend>羁绊礼装库存</legend>
           <div>
-            {BOND_CRAFT_ESSENCES.map((craftEssence) => (
-              <label key={craftEssence.id}>
-                <input
-                  checked={value.availableCeIds.includes(craftEssence.id)}
-                  onChange={() => toggleCraftEssence(craftEssence.id)}
-                  type="checkbox"
-                />
-                <img alt="" src={craftEssence.image} />
-                <span>
-                  {craftEssence.shortName}
-                  {craftEssence.target && (
-                    <small>
-                      {craftEssence.target.label} +{craftEssence.ownedValue}%
-                    </small>
-                  )}
-                </span>
-              </label>
-            ))}
+            {BOND_CRAFT_ESSENCES.map((craftEssence) => {
+              const state =
+                value.craftEssenceStates[craftEssence.id] ?? "none";
+              const displayedValue =
+                state === "base"
+                  ? craftEssence.baseOwnedValue
+                  : craftEssence.mlbOwnedValue;
+              return (
+                <label
+                  className={state === "none" ? "is-unavailable" : ""}
+                  key={craftEssence.id}
+                >
+                  <img alt="" src={craftEssence.image} />
+                  <span>
+                    {craftEssence.shortName}
+                    {craftEssence.target && (
+                      <small>
+                        {craftEssence.target.label}
+                        {state !== "none" && ` +${displayedValue}%`}
+                      </small>
+                    )}
+                  </span>
+                  <select
+                    aria-label={`${craftEssence.name}突破状态`}
+                    onChange={(event) =>
+                      updateCraftEssence(
+                        craftEssence.id,
+                        event.target.value as CraftEssenceState,
+                      )
+                    }
+                    value={state}
+                  >
+                    <option value="none">未持有</option>
+                    {craftEssence.hasMlbEffect ? (
+                      <>
+                        <option value="base">未满破</option>
+                        <option value="mlb">满破</option>
+                      </>
+                    ) : (
+                      <option value="mlb">已持有</option>
+                    )}
+                  </select>
+                </label>
+              );
+            })}
           </div>
         </fieldset>
       </div>

@@ -1,4 +1,5 @@
 export type SlotKind = "owned" | "support";
+export type CraftEssenceState = "none" | "base" | "mlb";
 
 export interface Servant {
   id: number;
@@ -21,10 +22,14 @@ export interface BondCraftEssence {
   name: string;
   shortName: string;
   effect: "percent" | "flat";
-  ownedValue: number;
-  supportValue: number;
+  baseOwnedValue: number;
+  mlbOwnedValue: number;
+  baseSupportValue: number;
+  mlbSupportValue: number;
+  hasMlbEffect: boolean;
   image: string;
-  secondaryBenefit?: string;
+  baseSecondaryBenefit?: string;
+  mlbSecondaryBenefit?: string;
   target?: {
     label: string;
     allTraits?: string[];
@@ -32,15 +37,22 @@ export interface BondCraftEssence {
   };
 }
 
+export interface ResolvedBondCraftEssence extends BondCraftEssence {
+  state: Exclude<CraftEssenceState, "none">;
+  ownedValue: number;
+  supportValue: number;
+  secondaryBenefit?: string;
+}
+
 export interface BondSettings {
   baseBond: number;
-  availableCeIds: string[];
+  craftEssenceStates: Record<string, CraftEssenceState>;
 }
 
 export interface SlotRecommendation {
   slotIndex: number;
   servant: Servant;
-  craftEssence: BondCraftEssence;
+  craftEssence: ResolvedBondCraftEssence;
   reason: string;
   contributionPerServant: number;
   positionBonusPercent: number;
@@ -51,6 +63,8 @@ export interface SlotRecommendation {
     equipmentBreakdown: {
       name: string;
       value: number;
+      state: Exclude<CraftEssenceState, "none">;
+      stateLabel: string;
     }[];
     activityPercent: number;
     afterEquipment: number;
