@@ -337,7 +337,7 @@ export const App = () => {
       {analysis && <AnalysisResult analysis={analysis} party={party} />}
 
       <footer>
-        <span>CHALDEA BOND / v0.1.0</span>
+        <span>CHALDEA BOND / v0.2.0</span>
         <p>
           本工具为非官方玩家项目。游戏素材版权归 TYPE-MOON / FGO PROJECT
           所有。
