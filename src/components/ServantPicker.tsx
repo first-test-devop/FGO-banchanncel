@@ -1,26 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import servantsData from "../data/servants.json";
 import type { Servant } from "../domain/types";
+import {
+  getClassLabel,
+  getServantBondTraits,
+} from "../domain/servantTraits";
 
 const servants = servantsData as Servant[];
-
-const CLASS_NAMES: Record<string, string> = {
-  saber: "剑阶",
-  archer: "弓阶",
-  lancer: "枪阶",
-  rider: "骑阶",
-  caster: "术阶",
-  assassin: "杀阶",
-  berserker: "狂阶",
-  shielder: "盾阶",
-  ruler: "裁阶",
-  avenger: "仇阶",
-  alterEgo: "他人格",
-  moonCancer: "月癌",
-  foreigner: "降临者",
-  pretender: "伪装者",
-  beast: "兽阶",
-};
 
 interface ServantPickerProps {
   open: boolean;
@@ -58,8 +44,9 @@ export const ServantPicker = ({
           (!normalized ||
             servant.name.toLocaleLowerCase().includes(normalized) ||
             String(servant.collectionNo).includes(normalized) ||
-            (CLASS_NAMES[servant.className] ?? servant.className).includes(
-              normalized,
+            getClassLabel(servant.className).includes(normalized) ||
+            getServantBondTraits(servant).some(({ label }) =>
+              label.toLocaleLowerCase().includes(normalized),
             )),
       )
       .slice(0, 60);
@@ -96,6 +83,13 @@ export const ServantPicker = ({
           />
           <kbd>ESC</kbd>
         </label>
+        <div className="trait-guide">
+          <strong>特性说明</strong>
+          <span>
+            下方仅展示会影响羁绊礼装判断的职阶、阵营、性别等特性。
+            “有可开放灵衣”不要求你的账号已解锁，也不要求当前穿着。
+          </span>
+        </div>
         <div className="servant-results">
           {results.map((servant) => (
             <button
@@ -108,9 +102,16 @@ export const ServantPicker = ({
                 <strong>{servant.name}</strong>
                 <small>
                   No.{servant.collectionNo} ·{" "}
-                  {CLASS_NAMES[servant.className] ?? servant.className} ·{" "}
+                  {getClassLabel(servant.className)} ·{" "}
                   {"★".repeat(servant.rarity)}
                 </small>
+                <span className="trait-tags">
+                  {getServantBondTraits(servant).map((trait) => (
+                    <i key={trait.id} title={trait.description}>
+                      {trait.label}
+                    </i>
+                  ))}
+                </span>
               </span>
             </button>
           ))}

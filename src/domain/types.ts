@@ -54,6 +54,16 @@ export interface SlotRecommendation {
   servant: Servant;
   craftEssence: ResolvedBondCraftEssence;
   reason: string;
+  servantTraits: {
+    id: string;
+    label: string;
+    description?: string;
+  }[];
+  matchedBeneficiaries: {
+    servantId: number;
+    servantName: string;
+    matchedTraits: string[];
+  }[];
   contributionPerServant: number;
   positionBonusPercent: number;
   finalBond: number | null;

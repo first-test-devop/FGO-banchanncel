@@ -75,6 +75,13 @@ export const AnalysisResult = ({
                       : `后备位 ${item.slotIndex + 1}`}
                 </small>
                 <strong>{item.servant.name}</strong>
+                <span className="trait-tags result-trait-tags">
+                  {item.servantTraits.map((trait) => (
+                    <i key={trait.id} title={trait.description}>
+                      {trait.label}
+                    </i>
+                  ))}
+                </span>
               </span>
             </div>
             <div className="equip-arrow" aria-hidden="true">
@@ -83,13 +90,38 @@ export const AnalysisResult = ({
             <div className="recommendation-ce">
               <img alt="" src={item.craftEssence.image} />
               <span>
-                <small>推荐礼装</small>
+                <small>
+                  {item.craftEssence.target &&
+                  item.matchedBeneficiaries.length === 0
+                    ? "补位礼装 · 当前无特性收益"
+                    : "推荐礼装"}
+                </small>
                 <strong>{item.craftEssence.name}</strong>
               </span>
             </div>
             <p>
               {item.reason}
             </p>
+            {item.craftEssence.target && (
+              <div className="beneficiary-explanation">
+                <strong>特性限定效果的受益对象</strong>
+                {item.matchedBeneficiaries.length > 0 ? (
+                  <ul>
+                    {item.matchedBeneficiaries.map((beneficiary) => (
+                      <li key={beneficiary.servantId}>
+                        <span>{beneficiary.servantName}</span>
+                        <small>
+                          命中：{beneficiary.matchedTraits.join(" + ")}
+                        </small>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <small>当前阵容中没有符合条件的自有英灵。</small>
+                )}
+                <p>佩戴者无需符合该特性，礼装效果按全队受益对象计算。</p>
+              </div>
+            )}
             {item.calculation && (
               <ol className="calculation-steps">
                 <li>

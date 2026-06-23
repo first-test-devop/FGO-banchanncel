@@ -10,6 +10,10 @@ import type {
   Servant,
   SlotKind,
 } from "./types";
+import {
+  getMatchedTargetLabels,
+  getServantBondTraits,
+} from "./servantTraits";
 
 const STARTING_MEMBER_SLOT_COUNT = 3;
 const STARTING_MEMBER_BOND_BONUS = 20;
@@ -128,7 +132,7 @@ const describeContribution = (
 
   const supportNote =
     kind === "support" && craftEssence.id === "chaldea-teatime"
-      ? "；该礼装在助战位由 5% 提升至 15%"
+      ? `；该礼装在助战位由 ${craftEssence.ownedValue}% 提升至 ${craftEssence.supportValue}%`
       : "";
   if (!craftEssence.target) {
     return `装备状态：${stateLabel}。为全队每名可获得羁绊的自有英灵增加 ${value}%${supportNote}${secondary}。`;
@@ -141,6 +145,28 @@ const describeContribution = (
     matched.length > 0 ? matched.map(({ name }) => name).join("、") : "无";
   return `装备状态：${stateLabel}。仅为〔${craftEssence.target.label}〕增加 ${value}%；当前命中 ${matched.length} 名：${names}${secondary}。`;
 };
+
+const getMatchedBeneficiaries = (
+  craftEssence: ResolvedBondCraftEssence,
+  ownedServants: Servant[],
+) =>
+  craftEssence.target
+    ? ownedServants.flatMap((servant) => {
+        const matchedTraits = getMatchedTargetLabels(
+          servant,
+          craftEssence.target!,
+        );
+        return matchedTraits.length > 0
+          ? [
+              {
+                servantId: servant.id,
+                servantName: servant.name,
+                matchedTraits,
+              },
+            ]
+          : [];
+      })
+    : [];
 
 const calculateServantBond = (
   servant: Servant,
@@ -309,6 +335,11 @@ export const analyzeBond = (
         slot.kind,
         ownedServants,
       ),
+      servantTraits: getServantBondTraits(slot.servant),
+      matchedBeneficiaries: getMatchedBeneficiaries(
+        assignment[index],
+        ownedServants,
+      ),
       contributionPerServant: Math.floor(
         (settings.baseBond *
           valueForEquippedSlot(assignment[index], slot.kind)) /
@@ -379,6 +410,8 @@ export const analyzeBond = (
         : "第二步：助战位于后备，无法获得首发 20% 且不触发平摊；首发自有英灵乘 1.20，后备自有英灵乘 1.00，结果向下取整。",
       "第三步：在前两步完成后，再加上英灵肖像等固定羁绊值；固定值不参与前面的百分比乘算。",
       "礼装效果对首发与后备成员均生效；助战英灵自身不计入你的羁绊收益。每张礼装按库存中选择的未满破或满破效果计算。",
+      "特性限定礼装不要求佩戴者本人符合条件；它会为队内所有符合条件的自有英灵提供加成。结果中的“受益对象”会列出实际命中的英灵与条件。",
+      "“有可开放灵衣”是英灵自身的游戏数据：只要该英灵存在可开放灵衣便符合条件，不要求你的账号已解锁，也不要求当前穿着。",
       eligibleServantCount <
       selectedSlots.filter(({ kind }) => kind === "owned").length
         ? "玛修当前按无法通过普通关卡获得羁绊处理，但她佩戴的礼装仍可为其他成员提供加成。"

@@ -1,5 +1,6 @@
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { PartySlot } from "../domain/types";
+import { getServantBondTraits } from "../domain/servantTraits";
 
 interface PartyCardProps {
   isDragging: boolean;
@@ -63,6 +64,15 @@ export const PartyCard = ({
         <div className="servant-name">
           <strong>{slot.servant.name}</strong>
           <small>No.{slot.servant.collectionNo}</small>
+          <span className="party-trait-preview">
+            {getServantBondTraits(slot.servant)
+              .slice(0, 3)
+              .map((trait) => (
+                <i key={trait.id} title={trait.description}>
+                  {trait.label}
+                </i>
+              ))}
+          </span>
         </div>
         <button
           aria-label={`移除${slot.servant.name}`}

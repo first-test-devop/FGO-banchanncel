@@ -148,7 +148,7 @@ export const BOND_CRAFT_ESSENCES: BondCraftEssence[] = [
     baseValue: 4,
     mlbValue: 20,
     target: {
-      label: "拥有灵衣的从者",
+      label: "有可开放灵衣的从者",
       allTraits: ["hasCostume"],
     },
   }),

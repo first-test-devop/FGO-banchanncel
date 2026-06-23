@@ -162,6 +162,16 @@ describe("analyzeBond", () => {
     ).toBe(25);
     expect(result.minEquipmentPercent).toBe(25);
     expect(result.maxEquipmentPercent).toBe(45);
+    const inspectionRecommendation = result.recommendations.find(
+      ({ craftEssence }) => craftEssence.id === "inspection-report",
+    );
+    expect(inspectionRecommendation?.matchedBeneficiaries).toEqual([
+      {
+        servantId: 1,
+        servantName: "秩序善从者",
+        matchedTraits: ["秩序", "善"],
+      },
+    ]);
   });
 
   it("uses non-MLB values when the inventory marks a CE as base", () => {
