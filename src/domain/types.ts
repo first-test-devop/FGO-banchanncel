@@ -7,6 +7,7 @@ export interface Servant {
   name: string;
   className: string;
   rarity: number;
+  cost: number;
   face: string;
   bondEligible: boolean;
   traits: string[];
@@ -15,6 +16,10 @@ export interface Servant {
 export interface PartySlot {
   kind: SlotKind;
   servant: Servant | null;
+  supportCraftEssence?: {
+    id: string;
+    state: Exclude<CraftEssenceState, "none">;
+  } | null;
 }
 
 export interface BondCraftEssence {
@@ -27,7 +32,9 @@ export interface BondCraftEssence {
   baseSupportValue: number;
   mlbSupportValue: number;
   hasMlbEffect: boolean;
+  cost: number;
   image: string;
+  isEmpty?: boolean;
   baseSecondaryBenefit?: string;
   mlbSecondaryBenefit?: string;
   target?: {
@@ -46,6 +53,7 @@ export interface ResolvedBondCraftEssence extends BondCraftEssence {
 
 export interface BondSettings {
   baseBond: number;
+  maxPartyCost: number;
   craftEssenceStates: Record<string, CraftEssenceState>;
 }
 
@@ -98,5 +106,10 @@ export interface BondAnalysis {
   maxServantBond: number;
   supportInStartingLineup: boolean;
   activityPercent: number;
+  maxPartyCost: number;
+  partyCost: number;
+  servantCost: number;
+  craftEssenceCost: number;
+  remainingCost: number;
   notes: string[];
 }

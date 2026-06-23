@@ -10,6 +10,7 @@ import { AnalysisResult } from "./components/AnalysisResult";
 import { PartyCard } from "./components/PartyCard";
 import { ServantPicker } from "./components/ServantPicker";
 import { SettingsPanel } from "./components/SettingsPanel";
+import { SupportCraftEssencePicker } from "./components/SupportCraftEssencePicker";
 import { DEFAULT_CRAFT_ESSENCE_STATES } from "./data/bondCraftEssences";
 import servantsData from "./data/servants.json";
 import { analyzeBond } from "./domain/analyzeBond";
@@ -25,6 +26,7 @@ import { logger } from "./lib/logger";
 const EMPTY_PARTY: PartySlot[] = Array.from({ length: 6 }, (_, index) => ({
   kind: index === 5 ? "support" : "owned",
   servant: null,
+  supportCraftEssence: null,
 }));
 
 const DEMO_COLLECTION_NUMBERS = [385, 314, 215, 150, 236, 314];
@@ -33,6 +35,7 @@ const SETTINGS_STORAGE_KEY = "chaldea-bond-planner.settings";
 const loadInitialSettings = (): BondSettings => {
   const fallback: BondSettings = {
     baseBond: 815,
+    maxPartyCost: 120,
     craftEssenceStates: DEFAULT_CRAFT_ESSENCE_STATES,
   };
   try {
@@ -44,6 +47,10 @@ const loadInitialSettings = (): BondSettings => {
         typeof parsed.baseBond === "number" && parsed.baseBond >= 0
           ? parsed.baseBond
           : fallback.baseBond,
+      maxPartyCost:
+        typeof parsed.maxPartyCost === "number" && parsed.maxPartyCost >= 0
+          ? parsed.maxPartyCost
+          : fallback.maxPartyCost,
       craftEssenceStates:
         parsed.craftEssenceStates &&
         typeof parsed.craftEssenceStates === "object"
@@ -62,6 +69,12 @@ export const App = () => {
   const [error, setError] = useState("");
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dropTargetIndex, setDropTargetIndex] = useState<number | null>(null);
+  const [pendingSupport, setPendingSupport] = useState<{
+    index: number;
+    servant: Servant;
+    initialCraftEssenceId?: string;
+    initialState?: "base" | "mlb";
+  } | null>(null);
   const pointerDragRef = useRef<{
     index: number;
     pointerId: number;
@@ -102,6 +115,17 @@ export const App = () => {
 
   const selectServant = (servant: Servant) => {
     if (pickerIndex === null) return;
+    const slot = party[pickerIndex];
+    if (slot.kind === "support") {
+      setPendingSupport({
+        index: pickerIndex,
+        servant,
+        initialCraftEssenceId: slot.supportCraftEssence?.id,
+        initialState: slot.supportCraftEssence?.state,
+      });
+      closePicker();
+      return;
+    }
     setParty((current) =>
       current.map((slot, index) =>
         index === pickerIndex ? { ...slot, servant } : slot,
@@ -121,6 +145,10 @@ export const App = () => {
             ({ collectionNo }) =>
               collectionNo === DEMO_COLLECTION_NUMBERS[index],
           ) ?? allServants[index],
+        supportCraftEssence:
+          slot.kind === "support"
+            ? { id: "chaldea-teatime", state: "mlb" }
+            : null,
       })),
     );
     setAnalysis(null);
@@ -174,7 +202,6 @@ export const App = () => {
       dragging: false,
       targetIndex: index,
     };
-    event.currentTarget.setPointerCapture(event.pointerId);
   };
 
   const updatePointerDrag = (event: ReactPointerEvent<HTMLElement>) => {
@@ -188,6 +215,7 @@ export const App = () => {
     if (!current.dragging && distance < 8) return;
     if (!current.dragging) {
       current.dragging = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
       suppressChooseRef.current = true;
       setDraggedIndex(current.index);
       setAnalysis(null);
@@ -211,6 +239,8 @@ export const App = () => {
     if (!current || current.pointerId !== event.pointerId) return;
     if (current.dragging) {
       movePartySlot(current.index, current.targetIndex);
+    } else {
+      setPickerIndex(current.index);
     }
     pointerDragRef.current = null;
     setDraggedIndex(null);
@@ -287,7 +317,13 @@ export const App = () => {
               onClear={() => {
                 setParty((current) =>
                   current.map((item, itemIndex) =>
-                    itemIndex === index ? { ...item, servant: null } : item,
+                    itemIndex === index
+                      ? {
+                          ...item,
+                          servant: null,
+                          supportCraftEssence: null,
+                        }
+                      : item,
                   ),
                 );
                 setAnalysis(null);
@@ -345,10 +381,35 @@ export const App = () => {
       </footer>
 
       <ServantPicker
+        isSupport={
+          pickerIndex !== null && party[pickerIndex]?.kind === "support"
+        }
         onClose={closePicker}
         onSelect={selectServant}
         open={pickerIndex !== null}
         selectedIds={selectedIds}
+      />
+      <SupportCraftEssencePicker
+        initialCraftEssenceId={pendingSupport?.initialCraftEssenceId}
+        initialState={pendingSupport?.initialState}
+        onCancel={() => setPendingSupport(null)}
+        onConfirm={(craftEssenceId, state) => {
+          if (!pendingSupport) return;
+          setParty((current) =>
+            current.map((slot, index) =>
+              index === pendingSupport.index
+                ? {
+                    ...slot,
+                    servant: pendingSupport.servant,
+                    supportCraftEssence: { id: craftEssenceId, state },
+                  }
+                : slot,
+            ),
+          );
+          setAnalysis(null);
+          setPendingSupport(null);
+        }}
+        servant={pendingSupport?.servant ?? null}
       />
     </main>
   );

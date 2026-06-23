@@ -1,6 +1,7 @@
 import type { PointerEvent as ReactPointerEvent } from "react";
 import type { PartySlot } from "../domain/types";
 import { getServantBondTraits } from "../domain/servantTraits";
+import { BOND_CRAFT_ESSENCES } from "../data/bondCraftEssences";
 
 interface PartyCardProps {
   isDragging: boolean;
@@ -26,7 +27,15 @@ export const PartyCard = ({
   onPointerMove,
   onPointerUp,
   onSwapWithSupport,
-}: PartyCardProps) => (
+}: PartyCardProps) => {
+  const supportCraftEssence =
+    slot.kind === "support" && slot.supportCraftEssence
+      ? BOND_CRAFT_ESSENCES.find(
+          ({ id }) => id === slot.supportCraftEssence?.id,
+        )
+      : null;
+
+  return (
   <article
     aria-label={`${slot.kind === "support" ? "助战" : "自有"}卡槽 ${index + 1}${slot.servant ? `：${slot.servant.name}` : "：空"}`}
     className={[
@@ -63,7 +72,10 @@ export const PartyCard = ({
         </button>
         <div className="servant-name">
           <strong>{slot.servant.name}</strong>
-          <small>No.{slot.servant.collectionNo}</small>
+          <small>
+            No.{slot.servant.collectionNo}
+            {slot.kind === "owned" ? ` · Cost ${slot.servant.cost}` : ""}
+          </small>
           <span className="party-trait-preview">
             {getServantBondTraits(slot.servant)
               .slice(0, 3)
@@ -74,6 +86,22 @@ export const PartyCard = ({
               ))}
           </span>
         </div>
+        {supportCraftEssence && (
+          <div className="support-ce-badge">
+            <img alt="" src={supportCraftEssence.image} />
+            <span>
+              <small>固定助战礼装</small>
+              <strong>{supportCraftEssence.shortName}</strong>
+              <i>
+                {supportCraftEssence.hasMlbEffect
+                  ? slot.supportCraftEssence?.state === "mlb"
+                    ? "满破"
+                    : "未满破"
+                  : "已持有"}
+              </i>
+            </span>
+          </div>
+        )}
         <button
           aria-label={`移除${slot.servant.name}`}
           className="clear-slot"
@@ -95,4 +123,5 @@ export const PartyCard = ({
       </button>
     )}
   </article>
-);
+  );
+};

@@ -5,6 +5,7 @@
     "name": "玛修·基列莱特",
     "className": "shielder",
     "rarity": 3,
+    "cost": 0,
     "face": "https://static.atlasacademy.io/CN/Faces/f_8001000.png",
     "bondEligible": false,
     "traits": [
@@ -29,6 +30,7 @@
     "name": "阿尔托莉雅·潘德拉贡",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1001000.png",
     "bondEligible": true,
     "traits": [
@@ -64,6 +66,7 @@
     "name": "阿尔托莉雅·潘德拉贡〔Alter〕",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1002000.png",
     "bondEligible": true,
     "traits": [
@@ -96,6 +99,7 @@
     "name": "阿尔托莉雅·潘德拉贡〔Lily〕",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1003000.png",
     "bondEligible": true,
     "traits": [
@@ -128,6 +132,7 @@
     "name": "尼禄·克劳狄乌斯",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1005000.png",
     "bondEligible": true,
     "traits": [
@@ -158,6 +163,7 @@
     "name": "齐格飞",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1008000.png",
     "bondEligible": true,
     "traits": [
@@ -191,6 +197,7 @@
     "name": "盖乌斯·尤利乌斯·恺撒",
     "className": "saber",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1013000.png",
     "bondEligible": true,
     "traits": [
@@ -222,6 +229,7 @@
     "name": "阿蒂拉",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1018000.png",
     "bondEligible": true,
     "traits": [
@@ -252,6 +260,7 @@
     "name": "吉尔·德·雷",
     "className": "saber",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1022000.png",
     "bondEligible": true,
     "traits": [
@@ -279,6 +288,7 @@
     "name": "骑士迪昂",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1026000.png",
     "bondEligible": true,
     "traits": [
@@ -306,6 +316,7 @@
     "name": "卫宫",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2001000.png",
     "bondEligible": true,
     "traits": [
@@ -333,6 +344,7 @@
     "name": "吉尔伽美什",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2002000.png",
     "bondEligible": true,
     "traits": [
@@ -364,6 +376,7 @@
     "name": "罗宾汉",
     "className": "archer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2003000.png",
     "bondEligible": true,
     "traits": [
@@ -391,6 +404,7 @@
     "name": "阿塔兰忒",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2005000.png",
     "bondEligible": true,
     "traits": [
@@ -419,6 +433,7 @@
     "name": "尤瑞艾莉",
     "className": "archer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2012000.png",
     "bondEligible": true,
     "traits": [
@@ -451,6 +466,7 @@
     "name": "阿拉什",
     "className": "archer",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2013000.png",
     "bondEligible": true,
     "traits": [
@@ -478,6 +494,7 @@
     "name": "库·丘林",
     "className": "lancer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3001000.png",
     "bondEligible": true,
     "traits": [
@@ -509,6 +526,7 @@
     "name": "伊丽莎白·巴托里",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3005000.png",
     "bondEligible": true,
     "traits": [
@@ -534,6 +552,7 @@
     "name": "武藏坊弁庆",
     "className": "lancer",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3006000.png",
     "bondEligible": true,
     "traits": [
@@ -562,6 +581,7 @@
     "name": "库·丘林〔Prototype〕",
     "className": "lancer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3007000.png",
     "bondEligible": true,
     "traits": [
@@ -591,6 +611,7 @@
     "name": "列奥尼达一世",
     "className": "lancer",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3009000.png",
     "bondEligible": true,
     "traits": [
@@ -617,6 +638,7 @@
     "name": "罗穆路斯",
     "className": "lancer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3010000.png",
     "bondEligible": true,
     "traits": [
@@ -643,6 +665,7 @@
     "name": "歌果",
     "className": "rider",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4001000.png",
     "bondEligible": true,
     "traits": [
@@ -675,6 +698,7 @@
     "name": "乔尔乔斯",
     "className": "rider",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4006000.png",
     "bondEligible": true,
     "traits": [
@@ -702,6 +726,7 @@
     "name": "爱迪·萨奇",
     "className": "rider",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4008000.png",
     "bondEligible": true,
     "traits": [
@@ -727,6 +752,7 @@
     "name": "布狄卡",
     "className": "rider",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4011000.png",
     "bondEligible": true,
     "traits": [
@@ -753,6 +779,7 @@
     "name": "牛若丸",
     "className": "rider",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4014000.png",
     "bondEligible": true,
     "traits": [
@@ -782,6 +809,7 @@
     "name": "亚历山大",
     "className": "rider",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4015000.png",
     "bondEligible": true,
     "traits": [
@@ -813,6 +841,7 @@
     "name": "玛丽·安托瓦内特",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4017000.png",
     "bondEligible": true,
     "traits": [
@@ -838,6 +867,7 @@
     "name": "玛尔达",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4019000.png",
     "bondEligible": true,
     "traits": [
@@ -865,6 +895,7 @@
     "name": "美狄亚",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5001000.png",
     "bondEligible": true,
     "traits": [
@@ -893,6 +924,7 @@
     "name": "吉尔·德·雷",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5002000.png",
     "bondEligible": true,
     "traits": [
@@ -917,6 +949,7 @@
     "name": "汉斯·克里斯蒂安·安徒生",
     "className": "caster",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5005000.png",
     "bondEligible": true,
     "traits": [
@@ -942,6 +975,7 @@
     "name": "威廉·莎士比亚",
     "className": "caster",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5007000.png",
     "bondEligible": true,
     "traits": [
@@ -966,6 +1000,7 @@
     "name": "梅菲斯托费勒斯",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5014000.png",
     "bondEligible": true,
     "traits": [
@@ -992,6 +1027,7 @@
     "name": "沃尔夫冈·阿马德乌斯·莫扎特",
     "className": "caster",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5015000.png",
     "bondEligible": true,
     "traits": [
@@ -1016,6 +1052,7 @@
     "name": "诸葛孔明〔埃尔梅罗Ⅱ世〕",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5019000.png",
     "bondEligible": true,
     "traits": [
@@ -1042,6 +1079,7 @@
     "name": "库·丘林",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5021000.png",
     "bondEligible": true,
     "traits": [
@@ -1072,6 +1110,7 @@
     "name": "佐佐木小次郎",
     "className": "assassin",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6001000.png",
     "bondEligible": true,
     "traits": [
@@ -1097,6 +1136,7 @@
     "name": "咒腕哈桑",
     "className": "assassin",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6002000.png",
     "bondEligible": true,
     "traits": [
@@ -1122,6 +1162,7 @@
     "name": "斯忒诺",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6010000.png",
     "bondEligible": true,
     "traits": [
@@ -1153,6 +1194,7 @@
     "name": "匕见",
     "className": "assassin",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6011000.png",
     "bondEligible": true,
     "traits": [
@@ -1177,6 +1219,7 @@
     "name": "夏尔·亨利·桑松",
     "className": "assassin",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6012000.png",
     "bondEligible": true,
     "traits": [
@@ -1202,6 +1245,7 @@
     "name": "剧院魅影",
     "className": "assassin",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6013000.png",
     "bondEligible": true,
     "traits": [
@@ -1228,6 +1272,7 @@
     "name": "玛塔·哈丽",
     "className": "assassin",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6014000.png",
     "bondEligible": true,
     "traits": [
@@ -1252,6 +1297,7 @@
     "name": "卡米拉",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6017000.png",
     "bondEligible": true,
     "traits": [
@@ -1278,6 +1324,7 @@
     "name": "赫拉克勒斯",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7001000.png",
     "bondEligible": true,
     "traits": [
@@ -1310,6 +1357,7 @@
     "name": "兰斯洛特",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7002000.png",
     "bondEligible": true,
     "traits": [
@@ -1337,6 +1385,7 @@
     "name": "虎狼",
     "className": "berserker",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7003000.png",
     "bondEligible": true,
     "traits": [
@@ -1362,6 +1411,7 @@
     "name": "斯巴达克斯",
     "className": "berserker",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7005000.png",
     "bondEligible": true,
     "traits": [
@@ -1387,6 +1437,7 @@
     "name": "坂田金时",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7006000.png",
     "bondEligible": true,
     "traits": [
@@ -1417,6 +1468,7 @@
     "name": "弗拉德三世",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7007000.png",
     "bondEligible": true,
     "traits": [
@@ -1446,6 +1498,7 @@
     "name": "阿斯忒里俄斯",
     "className": "berserker",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7009000.png",
     "bondEligible": true,
     "traits": [
@@ -1475,6 +1528,7 @@
     "name": "卡利古拉",
     "className": "berserker",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7010000.png",
     "bondEligible": true,
     "traits": [
@@ -1501,6 +1555,7 @@
     "name": "大流士三世",
     "className": "berserker",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7011000.png",
     "bondEligible": true,
     "traits": [
@@ -1527,6 +1582,7 @@
     "name": "清姬",
     "className": "berserker",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7013000.png",
     "bondEligible": true,
     "traits": [
@@ -1557,6 +1613,7 @@
     "name": "血斧埃里克",
     "className": "berserker",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7015000.png",
     "bondEligible": true,
     "traits": [
@@ -1582,6 +1639,7 @@
     "name": "玉藻猫",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7016000.png",
     "bondEligible": true,
     "traits": [
@@ -1610,6 +1668,7 @@
     "name": "贞德",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9001000.png",
     "bondEligible": true,
     "traits": [
@@ -1635,6 +1694,7 @@
     "name": "俄里翁",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2009000.png",
     "bondEligible": true,
     "traits": [
@@ -1665,6 +1725,7 @@
     "name": "伊丽莎白·巴托里〔万圣节〕",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5026000.png",
     "bondEligible": true,
     "traits": [
@@ -1691,6 +1752,7 @@
     "name": "玉藻前",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5003000.png",
     "bondEligible": true,
     "traits": [
@@ -1722,6 +1784,7 @@
     "name": "大卫",
     "className": "archer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2006000.png",
     "bondEligible": true,
     "traits": [
@@ -1750,6 +1813,7 @@
     "name": "赫克托耳",
     "className": "lancer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3016000.png",
     "bondEligible": true,
     "traits": [
@@ -1776,6 +1840,7 @@
     "name": "弗朗西斯·德雷克",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4003000.png",
     "bondEligible": true,
     "traits": [
@@ -1800,6 +1865,7 @@
     "name": "安妮·伯妮＆玛莉·瑞德",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4009000.png",
     "bondEligible": true,
     "traits": [
@@ -1825,6 +1891,7 @@
     "name": "美狄亚〔Lily〕",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5017000.png",
     "bondEligible": true,
     "traits": [
@@ -1852,6 +1919,7 @@
     "name": "冲田总司",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1027000.png",
     "bondEligible": true,
     "traits": [
@@ -1881,6 +1949,7 @@
     "name": "织田信长",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2024000.png",
     "bondEligible": true,
     "traits": [
@@ -1907,6 +1976,7 @@
     "name": "斯卡哈",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3013000.png",
     "bondEligible": true,
     "traits": [
@@ -1933,6 +2003,7 @@
     "name": "迪尔姆德·奥迪那",
     "className": "lancer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3002000.png",
     "bondEligible": true,
     "traits": [
@@ -1960,6 +2031,7 @@
     "name": "弗格斯·马克·罗伊",
     "className": "saber",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1014000.png",
     "bondEligible": true,
     "traits": [
@@ -1990,6 +2062,7 @@
     "name": "阿尔托莉雅·潘德拉贡〔圣诞Alter〕",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4022000.png",
     "bondEligible": true,
     "traits": [
@@ -2020,6 +2093,7 @@
     "name": "童谣",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5004000.png",
     "bondEligible": true,
     "traits": [
@@ -2044,6 +2118,7 @@
     "name": "雾都弃子",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6005000.png",
     "bondEligible": true,
     "traits": [
@@ -2071,6 +2146,7 @@
     "name": "莫德雷德",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1009000.png",
     "bondEligible": true,
     "traits": [
@@ -2103,6 +2179,7 @@
     "name": "尼古拉·特斯拉",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2011000.png",
     "bondEligible": true,
     "traits": [
@@ -2127,6 +2204,7 @@
     "name": "阿尔托莉雅·潘德拉贡〔Alter〕",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3019000.png",
     "bondEligible": true,
     "traits": [
@@ -2160,6 +2238,7 @@
     "name": "冯·霍恩海姆·帕拉塞尔苏斯",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5010000.png",
     "bondEligible": true,
     "traits": [
@@ -2186,6 +2265,7 @@
     "name": "查尔斯·巴贝奇",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5011000.png",
     "bondEligible": true,
     "traits": [
@@ -2212,6 +2292,7 @@
     "name": "亨利·杰基尔＆海德",
     "className": "assassin",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6007000.png",
     "bondEligible": true,
     "traits": [
@@ -2239,6 +2320,7 @@
     "name": "弗兰肯斯坦",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7004000.png",
     "bondEligible": true,
     "traits": [
@@ -2266,6 +2348,7 @@
     "name": "所罗门",
     "className": "loreGrandCaster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_17001000.png",
     "bondEligible": true,
     "traits": [
@@ -2289,6 +2372,7 @@
     "name": "阿周那",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2015000.png",
     "bondEligible": true,
     "traits": [
@@ -2319,6 +2403,7 @@
     "name": "迦尔纳",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3004000.png",
     "bondEligible": true,
     "traits": [
@@ -2351,6 +2436,7 @@
     "name": "谜之女主角X",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6018000.png",
     "bondEligible": true,
     "traits": [
@@ -2381,6 +2467,7 @@
     "name": "芬恩·麦克库尔",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3011000.png",
     "bondEligible": true,
     "traits": [
@@ -2410,6 +2497,7 @@
     "name": "布伦希尔德",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3012000.png",
     "bondEligible": true,
     "traits": [
@@ -2442,6 +2530,7 @@
     "name": "贝奥武夫",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7008000.png",
     "bondEligible": true,
     "traits": [
@@ -2470,6 +2559,7 @@
     "name": "尼禄·克劳狄乌斯〔新娘〕",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1006000.png",
     "bondEligible": true,
     "traits": [
@@ -2498,6 +2588,7 @@
     "name": "两仪式",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1028000.png",
     "bondEligible": true,
     "traits": [
@@ -2524,6 +2615,7 @@
     "name": "两仪式",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6023000.png",
     "bondEligible": true,
     "traits": [
@@ -2548,6 +2640,7 @@
     "name": "天草四郎",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9002000.png",
     "bondEligible": true,
     "traits": [
@@ -2572,6 +2665,7 @@
     "name": "阿斯托尔福",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4004000.png",
     "bondEligible": true,
     "traits": [
@@ -2601,6 +2695,7 @@
     "name": "幼吉尔",
     "className": "archer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2018000.png",
     "bondEligible": true,
     "traits": [
@@ -2633,6 +2728,7 @@
     "name": "岩窟王",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11002000.png",
     "bondEligible": true,
     "traits": [
@@ -2657,6 +2753,7 @@
     "name": "南丁格尔",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7014000.png",
     "bondEligible": true,
     "traits": [
@@ -2681,6 +2778,7 @@
     "name": "库·丘林〔Alter〕",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7020000.png",
     "bondEligible": true,
     "traits": [
@@ -2711,6 +2809,7 @@
     "name": "女王梅芙",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4013000.png",
     "bondEligible": true,
     "traits": [
@@ -2740,6 +2839,7 @@
     "name": "海伦娜·布拉瓦茨基",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5023000.png",
     "bondEligible": true,
     "traits": [
@@ -2765,6 +2865,7 @@
     "name": "罗摩",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1019000.png",
     "bondEligible": true,
     "traits": [
@@ -2799,6 +2900,7 @@
     "name": "李书文",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3017000.png",
     "bondEligible": true,
     "traits": [
@@ -2823,6 +2925,7 @@
     "name": "托马斯·爱迪生",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5025000.png",
     "bondEligible": true,
     "traits": [
@@ -2847,6 +2950,7 @@
     "name": "杰罗尼莫",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5016000.png",
     "bondEligible": true,
     "traits": [
@@ -2872,6 +2976,7 @@
     "name": "比利小子",
     "className": "archer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2010000.png",
     "bondEligible": true,
     "traits": [
@@ -2898,6 +3003,7 @@
     "name": "贞德〔Alter〕",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11003000.png",
     "bondEligible": true,
     "traits": [
@@ -2923,6 +3029,7 @@
     "name": "安哥拉曼纽",
     "className": "avenger",
     "rarity": 0,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11001000.png",
     "bondEligible": true,
     "traits": [
@@ -2946,6 +3053,7 @@
     "name": "伊斯坎达尔",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4002000.png",
     "bondEligible": true,
     "traits": [
@@ -2976,6 +3084,7 @@
     "name": "卫宫〔Assassin〕",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6015000.png",
     "bondEligible": true,
     "traits": [
@@ -3001,6 +3110,7 @@
     "name": "百貌哈桑",
     "className": "assassin",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6003000.png",
     "bondEligible": true,
     "traits": [
@@ -3025,6 +3135,7 @@
     "name": "爱丽丝菲尔〔天之衣〕",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5020000.png",
     "bondEligible": true,
     "traits": [
@@ -3054,6 +3165,7 @@
     "name": "酒吞童子",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6021000.png",
     "bondEligible": true,
     "traits": [
@@ -3088,6 +3200,7 @@
     "name": "西行者",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5022000.png",
     "bondEligible": true,
     "traits": [
@@ -3114,6 +3227,7 @@
     "name": "源赖光",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7023000.png",
     "bondEligible": true,
     "traits": [
@@ -3145,6 +3259,7 @@
     "name": "坂田金时",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4023000.png",
     "bondEligible": true,
     "traits": [
@@ -3176,6 +3291,7 @@
     "name": "茨木童子",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7022000.png",
     "bondEligible": true,
     "traits": [
@@ -3205,6 +3321,7 @@
     "name": "风魔小太郎",
     "className": "assassin",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6019000.png",
     "bondEligible": true,
     "traits": [
@@ -3230,6 +3347,7 @@
     "name": "奥斯曼狄斯",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4012000.png",
     "bondEligible": true,
     "traits": [
@@ -3262,6 +3380,7 @@
     "name": "阿尔托莉雅·潘德拉贡",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3020000.png",
     "bondEligible": true,
     "traits": [
@@ -3295,6 +3414,7 @@
     "name": "尼托克丽丝",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5012000.png",
     "bondEligible": true,
     "traits": [
@@ -3326,6 +3446,7 @@
     "name": "兰斯洛特",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1020000.png",
     "bondEligible": true,
     "traits": [
@@ -3357,6 +3478,7 @@
     "name": "崔斯坦",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2008000.png",
     "bondEligible": true,
     "traits": [
@@ -3385,6 +3507,7 @@
     "name": "高文",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1007000.png",
     "bondEligible": true,
     "traits": [
@@ -3416,6 +3539,7 @@
     "name": "静谧哈桑",
     "className": "assassin",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6009000.png",
     "bondEligible": true,
     "traits": [
@@ -3441,6 +3565,7 @@
     "name": "俵藤太",
     "className": "archer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2014000.png",
     "bondEligible": true,
     "traits": [
@@ -3466,6 +3591,7 @@
     "name": "贝德维尔",
     "className": "saber",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1012000.png",
     "bondEligible": true,
     "traits": [
@@ -3495,6 +3621,7 @@
     "name": "莱昂纳多·达·芬奇",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5009000.png",
     "bondEligible": true,
     "traits": [
@@ -3519,6 +3646,7 @@
     "name": "玉藻前",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3024000.png",
     "bondEligible": true,
     "traits": [
@@ -3552,6 +3680,7 @@
     "name": "阿尔托莉雅·潘德拉贡",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2026000.png",
     "bondEligible": true,
     "traits": [
@@ -3584,6 +3713,7 @@
     "name": "玛丽·安托瓦内特",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5027000.png",
     "bondEligible": true,
     "traits": [
@@ -3609,6 +3739,7 @@
     "name": "安妮·伯妮＆玛莉·瑞德",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2025000.png",
     "bondEligible": true,
     "traits": [
@@ -3635,6 +3766,7 @@
     "name": "莫德雷德",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4024000.png",
     "bondEligible": true,
     "traits": [
@@ -3665,6 +3797,7 @@
     "name": "斯卡哈",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6024000.png",
     "bondEligible": true,
     "traits": [
@@ -3691,6 +3824,7 @@
     "name": "清姬",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3025000.png",
     "bondEligible": true,
     "traits": [
@@ -3721,6 +3855,7 @@
     "name": "玛尔达",
     "className": "ruler",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9004000.png",
     "bondEligible": true,
     "traits": [
@@ -3745,6 +3880,7 @@
     "name": "伊莉雅丝菲尔·冯·爱因兹贝伦",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5028000.png",
     "bondEligible": true,
     "traits": [
@@ -3773,6 +3909,7 @@
     "name": "克洛伊·冯·爱因兹贝伦",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2027000.png",
     "bondEligible": true,
     "traits": [
@@ -3802,6 +3939,7 @@
     "name": "伊丽莎白·巴托里〔勇者〕",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1010000.png",
     "bondEligible": true,
     "traits": [
@@ -3830,6 +3968,7 @@
     "name": "克娄巴特拉",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6008000.png",
     "bondEligible": true,
     "traits": [
@@ -3859,6 +3998,7 @@
     "name": "弗拉德三世〔EXTRA〕",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3003000.png",
     "bondEligible": true,
     "traits": [
@@ -3886,6 +4026,7 @@
     "name": "贞德·Alter·Santa·Lily",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3026000.png",
     "bondEligible": true,
     "traits": [
@@ -3912,6 +4053,7 @@
     "name": "伊什塔尔",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2020000.png",
     "bondEligible": true,
     "traits": [
@@ -3944,6 +4086,7 @@
     "name": "恩奇都",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3008000.png",
     "bondEligible": true,
     "traits": [
@@ -3972,6 +4115,7 @@
     "name": "魁札尔·科亚特尔",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4018000.png",
     "bondEligible": true,
     "traits": [
@@ -4006,6 +4150,7 @@
     "name": "吉尔伽美什",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5018000.png",
     "bondEligible": true,
     "traits": [
@@ -4035,6 +4180,7 @@
     "name": "美杜莎",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3027000.png",
     "bondEligible": true,
     "traits": [
@@ -4065,6 +4211,7 @@
     "name": "戈耳工",
     "className": "avenger",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11004000.png",
     "bondEligible": true,
     "traits": [
@@ -4092,6 +4239,7 @@
     "name": "豹人",
     "className": "lancer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3028000.png",
     "bondEligible": true,
     "traits": [
@@ -4121,6 +4269,7 @@
     "name": "提亚马特",
     "className": "beastII",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_99354000.png",
     "bondEligible": true,
     "traits": [
@@ -4143,6 +4292,7 @@
     "name": "梅林",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5008000.png",
     "bondEligible": true,
     "traits": [
@@ -4171,6 +4321,7 @@
     "name": "盖提亚",
     "className": "beastI",
     "rarity": 5,
+    "cost": 0,
     "face": "https://static.atlasacademy.io/CN/Faces/f_99355000.png",
     "bondEligible": true,
     "traits": [
@@ -4188,6 +4339,7 @@
     "name": "所罗门",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_99355300.png",
     "bondEligible": true,
     "traits": [
@@ -4213,6 +4365,7 @@
     "name": "宫本武藏",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1017000.png",
     "bondEligible": true,
     "traits": [
@@ -4238,6 +4391,7 @@
     "name": "“山中老人”",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6025000.png",
     "bondEligible": true,
     "traits": [
@@ -4263,6 +4417,7 @@
     "name": "谜之女主角X〔Alter〕",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7024000.png",
     "bondEligible": true,
     "traits": [
@@ -4292,6 +4447,7 @@
     "name": "詹姆斯·莫里亚蒂",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2023000.png",
     "bondEligible": true,
     "traits": [
@@ -4317,6 +4473,7 @@
     "name": "卫宫〔Alter〕",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2016000.png",
     "bondEligible": true,
     "traits": [
@@ -4341,6 +4498,7 @@
     "name": "黑森·罗伯",
     "className": "avenger",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11005000.png",
     "bondEligible": true,
     "traits": [
@@ -4368,6 +4526,7 @@
     "name": "燕青",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6026000.png",
     "bondEligible": true,
     "traits": [
@@ -4395,6 +4554,7 @@
     "name": "亚瑟·潘德拉贡〔Prototype〕",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1029000.png",
     "bondEligible": true,
     "traits": [
@@ -4429,6 +4589,7 @@
     "name": "土方岁三",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7025000.png",
     "bondEligible": true,
     "traits": [
@@ -4454,6 +4615,7 @@
     "name": "茶茶",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7026000.png",
     "bondEligible": true,
     "traits": [
@@ -4479,6 +4641,7 @@
     "name": "Meltryllis",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10002000.png",
     "bondEligible": true,
     "traits": [
@@ -4510,6 +4673,7 @@
     "name": "Passionlip",
     "className": "alterEgo",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10001000.png",
     "bondEligible": true,
     "traits": [
@@ -4541,6 +4705,7 @@
     "name": "铃鹿御前",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1030000.png",
     "bondEligible": true,
     "traits": [
@@ -4573,6 +4738,7 @@
     "name": "BB",
     "className": "moonCancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23001000.png",
     "bondEligible": true,
     "traits": [
@@ -4600,6 +4766,7 @@
     "name": "瞑生院祈荒",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10003000.png",
     "bondEligible": true,
     "traits": [
@@ -4624,6 +4791,7 @@
     "name": "BeastⅢ／R",
     "className": "beastIIIR",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_99391300.png",
     "bondEligible": true,
     "traits": [
@@ -4644,6 +4812,7 @@
     "name": "山鲁佐德",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5030000.png",
     "bondEligible": true,
     "traits": [
@@ -4668,6 +4837,7 @@
     "name": "周照",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6027000.png",
     "bondEligible": true,
     "traits": [
@@ -4694,6 +4864,7 @@
     "name": "彭忒西勒亚",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7027000.png",
     "bondEligible": true,
     "traits": [
@@ -4724,6 +4895,7 @@
     "name": "克里斯托弗·哥伦布",
     "className": "rider",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4025000.png",
     "bondEligible": true,
     "traits": [
@@ -4749,6 +4921,7 @@
     "name": "夏洛克·福尔摩斯",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9005000.png",
     "bondEligible": true,
     "traits": [
@@ -4771,6 +4944,7 @@
     "name": "保罗·班扬",
     "className": "berserker",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7028000.png",
     "bondEligible": true,
     "traits": [
@@ -4801,6 +4975,7 @@
     "name": "尼禄·克劳狄乌斯",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5032000.png",
     "bondEligible": true,
     "traits": [
@@ -4830,6 +5005,7 @@
     "name": "弗兰肯斯坦",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1031000.png",
     "bondEligible": true,
     "traits": [
@@ -4860,6 +5036,7 @@
     "name": "尼托克丽丝",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6028000.png",
     "bondEligible": true,
     "traits": [
@@ -4892,6 +5069,7 @@
     "name": "织田信长",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7029000.png",
     "bondEligible": true,
     "traits": [
@@ -4919,6 +5097,7 @@
     "name": "阿尔托莉雅·潘德拉贡〔Alter〕",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4027000.png",
     "bondEligible": true,
     "traits": [
@@ -4950,6 +5129,7 @@
     "name": "海伦娜·布拉瓦茨基",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2028000.png",
     "bondEligible": true,
     "traits": [
@@ -4975,6 +5155,7 @@
     "name": "源赖光",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3029000.png",
     "bondEligible": true,
     "traits": [
@@ -5007,6 +5188,7 @@
     "name": "伊什塔尔",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4026000.png",
     "bondEligible": true,
     "traits": [
@@ -5040,6 +5222,7 @@
     "name": "帕尔瓦蒂",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3030000.png",
     "bondEligible": true,
     "traits": [
@@ -5071,6 +5254,7 @@
     "name": "巴御前",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2021000.png",
     "bondEligible": true,
     "traits": [
@@ -5100,6 +5284,7 @@
     "name": "望月千代女",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6029000.png",
     "bondEligible": true,
     "traits": [
@@ -5127,6 +5312,7 @@
     "name": "宝藏院胤舜",
     "className": "lancer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3014000.png",
     "bondEligible": true,
     "traits": [
@@ -5152,6 +5338,7 @@
     "name": "柳生但马守宗矩",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1032000.png",
     "bondEligible": true,
     "traits": [
@@ -5180,6 +5367,7 @@
     "name": "加藤段藏",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6030000.png",
     "bondEligible": true,
     "traits": [
@@ -5207,6 +5395,7 @@
     "name": "刑部姬",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6031000.png",
     "bondEligible": true,
     "traits": [
@@ -5236,6 +5425,7 @@
     "name": "机械伊丽亲",
     "className": "alterEgo",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10004000.png",
     "bondEligible": true,
     "traits": [
@@ -5261,6 +5451,7 @@
     "name": "机械伊丽亲Ⅱ号机",
     "className": "alterEgo",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10005000.png",
     "bondEligible": true,
     "traits": [
@@ -5286,6 +5477,7 @@
     "name": "喀耳刻",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5033000.png",
     "bondEligible": true,
     "traits": [
@@ -5315,6 +5507,7 @@
     "name": "莲偶",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3031000.png",
     "bondEligible": true,
     "traits": [
@@ -5343,6 +5536,7 @@
     "name": "示巴女王",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5034000.png",
     "bondEligible": true,
     "traits": [
@@ -5368,6 +5562,7 @@
     "name": "阿比盖尔·威廉姆斯",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25001000.png",
     "bondEligible": true,
     "traits": [
@@ -5397,6 +5592,7 @@
     "name": "埃列什基伽勒",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3032000.png",
     "bondEligible": true,
     "traits": [
@@ -5427,6 +5623,7 @@
     "name": "阿蒂拉·the·San〔ta〕",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2022000.png",
     "bondEligible": true,
     "traits": [
@@ -5454,6 +5651,7 @@
     "name": "葛饰北斋",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25002000.png",
     "bondEligible": true,
     "traits": [
@@ -5481,6 +5679,7 @@
     "name": "塞弥拉弥斯",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6032000.png",
     "bondEligible": true,
     "traits": [
@@ -5510,6 +5709,7 @@
     "name": "浅上藤乃",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2029000.png",
     "bondEligible": true,
     "traits": [
@@ -5534,6 +5734,7 @@
     "name": "阿纳斯塔西娅",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5035000.png",
     "bondEligible": true,
     "traits": [
@@ -5558,6 +5759,7 @@
     "name": "阿塔兰忒〔Alter〕",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7030000.png",
     "bondEligible": true,
     "traits": [
@@ -5586,6 +5788,7 @@
     "name": "阿维斯布隆",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5036000.png",
     "bondEligible": true,
     "traits": [
@@ -5610,6 +5813,7 @@
     "name": "安东尼奥·萨列里",
     "className": "avenger",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11006000.png",
     "bondEligible": true,
     "traits": [
@@ -5636,6 +5840,7 @@
     "name": "伊凡雷帝",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4028000.png",
     "bondEligible": true,
     "traits": [
@@ -5664,6 +5869,7 @@
     "name": "阿喀琉斯",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4029000.png",
     "bondEligible": true,
     "traits": [
@@ -5696,6 +5902,7 @@
     "name": "喀戎",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2030000.png",
     "bondEligible": true,
     "traits": [
@@ -5727,6 +5934,7 @@
     "name": "齐格",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5038000.png",
     "bondEligible": true,
     "traits": [
@@ -5752,6 +5960,7 @@
     "name": "冲田总司〔Alter〕",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10007000.png",
     "bondEligible": true,
     "traits": [
@@ -5778,6 +5987,7 @@
     "name": "冈田以藏",
     "className": "assassin",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6033000.png",
     "bondEligible": true,
     "traits": [
@@ -5803,6 +6013,7 @@
     "name": "坂本龙马",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4030000.png",
     "bondEligible": true,
     "traits": [
@@ -5833,6 +6044,7 @@
     "name": "拿破仑",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2031000.png",
     "bondEligible": true,
     "traits": [
@@ -5858,6 +6070,7 @@
     "name": "齐格鲁德",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1033000.png",
     "bondEligible": true,
     "traits": [
@@ -5891,6 +6104,7 @@
     "name": "瓦尔基里",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3033000.png",
     "bondEligible": true,
     "traits": [
@@ -5922,6 +6136,7 @@
     "name": "斯卡哈·斯卡蒂",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5039000.png",
     "bondEligible": true,
     "traits": [
@@ -5953,6 +6168,7 @@
     "name": "贞德",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2032000.png",
     "bondEligible": true,
     "traits": [
@@ -5979,6 +6195,7 @@
     "name": "茨木童子",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3034000.png",
     "bondEligible": true,
     "traits": [
@@ -6009,6 +6226,7 @@
     "name": "牛若丸",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6034000.png",
     "bondEligible": true,
     "traits": [
@@ -6038,6 +6256,7 @@
     "name": "贞德〔Alter〕",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7031000.png",
     "bondEligible": true,
     "traits": [
@@ -6064,6 +6283,7 @@
     "name": "BB",
     "className": "moonCancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23002000.png",
     "bondEligible": true,
     "traits": [
@@ -6099,6 +6319,7 @@
     "name": "女王梅芙",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1034000.png",
     "bondEligible": true,
     "traits": [
@@ -6129,6 +6350,7 @@
     "name": "谜之女主角XX",
     "className": "foreigner",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25003000.png",
     "bondEligible": true,
     "traits": [
@@ -6160,6 +6382,7 @@
     "name": "迪尔姆德·奥迪那",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1035000.png",
     "bondEligible": true,
     "traits": [
@@ -6189,6 +6412,7 @@
     "name": "志度内",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10008000.png",
     "bondEligible": true,
     "traits": [
@@ -6221,6 +6445,7 @@
     "name": "酒吞童子",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5040000.png",
     "bondEligible": true,
     "traits": [
@@ -6254,6 +6479,7 @@
     "name": "重瞳",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7032000.png",
     "bondEligible": true,
     "traits": [
@@ -6280,6 +6506,7 @@
     "name": "兰陵王",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1036000.png",
     "bondEligible": true,
     "traits": [
@@ -6309,6 +6536,7 @@
     "name": "忠贞",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3035000.png",
     "bondEligible": true,
     "traits": [
@@ -6334,6 +6562,7 @@
     "name": "祖政",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9006000.png",
     "bondEligible": true,
     "traits": [
@@ -6359,6 +6588,7 @@
     "name": "雏罂",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6035000.png",
     "bondEligible": true,
     "traits": [
@@ -6387,6 +6617,7 @@
     "name": "丹驹",
     "className": "rider",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4031000.png",
     "bondEligible": true,
     "traits": [
@@ -6416,6 +6647,7 @@
     "name": "布拉达曼特",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3036000.png",
     "bondEligible": true,
     "traits": [
@@ -6443,6 +6675,7 @@
     "name": "魁札尔·科亚特尔〔桑巴／圣诞〕",
     "className": "ruler",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9007000.png",
     "bondEligible": true,
     "traits": [
@@ -6476,6 +6709,7 @@
     "name": "红阎魔",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1037000.png",
     "bondEligible": true,
     "traits": [
@@ -6506,6 +6740,7 @@
     "name": "李书文",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6036000.png",
     "bondEligible": true,
     "traits": [
@@ -6531,6 +6766,7 @@
     "name": "美游·艾德费尔特",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5041000.png",
     "bondEligible": true,
     "traits": [
@@ -6557,6 +6793,7 @@
     "name": "紫式部",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5042000.png",
     "bondEligible": true,
     "traits": [
@@ -6581,6 +6818,7 @@
     "name": "Kingprotea",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10009000.png",
     "bondEligible": true,
     "traits": [
@@ -6613,6 +6851,7 @@
     "name": "迦摩",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6037000.png",
     "bondEligible": true,
     "traits": [
@@ -6643,6 +6882,7 @@
     "name": "BeastⅢ／L",
     "className": "beastIIIL",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_99417300.png",
     "bondEligible": true,
     "traits": [
@@ -6668,6 +6908,7 @@
     "name": "莱妮丝",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4032000.png",
     "bondEligible": true,
     "traits": [
@@ -6694,6 +6935,7 @@
     "name": "阿斯特赖亚",
     "className": "ruler",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9008000.png",
     "bondEligible": true,
     "traits": [
@@ -6725,6 +6967,7 @@
     "name": "格蕾",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6039000.png",
     "bondEligible": true,
     "traits": [
@@ -6752,6 +6995,7 @@
     "name": "伟大的石像神",
     "className": "moonCancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23003000.png",
     "bondEligible": true,
     "traits": [
@@ -6783,6 +7027,7 @@
     "name": "拉克什米·芭伊",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1039000.png",
     "bondEligible": true,
     "traits": [
@@ -6813,6 +7058,7 @@
     "name": "威廉·退尔",
     "className": "archer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2034000.png",
     "bondEligible": true,
     "traits": [
@@ -6839,6 +7085,7 @@
     "name": "阿周那〔Alter〕",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7033000.png",
     "bondEligible": true,
     "traits": [
@@ -6873,6 +7120,7 @@
     "name": "马嘶",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2033000.png",
     "bondEligible": true,
     "traits": [
@@ -6904,6 +7152,7 @@
     "name": "阿斯克勒庇俄斯",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5043000.png",
     "bondEligible": true,
     "traits": [
@@ -6936,6 +7185,7 @@
     "name": "织田信长",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11007000.png",
     "bondEligible": true,
     "traits": [
@@ -6964,6 +7214,7 @@
     "name": "森长可",
     "className": "berserker",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7035000.png",
     "bondEligible": true,
     "traits": [
@@ -6988,6 +7239,7 @@
     "name": "长尾景虎",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3038000.png",
     "bondEligible": true,
     "traits": [
@@ -7016,6 +7268,7 @@
     "name": "莱昂纳多·达·芬奇",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4035000.png",
     "bondEligible": true,
     "traits": [
@@ -7042,6 +7295,7 @@
     "name": "伊阿宋",
     "className": "saber",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1038000.png",
     "bondEligible": true,
     "traits": [
@@ -7073,6 +7327,7 @@
     "name": "帕里斯",
     "className": "archer",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2035000.png",
     "bondEligible": true,
     "traits": [
@@ -7104,6 +7359,7 @@
     "name": "加雷斯",
     "className": "lancer",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3039000.png",
     "bondEligible": true,
     "traits": [
@@ -7133,6 +7389,7 @@
     "name": "巴沙洛缪·罗伯茨",
     "className": "rider",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4034000.png",
     "bondEligible": true,
     "traits": [
@@ -7160,6 +7417,7 @@
     "name": "陈宫",
     "className": "caster",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5044000.png",
     "bondEligible": true,
     "traits": [
@@ -7184,6 +7442,7 @@
     "name": "夏洛特·科黛",
     "className": "assassin",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6038000.png",
     "bondEligible": true,
     "traits": [
@@ -7208,6 +7467,7 @@
     "name": "莎乐美",
     "className": "berserker",
     "rarity": 2,
+    "cost": 4,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7034000.png",
     "bondEligible": true,
     "traits": [
@@ -7235,6 +7495,7 @@
     "name": "宫本武藏",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7036000.png",
     "bondEligible": true,
     "traits": [
@@ -7264,6 +7525,7 @@
     "name": "刑部姬",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2036000.png",
     "bondEligible": true,
     "traits": [
@@ -7293,6 +7555,7 @@
     "name": "卡米拉",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4036000.png",
     "bondEligible": true,
     "traits": [
@@ -7320,6 +7583,7 @@
     "name": "葛饰北斋",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1040000.png",
     "bondEligible": true,
     "traits": [
@@ -7349,6 +7613,7 @@
     "name": "阿尔托莉雅·潘德拉贡",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9009000.png",
     "bondEligible": true,
     "traits": [
@@ -7381,6 +7646,7 @@
     "name": "谜之Alterego·Λ",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3040000.png",
     "bondEligible": true,
     "traits": [
@@ -7418,6 +7684,7 @@
     "name": "冲田·J·总司",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6040000.png",
     "bondEligible": true,
     "traits": [
@@ -7447,6 +7714,7 @@
     "name": "太空伊什塔尔",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11009000.png",
     "bondEligible": true,
     "traits": [
@@ -7474,6 +7742,7 @@
     "name": "灾星简",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2037000.png",
     "bondEligible": true,
     "traits": [
@@ -7500,6 +7769,7 @@
     "name": "阿斯托尔福",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1041000.png",
     "bondEligible": true,
     "traits": [
@@ -7530,6 +7800,7 @@
     "name": "南丁格尔〔圣诞〕",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2039000.png",
     "bondEligible": true,
     "traits": [
@@ -7554,6 +7825,7 @@
     "name": "超人俄里翁",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2038000.png",
     "bondEligible": true,
     "traits": [
@@ -7584,6 +7856,7 @@
     "name": "曼迪卡尔多",
     "className": "rider",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4039000.png",
     "bondEligible": true,
     "traits": [
@@ -7612,6 +7885,7 @@
     "name": "欧罗巴",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4040000.png",
     "bondEligible": true,
     "traits": [
@@ -7643,6 +7917,7 @@
     "name": "琰女",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25004000.png",
     "bondEligible": true,
     "traits": [
@@ -7670,6 +7945,7 @@
     "name": "清少纳言",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2040000.png",
     "bondEligible": true,
     "traits": [
@@ -7694,6 +7970,7 @@
     "name": "奥德修斯",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4038000.png",
     "bondEligible": true,
     "traits": [
@@ -7725,6 +8002,7 @@
     "name": "狄俄斯库里",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1042000.png",
     "bondEligible": true,
     "traits": [
@@ -7762,6 +8040,7 @@
     "name": "凯妮斯",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3041000.png",
     "bondEligible": true,
     "traits": [
@@ -7796,6 +8075,7 @@
     "name": "罗穆路斯·奎里努斯",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3042000.png",
     "bondEligible": true,
     "traits": [
@@ -7827,6 +8107,7 @@
     "name": "旅行者",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25005000.png",
     "bondEligible": true,
     "traits": [
@@ -7854,6 +8135,7 @@
     "name": "鬼女红叶",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7037000.png",
     "bondEligible": true,
     "traits": [
@@ -7882,6 +8164,7 @@
     "name": "宇津见绘里濑",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3043000.png",
     "bondEligible": true,
     "traits": [
@@ -7911,6 +8194,7 @@
     "name": "阿尔托莉雅·卡斯特",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5045000.png",
     "bondEligible": true,
     "traits": [
@@ -7936,6 +8220,7 @@
     "name": "瞑生院祈荒",
     "className": "moonCancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23004000.png",
     "bondEligible": true,
     "traits": [
@@ -7962,6 +8247,7 @@
     "name": "伊莉雅丝菲尔·冯·爱因兹贝伦",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2042000.png",
     "bondEligible": true,
     "traits": [
@@ -7990,6 +8276,7 @@
     "name": "布伦希尔德",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7038000.png",
     "bondEligible": true,
     "traits": [
@@ -8022,6 +8309,7 @@
     "name": "雏罂",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3044000.png",
     "bondEligible": true,
     "traits": [
@@ -8051,6 +8339,7 @@
     "name": "阿比盖尔·威廉姆斯〔夏〕",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25007000.png",
     "bondEligible": true,
     "traits": [
@@ -8081,6 +8370,7 @@
     "name": "巴御前",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1045000.png",
     "bondEligible": true,
     "traits": [
@@ -8113,6 +8403,7 @@
     "name": "紫式部",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4041000.png",
     "bondEligible": true,
     "traits": [
@@ -8139,6 +8430,7 @@
     "name": "卑弥呼",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9010000.png",
     "bondEligible": true,
     "traits": [
@@ -8165,6 +8457,7 @@
     "name": "斋藤一",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1044000.png",
     "bondEligible": true,
     "traits": [
@@ -8192,6 +8485,7 @@
     "name": "织田信胜",
     "className": "archer",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2041000.png",
     "bondEligible": true,
     "traits": [
@@ -8218,6 +8512,7 @@
     "name": "梵高",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25006000.png",
     "bondEligible": true,
     "traits": [
@@ -8248,6 +8543,7 @@
     "name": "尼莫",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4037000.png",
     "bondEligible": true,
     "traits": [
@@ -8284,6 +8580,7 @@
     "name": "芦屋道满",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10010000.png",
     "bondEligible": true,
     "traits": [
@@ -8313,6 +8610,7 @@
     "name": "渡边纲",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1047000.png",
     "bondEligible": true,
     "traits": [
@@ -8341,6 +8639,7 @@
     "name": "伊吹童子",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1046000.png",
     "bondEligible": true,
     "traits": [
@@ -8381,6 +8680,7 @@
     "name": "弗栗多",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3046000.png",
     "bondEligible": true,
     "traits": [
@@ -8415,6 +8715,7 @@
     "name": "迦尔纳〔圣诞〕",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1048000.png",
     "bondEligible": true,
     "traits": [
@@ -8445,6 +8746,7 @@
     "name": "千子村正",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1049000.png",
     "bondEligible": true,
     "traits": [
@@ -8471,6 +8773,7 @@
     "name": "平景清",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11010000.png",
     "bondEligible": true,
     "traits": [
@@ -8499,6 +8802,7 @@
     "name": "鬼一法眼",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6041000.png",
     "bondEligible": true,
     "traits": [
@@ -8527,6 +8831,7 @@
     "name": "阿摩耳〔卡莲〕",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9011000.png",
     "bondEligible": true,
     "traits": [
@@ -8558,6 +8863,7 @@
     "name": "伽拉忒亚",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7039000.png",
     "bondEligible": true,
     "traits": [
@@ -8584,6 +8890,7 @@
     "name": "克莱恩小姐",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5046000.png",
     "bondEligible": true,
     "traits": [
@@ -8610,6 +8917,7 @@
     "name": "谜之偶像X〔Alter〕",
     "className": "foreigner",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25008000.png",
     "bondEligible": true,
     "traits": [
@@ -8640,6 +8948,7 @@
     "name": "摩根",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7040000.png",
     "bondEligible": true,
     "traits": [
@@ -8669,6 +8978,7 @@
     "name": "妖精骑士高文",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1050000.png",
     "bondEligible": true,
     "traits": [
@@ -8698,6 +9008,7 @@
     "name": "妖精骑士崔斯坦",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2043000.png",
     "bondEligible": true,
     "traits": [
@@ -8726,6 +9037,7 @@
     "name": "妖精骑士兰斯洛特",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3048000.png",
     "bondEligible": true,
     "traits": [
@@ -8757,6 +9069,7 @@
     "name": "珀西瓦尔",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3047000.png",
     "bondEligible": true,
     "traits": [
@@ -8787,6 +9100,7 @@
     "name": "光之高扬斯卡娅",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6042000.png",
     "bondEligible": true,
     "traits": [
@@ -8817,6 +9131,7 @@
     "name": "哈贝特洛特",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4042000.png",
     "bondEligible": true,
     "traits": [
@@ -8847,6 +9162,7 @@
     "name": "奥伯龙",
     "className": "pretender",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28001000.png",
     "bondEligible": true,
     "traits": [
@@ -8876,6 +9192,7 @@
     "name": "冲田总司〔Alter〕",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1051000.png",
     "bondEligible": true,
     "traits": [
@@ -8905,6 +9222,7 @@
     "name": "阿纳斯塔西娅＆维",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2044000.png",
     "bondEligible": true,
     "traits": [
@@ -8930,6 +9248,7 @@
     "name": "夏洛特·科黛",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5048000.png",
     "bondEligible": true,
     "traits": [
@@ -8955,6 +9274,7 @@
     "name": "莱昂纳多·达·芬奇",
     "className": "ruler",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9012000.png",
     "bondEligible": true,
     "traits": [
@@ -8980,6 +9300,7 @@
     "name": "迦摩",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11011000.png",
     "bondEligible": true,
     "traits": [
@@ -9011,6 +9332,7 @@
     "name": "凯妮斯",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4045000.png",
     "bondEligible": true,
     "traits": [
@@ -9047,6 +9369,7 @@
     "name": "清少纳言",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7041000.png",
     "bondEligible": true,
     "traits": [
@@ -9072,6 +9395,7 @@
     "name": "雅克·德·莫莱",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25010000.png",
     "bondEligible": true,
     "traits": [
@@ -9101,6 +9425,7 @@
     "name": "芝诺比阿",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2045000.png",
     "bondEligible": true,
     "traits": [
@@ -9128,6 +9453,7 @@
     "name": "伊丽莎白·巴托里〔灰姑娘〕",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4046000.png",
     "bondEligible": true,
     "traits": [
@@ -9155,6 +9481,7 @@
     "name": "出云阿国",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5049000.png",
     "bondEligible": true,
     "traits": [
@@ -9180,6 +9507,7 @@
     "name": "谜之兰丸X",
     "className": "avenger",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11012000.png",
     "bondEligible": true,
     "traits": [
@@ -9206,6 +9534,7 @@
     "name": "坂本龙马",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3050000.png",
     "bondEligible": true,
     "traits": [
@@ -9233,6 +9562,7 @@
     "name": "玛尔达〔圣诞〕",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5050000.png",
     "bondEligible": true,
     "traits": [
@@ -9258,6 +9588,7 @@
     "name": "太公望",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4043000.png",
     "bondEligible": true,
     "traits": [
@@ -9287,6 +9618,7 @@
     "name": "多布雷尼亚·尼基季奇",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4044000.png",
     "bondEligible": true,
     "traits": [
@@ -9317,6 +9649,7 @@
     "name": "Beast Ⅳ",
     "className": "beastIV",
     "rarity": 5,
+    "cost": 0,
     "face": "https://static.atlasacademy.io/CN/Faces/f_99436100.png",
     "bondEligible": true,
     "traits": [
@@ -9340,6 +9673,7 @@
     "name": "暗之高扬斯卡娅",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25009000.png",
     "bondEligible": true,
     "traits": [
@@ -9368,6 +9702,7 @@
     "name": "赫费斯提翁",
     "className": "pretender",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28002000.png",
     "bondEligible": true,
     "traits": [
@@ -9394,6 +9729,7 @@
     "name": "马纳南·麦克·利尔〔巴泽特〕",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10011000.png",
     "bondEligible": true,
     "traits": [
@@ -9425,6 +9761,7 @@
     "name": "征氏姐妹",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1053000.png",
     "bondEligible": true,
     "traits": [
@@ -9456,6 +9793,7 @@
     "name": "太岁星君",
     "className": "alterEgo",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10012000.png",
     "bondEligible": true,
     "traits": [
@@ -9486,6 +9824,7 @@
     "name": "超级班扬",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10013000.png",
     "bondEligible": true,
     "traits": [
@@ -9514,6 +9853,7 @@
     "name": "大黑天",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5047000.png",
     "bondEligible": true,
     "traits": [
@@ -9547,6 +9887,7 @@
     "name": "玛丽·安宁",
     "className": "lancer",
     "rarity": 1,
+    "cost": 3,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3049000.png",
     "bondEligible": true,
     "traits": [
@@ -9571,6 +9912,7 @@
     "name": "君士坦丁十一世",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4047000.png",
     "bondEligible": true,
     "traits": [
@@ -9600,6 +9942,7 @@
     "name": "查理曼",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1052000.png",
     "bondEligible": true,
     "traits": [
@@ -9629,6 +9972,7 @@
     "name": "罗兰",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1043000.png",
     "bondEligible": true,
     "traits": [
@@ -9658,6 +10002,7 @@
     "name": "克里姆希尔德",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7042000.png",
     "bondEligible": true,
     "traits": [
@@ -9684,6 +10029,7 @@
     "name": "詹姆斯·莫里亚蒂",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9013000.png",
     "bondEligible": true,
     "traits": [
@@ -9708,6 +10054,7 @@
     "name": "堂·吉诃德",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3051000.png",
     "bondEligible": true,
     "traits": [
@@ -9738,6 +10085,7 @@
     "name": "张角",
     "className": "caster",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5051000.png",
     "bondEligible": true,
     "traits": [
@@ -9762,6 +10110,7 @@
     "name": "曲亭马琴",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4048000.png",
     "bondEligible": true,
     "traits": [
@@ -9790,6 +10139,7 @@
     "name": "源为朝",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2046000.png",
     "bondEligible": true,
     "traits": [
@@ -9817,6 +10167,7 @@
     "name": "Archetype：Earth",
     "className": "moonCancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23005000.png",
     "bondEligible": true,
     "traits": [
@@ -9838,6 +10189,7 @@
     "name": "方巿",
     "className": "alterEgo",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10014000.png",
     "bondEligible": true,
     "traits": [
@@ -9861,6 +10213,7 @@
     "name": "阿瓦隆女士",
     "className": "pretender",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28003000.png",
     "bondEligible": true,
     "traits": [
@@ -9888,6 +10241,7 @@
     "name": "加雷斯",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1054000.png",
     "bondEligible": true,
     "traits": [
@@ -9919,6 +10273,7 @@
     "name": "伊吹童子",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7043000.png",
     "bondEligible": true,
     "traits": [
@@ -9959,6 +10314,7 @@
     "name": "宇津见绘里濑",
     "className": "avenger",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11014000.png",
     "bondEligible": true,
     "traits": [
@@ -9988,6 +10344,7 @@
     "name": "斯卡哈·斯卡蒂",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9014000.png",
     "bondEligible": true,
     "traits": [
@@ -10020,6 +10377,7 @@
     "name": "周照",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5052000.png",
     "bondEligible": true,
     "traits": [
@@ -10046,6 +10404,7 @@
     "name": "斯露德",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6045000.png",
     "bondEligible": true,
     "traits": [
@@ -10079,6 +10438,7 @@
     "name": "希露德",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6044000.png",
     "bondEligible": true,
     "traits": [
@@ -10112,6 +10472,7 @@
     "name": "奥特琳德",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6043000.png",
     "bondEligible": true,
     "traits": [
@@ -10145,6 +10506,7 @@
     "name": "千利休",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7044000.png",
     "bondEligible": true,
     "traits": [
@@ -10170,6 +10532,7 @@
     "name": "山南敬助",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1055000.png",
     "bondEligible": true,
     "traits": [
@@ -10197,6 +10560,7 @@
     "name": "壹与",
     "className": "ruler",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9015000.png",
     "bondEligible": true,
     "traits": [
@@ -10224,6 +10588,7 @@
     "name": "吾绰",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6046000.png",
     "bondEligible": true,
     "traits": [
@@ -10255,6 +10620,7 @@
     "name": "黄飞虎",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4049000.png",
     "bondEligible": true,
     "traits": [
@@ -10286,6 +10652,7 @@
     "name": "九纹龙伊丽莎",
     "className": "pretender",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28004000.png",
     "bondEligible": true,
     "traits": [
@@ -10313,6 +10680,7 @@
     "name": "布里托玛特",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3053000.png",
     "bondEligible": true,
     "traits": [
@@ -10339,6 +10707,7 @@
     "name": "格里戈里·拉斯普京",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10015000.png",
     "bondEligible": true,
     "traits": [
@@ -10367,6 +10736,7 @@
     "name": "尼托克丽丝〔Alter〕",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11015000.png",
     "bondEligible": true,
     "traits": [
@@ -10398,6 +10768,7 @@
     "name": "特斯卡特利波卡",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6047000.png",
     "bondEligible": true,
     "traits": [
@@ -10429,6 +10800,7 @@
     "name": "特拉洛克",
     "className": "pretender",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28005000.png",
     "bondEligible": true,
     "traits": [
@@ -10456,6 +10828,7 @@
     "name": "库库尔坎",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25011000.png",
     "bondEligible": true,
     "traits": [
@@ -10479,6 +10852,7 @@
     "name": "女教皇若安",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9016000.png",
     "bondEligible": true,
     "traits": [
@@ -10505,6 +10879,7 @@
     "name": "高杉晋作",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2047000.png",
     "bondEligible": true,
     "traits": [
@@ -10529,6 +10904,7 @@
     "name": "幼体／提亚马特",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10016000.png",
     "bondEligible": true,
     "traits": [
@@ -10559,6 +10935,7 @@
     "name": "所多玛之兽／德拉科",
     "className": "beast",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_33001000.png",
     "bondEligible": true,
     "traits": [
@@ -10586,6 +10963,7 @@
     "name": "洛库斯塔",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6048000.png",
     "bondEligible": true,
     "traits": [
@@ -10611,6 +10989,7 @@
     "name": "瑟坦特",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1057000.png",
     "bondEligible": true,
     "traits": [
@@ -10643,6 +11022,7 @@
     "name": "果心居士",
     "className": "assassin",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6049000.png",
     "bondEligible": true,
     "traits": [
@@ -10672,6 +11052,7 @@
     "name": "怖军",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3054000.png",
     "bondEligible": true,
     "traits": [
@@ -10702,6 +11083,7 @@
     "name": "难敌",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7046000.png",
     "bondEligible": true,
     "traits": [
@@ -10729,6 +11111,7 @@
     "name": "杜尔伽",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2048000.png",
     "bondEligible": true,
     "traits": [
@@ -10762,6 +11145,7 @@
     "name": "美杜莎",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1056000.png",
     "bondEligible": true,
     "traits": [
@@ -10793,6 +11177,7 @@
     "name": "雨之魔女梣",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5053000.png",
     "bondEligible": true,
     "traits": [
@@ -10820,6 +11205,7 @@
     "name": "阿尔托莉雅·卡斯特",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7047000.png",
     "bondEligible": true,
     "traits": [
@@ -10847,6 +11233,7 @@
     "name": "铃鹿御前〔暑假〕",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4050000.png",
     "bondEligible": true,
     "traits": [
@@ -10879,6 +11266,7 @@
     "name": "克洛伊·冯·爱因兹贝伦",
     "className": "avenger",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11016000.png",
     "bondEligible": true,
     "traits": [
@@ -10906,6 +11294,7 @@
     "name": "诺克娜蕾·雅兰杜",
     "className": "foreigner",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25012000.png",
     "bondEligible": true,
     "traits": [
@@ -10934,6 +11323,7 @@
     "name": "梅柳齐娜",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9017000.png",
     "bondEligible": true,
     "traits": [
@@ -10966,6 +11356,7 @@
     "name": "ＵＤＫ－巴格斯特",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2049000.png",
     "bondEligible": true,
     "traits": [
@@ -10997,6 +11388,7 @@
     "name": "凯特·库·米可科尔",
     "className": "pretender",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28006000.png",
     "bondEligible": true,
     "traits": [
@@ -11025,6 +11417,7 @@
     "name": "旺吉娜",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25013000.png",
     "bondEligible": true,
     "traits": [
@@ -11055,6 +11448,7 @@
     "name": "托勒密",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2050000.png",
     "bondEligible": true,
     "traits": [
@@ -11081,6 +11475,7 @@
     "name": "杉谷善住坊",
     "className": "archer",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2051000.png",
     "bondEligible": true,
     "traits": [
@@ -11106,6 +11501,7 @@
     "name": "忒修斯",
     "className": "saber",
     "rarity": 3,
+    "cost": 7,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1058000.png",
     "bondEligible": true,
     "traits": [
@@ -11138,6 +11534,7 @@
     "name": "武田晴信",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4052000.png",
     "bondEligible": true,
     "traits": [
@@ -11164,6 +11561,7 @@
     "name": "永仓新八",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7048000.png",
     "bondEligible": true,
     "traits": [
@@ -11189,6 +11587,7 @@
     "name": "杂贺孙一",
     "className": "archer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2052000.png",
     "bondEligible": true,
     "traits": [
@@ -11213,6 +11612,7 @@
     "name": "上杉谦信",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9018000.png",
     "bondEligible": true,
     "traits": [
@@ -11241,6 +11641,7 @@
     "name": "尼莫〔圣诞〕",
     "className": "rider",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4053000.png",
     "bondEligible": true,
     "traits": [
@@ -11276,6 +11677,7 @@
     "name": "大和武尊",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1059000.png",
     "bondEligible": true,
     "traits": [
@@ -11310,6 +11712,7 @@
     "name": "源赖光／丑御前",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11018000.png",
     "bondEligible": true,
     "traits": [
@@ -11340,6 +11743,7 @@
     "name": "由井正雪",
     "className": "caster",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5054000.png",
     "bondEligible": true,
     "traits": [
@@ -11364,6 +11768,7 @@
     "name": "宫本伊织",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1060000.png",
     "bondEligible": true,
     "traits": [
@@ -11391,6 +11796,7 @@
     "name": "安德洛墨达",
     "className": "rider",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_4055000.png",
     "bondEligible": true,
     "traits": [
@@ -11418,6 +11824,7 @@
     "name": "玛丽·安托瓦内特〔Alter〕",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11013000.png",
     "bondEligible": true,
     "traits": [
@@ -11443,6 +11850,7 @@
     "name": "耀星哈桑",
     "className": "assassin",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_6050000.png",
     "bondEligible": true,
     "traits": [
@@ -11468,6 +11876,7 @@
     "name": "岩窟王　基督山",
     "className": "avenger",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11017000.png",
     "bondEligible": true,
     "traits": [
@@ -11493,6 +11902,7 @@
     "name": "亚历山德罗·迪·卡利奥斯特罗",
     "className": "pretender",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28007000.png",
     "bondEligible": true,
     "traits": [
@@ -11516,6 +11926,7 @@
     "name": "Ｅ－火玛丽",
     "className": "uOlgaMarieFlareCollection",
     "rarity": 0,
+    "cost": 0,
     "face": "https://static.atlasacademy.io/CN/Faces/f_99455900.png",
     "bondEligible": true,
     "traits": [
@@ -11537,6 +11948,7 @@
     "name": "Ｅ－水玛丽",
     "className": "uOlgaMarieAquaCollection",
     "rarity": 0,
+    "cost": 0,
     "face": "https://static.atlasacademy.io/CN/Faces/f_99456000.png",
     "bondEligible": true,
     "traits": [
@@ -11558,6 +11970,7 @@
     "name": "苍崎青子",
     "className": "foreigner",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25014000.png",
     "bondEligible": true,
     "traits": [
@@ -11584,6 +11997,7 @@
     "name": "静希草十郎",
     "className": "berserker",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7049000.png",
     "bondEligible": true,
     "traits": [
@@ -11609,6 +12023,7 @@
     "name": "久远寺有珠",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5055000.png",
     "bondEligible": true,
     "traits": [
@@ -11633,6 +12048,7 @@
     "name": "响＆千键",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10017000.png",
     "bondEligible": true,
     "traits": [
@@ -11655,6 +12071,7 @@
     "name": "埃列什基伽勒",
     "className": "beastEresh",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_33002000.png",
     "bondEligible": true,
     "traits": [
@@ -11681,6 +12098,7 @@
     "name": "谜之代行者C.I.E.L",
     "className": "moonCancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23009000.png",
     "bondEligible": true,
     "traits": [
@@ -11710,6 +12128,7 @@
     "name": "多布雷尼亚·尼基季奇",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3055000.png",
     "bondEligible": true,
     "traits": [
@@ -11741,6 +12160,7 @@
     "name": "方巿",
     "className": "avenger",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_11019000.png",
     "bondEligible": true,
     "traits": [
@@ -11765,6 +12185,7 @@
     "name": "ＢＢ迪拜",
     "className": "moonCancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23006000.png",
     "bondEligible": true,
     "traits": [
@@ -11795,6 +12216,7 @@
     "name": "特诺奇蒂特兰",
     "className": "moonCancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23010000.png",
     "bondEligible": true,
     "traits": [
@@ -11823,6 +12245,7 @@
     "name": "谜之女主角XX〔Alter〕",
     "className": "foreigner",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_25016000.png",
     "bondEligible": true,
     "traits": [
@@ -11853,6 +12276,7 @@
     "name": "岸波白野",
     "className": "moonCancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23007000.png",
     "bondEligible": true,
     "traits": [
@@ -11877,6 +12301,7 @@
     "name": "岸波白野",
     "className": "moonCancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_23008000.png",
     "bondEligible": true,
     "traits": [
@@ -11901,6 +12326,7 @@
     "name": "Kazuradrop",
     "className": "alterEgo",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_10018000.png",
     "bondEligible": true,
     "traits": [
@@ -11929,6 +12355,7 @@
     "name": "图坦卡蒙",
     "className": "archer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_2053000.png",
     "bondEligible": true,
     "traits": [
@@ -11957,6 +12384,7 @@
     "name": "梵高〔矿工〕",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3056000.png",
     "bondEligible": true,
     "traits": [
@@ -11985,6 +12413,7 @@
     "name": "娄希",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7050000.png",
     "bondEligible": true,
     "traits": [
@@ -12009,6 +12438,7 @@
     "name": "阿比盖尔·威廉姆斯〔圣诞〕",
     "className": "pretender",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28008000.png",
     "bondEligible": true,
     "traits": [
@@ -12036,6 +12466,7 @@
     "name": "Phantasmoon",
     "className": "pretender",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28009000.png",
     "bondEligible": true,
     "traits": [
@@ -12059,6 +12490,7 @@
     "name": "理查一世",
     "className": "saber",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1061000.png",
     "bondEligible": true,
     "traits": [
@@ -12087,6 +12519,7 @@
     "name": "比肖内",
     "className": "lancer",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3057000.png",
     "bondEligible": true,
     "traits": [
@@ -12117,6 +12550,7 @@
     "name": "黑姬",
     "className": "saber",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_1062000.png",
     "bondEligible": true,
     "traits": [
@@ -12145,6 +12579,7 @@
     "name": "小野小町",
     "className": "caster",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_5058000.png",
     "bondEligible": true,
     "traits": [
@@ -12173,6 +12608,7 @@
     "name": "Ｅ－宏玛丽",
     "className": "uOlgaMarieGrandCollection",
     "rarity": 0,
+    "cost": 0,
     "face": "https://static.atlasacademy.io/CN/Faces/f_99462800.png",
     "bondEligible": true,
     "traits": [
@@ -12198,6 +12634,7 @@
     "name": "但丁·阿利吉耶里",
     "className": "pretender",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28010000.png",
     "bondEligible": true,
     "traits": [
@@ -12221,6 +12658,7 @@
     "name": "梅塔特隆·贞德",
     "className": "ruler",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_9019000.png",
     "bondEligible": true,
     "traits": [
@@ -12254,6 +12692,7 @@
     "name": "阿育王",
     "className": "lancer",
     "rarity": 4,
+    "cost": 12,
     "face": "https://static.atlasacademy.io/CN/Faces/f_3058000.png",
     "bondEligible": true,
     "traits": [
@@ -12283,6 +12722,7 @@
     "name": "莉莉丝",
     "className": "berserker",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_7051000.png",
     "bondEligible": true,
     "traits": [
@@ -12318,6 +12758,7 @@
     "name": "堤丰·厄斐墨洛斯",
     "className": "pretender",
     "rarity": 5,
+    "cost": 16,
     "face": "https://static.atlasacademy.io/CN/Faces/f_28011000.png",
     "bondEligible": true,
     "traits": [

@@ -1,5 +1,6 @@
 import {
   BOND_CRAFT_ESSENCES,
+  EMPTY_CRAFT_ESSENCE,
   resolveCraftEssence,
 } from "../data/bondCraftEssences";
 import type {
@@ -43,32 +44,17 @@ const appliesToServant = (
   return matchesTraits && matchesClass;
 };
 
-const assignCraftEssences = (
+const buildAssignment = (
   slots: PartySlot[],
-  selected: ResolvedBondCraftEssence[],
+  selectedOwnedCraftEssences: ResolvedBondCraftEssence[],
+  supportCraftEssence: ResolvedBondCraftEssence,
 ) => {
-  const supportIndex = slots.findIndex(({ kind }) => kind === "support");
-  if (supportIndex < 0) return [...selected];
-
-  let bestSupportIndex = 0;
-  let bestSupportDelta = Number.NEGATIVE_INFINITY;
-  selected.forEach((craftEssence, index) => {
-    const delta = craftEssence.supportValue - craftEssence.ownedValue;
-    if (delta > bestSupportDelta) {
-      bestSupportDelta = delta;
-      bestSupportIndex = index;
-    }
-  });
-
-  const supportCraftEssence = selected[bestSupportIndex];
-  const remaining = selected.filter((_, index) => index !== bestSupportIndex);
-  const assignment: ResolvedBondCraftEssence[] = [];
-  let remainingIndex = 0;
-  slots.forEach((_, index) => {
-    if (index === supportIndex) assignment.push(supportCraftEssence);
-    else assignment.push(remaining[remainingIndex++]);
-  });
-  return assignment;
+  let ownedIndex = 0;
+  return slots.map(({ kind }) =>
+    kind === "support"
+      ? supportCraftEssence
+      : selectedOwnedCraftEssences[ownedIndex++] ?? EMPTY_CRAFT_ESSENCE,
+  );
 };
 
 const getEquipmentBonus = (
@@ -117,6 +103,9 @@ const describeContribution = (
   ownedServants: Servant[],
 ) => {
   const value = valueForEquippedSlot(craftEssence, kind);
+  if (craftEssence.isEmpty) {
+    return "受编队 Cost 上限影响，此槽位不装备羁绊礼装。";
+  }
   const stateLabel = craftEssence.hasMlbEffect
     ? craftEssence.state === "mlb"
       ? "满破"
@@ -202,14 +191,11 @@ const calculateServantBond = (
   };
 };
 
-/**
- * Selects the globally best CE set, then puts the CE with the largest
- * support-only uplift onto the support slot. CE effects are party-wide, so
- * other placements do not affect score.
- */
 const optimizeAssignments = (
   slots: PartySlot[],
   craftEssences: ResolvedBondCraftEssence[],
+  supportCraftEssence: ResolvedBondCraftEssence,
+  craftEssenceCostBudget: number,
   baseBond: number,
   party: PartySlot[],
 ) => {
@@ -217,10 +203,15 @@ const optimizeAssignments = (
     .slice(0, STARTING_MEMBER_SLOT_COUNT)
     .some(({ kind, servant }) => kind === "support" && servant !== null);
   let bestScore = Number.NEGATIVE_INFINITY;
+  let bestCost = Number.POSITIVE_INFINITY;
   let best: ResolvedBondCraftEssence[] = [];
 
   const scoreSelection = (selected: ResolvedBondCraftEssence[]) => {
-    const assignment = assignCraftEssences(slots, selected);
+    const assignment = buildAssignment(
+      slots,
+      selected,
+      supportCraftEssence,
+    );
     return slots.reduce((total, slot) => {
       if (slot.kind !== "owned" || !slot.servant?.bondEligible) return total;
       const slotIndex = party.indexOf(slot);
@@ -241,29 +232,28 @@ const optimizeAssignments = (
   const visit = (
     startIndex: number,
     selected: ResolvedBondCraftEssence[],
+    selectedCost: number,
   ) => {
-    if (selected.length === slots.length) {
-      const score = scoreSelection(selected);
-      if (score > bestScore) {
-        bestScore = score;
-        best = assignCraftEssences(slots, selected);
-      }
-      return;
+    const score = scoreSelection(selected);
+    if (score > bestScore || (score === bestScore && selectedCost < bestCost)) {
+      bestScore = score;
+      bestCost = selectedCost;
+      best = buildAssignment(slots, selected, supportCraftEssence);
     }
 
-    const remainingNeeded = slots.length - selected.length;
-    for (
-      let index = startIndex;
-      index <= craftEssences.length - remainingNeeded;
-      index += 1
-    ) {
+    const ownedSlotCount = slots.filter(({ kind }) => kind === "owned").length;
+    if (selected.length >= ownedSlotCount) return;
+
+    for (let index = startIndex; index < craftEssences.length; index += 1) {
+      const nextCost = selectedCost + craftEssences[index].cost;
+      if (nextCost > craftEssenceCostBudget) continue;
       selected.push(craftEssences[index]);
-      visit(index + 1, selected);
+      visit(index + 1, selected, nextCost);
       selected.pop();
     }
   };
 
-  visit(0, []);
+  visit(0, [], 0);
   return best;
 };
 
@@ -291,15 +281,37 @@ export const analyzeBond = (
   if (selectedSlots.filter(({ kind }) => kind === "support").length !== 1) {
     throw new Error("阵容中必须且只能有一名助战英灵。");
   }
-  if (availableCraftEssences.length < selectedSlots.length) {
+  const supportSlot = selectedSlots.find(({ kind }) => kind === "support");
+  if (!supportSlot?.supportCraftEssence) {
+    throw new Error("请选择助战英灵携带的羁绊礼装及其突破状态。");
+  }
+  const supportCraftEssenceDefinition = BOND_CRAFT_ESSENCES.find(
+    ({ id }) => id === supportSlot.supportCraftEssence?.id,
+  );
+  if (!supportCraftEssenceDefinition) {
+    throw new Error("助战礼装数据无效，请重新选择助战配置。");
+  }
+  const supportCraftEssence = resolveCraftEssence(
+    supportCraftEssenceDefinition,
+    supportSlot.supportCraftEssence.state,
+  );
+  const servantCost = selectedSlots.reduce(
+    (total, slot) =>
+      total + (slot.kind === "owned" ? slot.servant.cost : 0),
+    0,
+  );
+  if (servantCost > settings.maxPartyCost) {
     throw new Error(
-      `已选羁绊礼装只有 ${availableCraftEssences.length} 张，请至少选择 ${selectedSlots.length} 张以覆盖当前阵容。`,
+      `五名自有从者已占用 ${servantCost} Cost，超过你设置的 ${settings.maxPartyCost} Cost 上限；请调整阵容或提高上限。`,
     );
   }
+  const craftEssenceCostBudget = settings.maxPartyCost - servantCost;
 
   const assignment = optimizeAssignments(
     selectedSlots,
     availableCraftEssences,
+    supportCraftEssence,
+    craftEssenceCostBudget,
     settings.baseBond,
     party,
   );
@@ -308,6 +320,11 @@ export const analyzeBond = (
   );
   const eligibleServantCount = ownedServants.length;
   const baseTotal = settings.baseBond * eligibleServantCount;
+  const craftEssenceCost = selectedSlots.reduce((total, slot, index) => {
+    if (slot.kind === "support") return total;
+    return total + assignment[index].cost;
+  }, 0);
+  const partyCost = servantCost + craftEssenceCost;
   const supportInStartingLineup = party
     .slice(0, STARTING_MEMBER_SLOT_COUNT)
     .some(({ kind, servant }) => kind === "support" && servant !== null);
@@ -403,13 +420,20 @@ export const analyzeBond = (
       servantBondValues.length > 0 ? Math.max(...servantBondValues) : 0,
     supportInStartingLineup,
     activityPercent: ACTIVITY_BOND_BONUS,
+    maxPartyCost: settings.maxPartyCost,
+    partyCost,
+    servantCost,
+    craftEssenceCost,
+    remainingCost: settings.maxPartyCost - partyCost,
     notes: [
       "第一步：每名英灵分别汇总对其生效的礼装百分比，再计算基础羁绊 ×（1 + 礼装百分比 + 活动百分比），结果向下取整。特性礼装只计入满足对应职阶或特性的英灵。",
       supportInStartingLineup
         ? "第二步：助战位于前三个首发槽位，其 20% 首发加成平摊给五名自有英灵，每名获得 4%；首发自有英灵再叠加自身 20%，因此首发乘 1.24、后备乘 1.04，结果向下取整。"
         : "第二步：助战位于后备，无法获得首发 20% 且不触发平摊；首发自有英灵乘 1.20，后备自有英灵乘 1.00，结果向下取整。",
       "第三步：在前两步完成后，再加上英灵肖像等固定羁绊值；固定值不参与前面的百分比乘算。",
-      "礼装效果对首发与后备成员均生效；助战英灵自身不计入你的羁绊收益。每张礼装按库存中选择的未满破或满破效果计算。",
+      `Cost 约束：五名自有从者共 ${servantCost} Cost，推荐的自有礼装共 ${craftEssenceCost} Cost，合计 ${partyCost}/${settings.maxPartyCost}；助战从者及其固定礼装不计入玩家编队 Cost。`,
+      "助战礼装在选择助战时已经固定，分析器不会替换；自有礼装则从库存中选择在 Cost 上限内使整队羁绊最高的组合，必要时允许空礼装位。",
+      "礼装效果对首发与后备成员均生效；助战英灵自身不计入你的羁绊收益。每张礼装按选择的未满破或满破效果计算。",
       "特性限定礼装不要求佩戴者本人符合条件；它会为队内所有符合条件的自有英灵提供加成。结果中的“受益对象”会列出实际命中的英灵与条件。",
       "“拥有灵衣之人”是系统固定特性：即使你的账号尚未取得灵衣开放权、尚未开放或当前未穿着，也符合「至诚的一针」的加成条件。",
       eligibleServantCount <

@@ -59,32 +59,55 @@ export const SettingsPanel = ({
           <span>
             <strong>计算条件</strong>
             <small>
-              基础羁绊 · 已选 {selectedCraftEssences.length} 张羁绊礼装
+              基础羁绊 · Cost {value.maxPartyCost} · 已选{" "}
+              {selectedCraftEssences.length} 张自有礼装
             </small>
           </span>
           <span className="settings-chevron">⌄</span>
         </summary>
         <div className="settings-content">
-          <label className="field">
-            <span>关卡基础羁绊</span>
-            <input
-              inputMode="numeric"
-              max={9999}
-              min={0}
-              onChange={(event) =>
-                onChange({
-                  ...value,
-                  baseBond: Math.max(0, Number(event.target.value) || 0),
-                })
-              }
-              type="number"
-              value={value.baseBond}
-            />
-            <small>示例：典位级常用 815；请以关卡实际值为准</small>
-          </label>
+          <div className="settings-fields">
+            <label className="field">
+              <span>关卡基础羁绊</span>
+              <input
+                inputMode="numeric"
+                max={9999}
+                min={0}
+                onChange={(event) =>
+                  onChange({
+                    ...value,
+                    baseBond: Math.max(0, Number(event.target.value) || 0),
+                  })
+                }
+                type="number"
+                value={value.baseBond}
+              />
+              <small>示例：典位级常用 815；请以关卡实际值为准</small>
+            </label>
+            <label className="field">
+              <span>编队 Cost 上限</span>
+              <input
+                inputMode="numeric"
+                max={999}
+                min={0}
+                onChange={(event) =>
+                  onChange({
+                    ...value,
+                    maxPartyCost: Math.max(
+                      0,
+                      Number(event.target.value) || 0,
+                    ),
+                  })
+                }
+                type="number"
+                value={value.maxPartyCost}
+              />
+              <small>只计算五名自有从者及其礼装；助战不占 Cost</small>
+            </label>
+          </div>
           <fieldset className="ce-inventory">
             <div className="ce-inventory-heading">
-              <span>纳入分析的羁绊礼装</span>
+              <span>自有羁绊礼装库存</span>
               <button onClick={() => setPickerOpen(true)} type="button">
                 ＋ 选择礼装
               </button>
@@ -103,12 +126,16 @@ export const SettingsPanel = ({
                       <img alt="" src={craftEssence.image} />
                       <span>
                         {craftEssence.shortName}
-                        {craftEssence.target && (
-                          <small>
+                        <small>
+                          Cost {craftEssence.cost}
+                          {craftEssence.target && (
+                            <>
+                              {" · "}
                             {craftEssence.target.label}
                             {` +${displayedValue}%`}
-                          </small>
-                        )}
+                            </>
+                          )}
+                        </small>
                       </span>
                       <select
                         aria-label={`${craftEssence.name}突破状态`}

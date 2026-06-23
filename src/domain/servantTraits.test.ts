@@ -11,6 +11,7 @@ const servant = (traits: string[]): Servant => ({
   name: "测试英灵",
   className: "saber",
   rarity: 5,
+  cost: 16,
   face: "",
   bondEligible: true,
   traits,

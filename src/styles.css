@@ -523,6 +523,47 @@ footer {
   font: 500 8px "Orbitron", sans-serif;
 }
 
+.support-ce-badge {
+  position: absolute;
+  z-index: 4;
+  left: 8px;
+  right: 8px;
+  bottom: 58px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  background: rgba(3, 13, 21, 0.86);
+  border: 1px solid rgba(102, 227, 232, 0.22);
+  pointer-events: none;
+}
+
+.support-ce-badge img {
+  width: 24px;
+  height: 31px;
+  object-fit: cover;
+}
+
+.support-ce-badge > span {
+  min-width: 0;
+  display: grid;
+}
+
+.support-ce-badge small,
+.support-ce-badge i {
+  color: #7b9ba4;
+  font-size: 6px;
+  font-style: normal;
+}
+
+.support-ce-badge strong {
+  overflow: hidden;
+  color: #d8ebee;
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .trait-tags {
   display: flex !important;
   flex-wrap: wrap;
@@ -646,6 +687,12 @@ footer {
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 30px;
+}
+
+.settings-fields {
+  display: grid;
+  align-content: start;
+  gap: 16px;
 }
 
 .field {
@@ -872,6 +919,76 @@ footer {
   font-size: 9px;
 }
 
+.support-ce-modal {
+  width: min(760px, calc(100vw - 24px));
+}
+
+.support-ce-results {
+  padding: 0 28px;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  max-height: min(44vh, 400px);
+}
+
+.support-ce-footer {
+  margin-top: 14px;
+  padding: 14px 28px 20px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.support-ce-footer > div {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.support-ce-footer img {
+  width: 34px;
+  height: 44px;
+  object-fit: cover;
+}
+
+.support-ce-footer > div span,
+.support-ce-footer label {
+  display: grid;
+  gap: 3px;
+}
+
+.support-ce-footer small,
+.support-ce-footer label span {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.support-ce-footer strong {
+  overflow: hidden;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.support-ce-footer select {
+  border: 1px solid rgba(102, 227, 232, 0.25);
+  background: #081522;
+  color: #d8e8eb;
+  padding: 8px;
+}
+
+.support-ce-footer > button {
+  border: 1px solid var(--cyan);
+  background: rgba(102, 227, 232, 0.1);
+  color: var(--cyan-bright);
+  padding: 11px 15px;
+  cursor: pointer;
+}
+
 .error-message {
   margin: 18px 0 -4px;
   padding: 11px 14px;
@@ -984,6 +1101,43 @@ footer {
   margin-bottom: 24px;
 }
 
+.cost-summary {
+  margin-bottom: 12px;
+  padding: 13px 16px;
+  border: 1px solid rgba(102, 227, 232, 0.2);
+  background: rgba(102, 227, 232, 0.05);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+}
+
+.cost-summary > div {
+  display: grid;
+}
+
+.cost-summary span,
+.cost-summary small {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.cost-summary strong {
+  color: var(--cyan-bright);
+  font: 600 18px "Orbitron", sans-serif;
+}
+
+.cost-summary p {
+  margin: 0;
+  color: #9cb1b8;
+  font-size: 10px;
+}
+
+.cost-summary p small {
+  display: block;
+  margin-top: 3px;
+}
+
 .result-metrics div {
   padding: 18px;
   display: grid;
@@ -1044,6 +1198,16 @@ footer {
   width: 34px;
   height: 44px;
   object-fit: cover;
+}
+
+.empty-ce-image {
+  width: 34px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgba(102, 227, 232, 0.24);
+  color: #526c77;
+  font-size: 15px;
 }
 
 .recommendation-servant span,
@@ -1481,6 +1645,16 @@ footer p {
     grid-template-columns: 1fr;
   }
 
+  .support-ce-results {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+
+  .support-ce-footer {
+    padding: 12px 16px 16px;
+    grid-template-columns: 1fr;
+  }
+
   .ce-picker-footer span {
     display: none;
   }
@@ -1503,6 +1677,15 @@ footer p {
 
   .result-metrics {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cost-summary {
+    grid-template-columns: 1fr auto;
+  }
+
+  .cost-summary p {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 
   .result-metrics div:nth-child(3) {

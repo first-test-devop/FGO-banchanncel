@@ -9,6 +9,7 @@ import {
 const servants = servantsData as Servant[];
 
 interface ServantPickerProps {
+  isSupport?: boolean;
   open: boolean;
   selectedIds: number[];
   onClose: () => void;
@@ -16,6 +17,7 @@ interface ServantPickerProps {
 }
 
 export const ServantPicker = ({
+  isSupport = false,
   open,
   selectedIds,
   onClose,
@@ -66,7 +68,8 @@ export const ServantPicker = ({
         <div className="picker-header">
           <div>
             <span className="eyebrow">CHOOSE A SERVANT</span>
-            <h2>选择英灵</h2>
+            <h2>{isSupport ? "选择助战英灵" : "选择英灵"}</h2>
+            {isSupport && <p>第 1 步：选择助战英灵；下一步选择其固定礼装。</p>}
           </div>
           <button aria-label="关闭" className="icon-button" onClick={onClose}>
             ×
@@ -103,7 +106,7 @@ export const ServantPicker = ({
                 <small>
                   No.{servant.collectionNo} ·{" "}
                   {getClassLabel(servant.className)} ·{" "}
-                  {"★".repeat(servant.rarity)}
+                  {"★".repeat(servant.rarity)} · Cost {servant.cost}
                 </small>
                 <span className="trait-tags">
                   {getServantBondTraits(servant).map((trait) => (

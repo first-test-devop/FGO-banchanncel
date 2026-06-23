@@ -24,6 +24,21 @@ export const AnalysisResult = ({
       </div>
     </div>
 
+    <div className="cost-summary">
+      <div>
+        <span>编队 Cost</span>
+        <strong>
+          {analysis.partyCost} / {analysis.maxPartyCost}
+        </strong>
+      </div>
+      <p>
+        自有从者 {analysis.servantCost} + 自有礼装{" "}
+        {analysis.craftEssenceCost}
+        <small>助战从者及其固定礼装不计 Cost</small>
+      </p>
+      <span>剩余 {analysis.remainingCost}</span>
+    </div>
+
     <div className="result-metrics">
       <div>
         <span>礼装百分比</span>
@@ -88,13 +103,23 @@ export const AnalysisResult = ({
               →
             </div>
             <div className="recommendation-ce">
-              <img alt="" src={item.craftEssence.image} />
+              {item.craftEssence.image ? (
+                <img alt="" src={item.craftEssence.image} />
+              ) : (
+                <div className="empty-ce-image" aria-hidden="true">
+                  —
+                </div>
+              )}
               <span>
                 <small>
-                  {item.craftEssence.target &&
-                  item.matchedBeneficiaries.length === 0
-                    ? "补位礼装 · 当前无特性收益"
-                    : "推荐礼装"}
+                  {slot.kind === "support"
+                    ? "助战已固定礼装"
+                    : item.craftEssence.isEmpty
+                      ? "Cost 限制 · 空礼装位"
+                      : item.craftEssence.target &&
+                          item.matchedBeneficiaries.length === 0
+                        ? "补位礼装 · 当前无特性收益"
+                        : `推荐礼装 · Cost ${item.craftEssence.cost}`}
                 </small>
                 <strong>{item.craftEssence.name}</strong>
               </span>

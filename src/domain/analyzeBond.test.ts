@@ -9,6 +9,7 @@ const servant = (id: number): Servant => ({
   name: `英灵 ${id}`,
   className: "saber",
   rarity: 5,
+  cost: 16,
   face: "",
   bondEligible: true,
   traits: [],
@@ -19,13 +20,18 @@ const fullParty: PartySlot[] = [
     kind: "owned" as const,
     servant: servant(index + 1),
   })),
-  { kind: "support", servant: servant(6) },
+  {
+    kind: "support",
+    servant: servant(6),
+    supportCraftEssence: { id: "chaldea-teatime", state: "mlb" },
+  },
 ];
 
 describe("analyzeBond", () => {
   it("puts Teatime on support and maximizes a high-bond quest", () => {
     const result = analyzeBond(fullParty, {
       baseBond: 815,
+      maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
     });
 
@@ -47,9 +53,9 @@ describe("analyzeBond", () => {
       equipmentPercent: 40,
       equipmentBreakdown: [
         { name: "迦勒底午餐时光", value: 10, state: "mlb", stateLabel: "满破" },
+        { name: "迦勒底午茶时光", value: 5, state: "mlb", stateLabel: "满破" },
         { name: "名侦探芙尔摩斯", value: 5, state: "mlb", stateLabel: "满破" },
         { name: "迦勒底晚餐时光", value: 5, state: "mlb", stateLabel: "满破" },
-        { name: "格兰·卡瓦洛", value: 5, state: "mlb", stateLabel: "满破" },
         { name: "迦勒底午茶时光", value: 15, state: "mlb", stateLabel: "满破" },
       ],
       activityPercent: 0,
@@ -67,6 +73,7 @@ describe("analyzeBond", () => {
       [fullParty[0], fullParty[5]],
       {
       baseBond: 200,
+      maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
       },
     );
@@ -79,6 +86,7 @@ describe("analyzeBond", () => {
   it("does not count support servant as an owned bond recipient", () => {
     const result = analyzeBond(fullParty, {
       baseBond: 815,
+      maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
     });
 
@@ -90,6 +98,7 @@ describe("analyzeBond", () => {
   it("only applies the starting-member bonus to the first three slots", () => {
     const result = analyzeBond(fullParty, {
       baseBond: 1000,
+      maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
     });
 
@@ -100,7 +109,11 @@ describe("analyzeBond", () => {
 
   it("shares a frontline support bonus across all owned servants", () => {
     const supportFirst: PartySlot[] = [
-      { kind: "support", servant: servant(6) },
+      {
+        kind: "support",
+        servant: servant(6),
+        supportCraftEssence: { id: "chaldea-teatime", state: "mlb" },
+      },
       ...Array.from({ length: 5 }, (_, index) => ({
         kind: "owned" as const,
         servant: servant(index + 1),
@@ -108,6 +121,7 @@ describe("analyzeBond", () => {
     ];
     const result = analyzeBond(supportFirst, {
       baseBond: 815,
+      maxPartyCost: 999,
       craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
     });
 
@@ -140,10 +154,15 @@ describe("analyzeBond", () => {
       [
         { kind: "owned", servant: lawfulGood },
         { kind: "owned", servant: unmatched },
-        { kind: "support", servant: servant(3) },
+        {
+          kind: "support",
+          servant: servant(3),
+          supportCraftEssence: { id: "chaldea-teatime", state: "mlb" },
+        },
       ],
       {
         baseBond: 1000,
+        maxPartyCost: 999,
         craftEssenceStates: {
           "inspection-report": "mlb",
           "chaldea-lunchtime": "mlb",
@@ -175,8 +194,20 @@ describe("analyzeBond", () => {
   });
 
   it("uses non-MLB values when the inventory marks a CE as base", () => {
-    const result = analyzeBond(fullParty, {
+    const partyWithBaseSupport = fullParty.map((slot) =>
+      slot.kind === "support"
+        ? {
+            ...slot,
+            supportCraftEssence: {
+              id: "chaldea-teatime",
+              state: "base" as const,
+            },
+          }
+        : slot,
+    );
+    const result = analyzeBond(partyWithBaseSupport, {
       baseBond: 1000,
+      maxPartyCost: 999,
       craftEssenceStates: {
         "chaldea-lunchtime": "base",
         "chaldea-teatime": "base",
@@ -197,10 +228,41 @@ describe("analyzeBond", () => {
     });
     expect(result.recommendations[0].calculation?.equipmentBreakdown).toEqual([
       { name: "迦勒底午餐时光", value: 2, state: "base", stateLabel: "未满破" },
+      { name: "迦勒底午茶时光", value: 1, state: "base", stateLabel: "未满破" },
       { name: "名侦探芙尔摩斯", value: 1, state: "base", stateLabel: "未满破" },
       { name: "迦勒底晚餐时光", value: 1, state: "base", stateLabel: "未满破" },
-      { name: "格兰·卡瓦洛", value: 1, state: "base", stateLabel: "未满破" },
       { name: "迦勒底午茶时光", value: 3, state: "base", stateLabel: "未满破" },
     ]);
+  });
+
+  it("leaves owned CE slots empty when the party Cost limit is tight", () => {
+    const result = analyzeBond(fullParty, {
+      baseBond: 1000,
+      maxPartyCost: 104,
+      craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
+    });
+
+    expect(result.servantCost).toBe(80);
+    expect(result.craftEssenceCost).toBeLessThanOrEqual(24);
+    expect(result.partyCost).toBeLessThanOrEqual(104);
+    expect(
+      result.recommendations.filter(
+        ({ craftEssence, servant }) =>
+          servant.id !== 6 && craftEssence.isEmpty,
+      ).length,
+    ).toBe(3);
+    expect(result.recommendations[5].craftEssence.id).toBe(
+      "chaldea-teatime",
+    );
+  });
+
+  it("rejects a party whose owned servants alone exceed the Cost limit", () => {
+    expect(() =>
+      analyzeBond(fullParty, {
+        baseBond: 1000,
+        maxPartyCost: 79,
+        craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
+      }),
+    ).toThrow("五名自有从者已占用 80 Cost");
   });
 });

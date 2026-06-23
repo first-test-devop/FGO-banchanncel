@@ -29,6 +29,7 @@ const percentCe = (
     baseSupportValue: normalValue,
     mlbSupportValue: mlbValue,
     hasMlbEffect: normalValue !== mlbValue,
+    cost: 12,
     image: atlasFace(atlasId),
     ...options,
   };
@@ -102,6 +103,7 @@ export const BOND_CRAFT_ESSENCES: BondCraftEssence[] = [
     baseSupportValue: 50,
     mlbSupportValue: 50,
     hasMlbEffect: false,
+    cost: 5,
     image: atlasFace(9400970),
   },
   percentCe("love-from-nff", 9407480, "来自ＮＦＦ的爱", {
@@ -171,10 +173,29 @@ export const BOND_CRAFT_ESSENCES: BondCraftEssence[] = [
   ].map(([id, atlasId, name]) =>
     percentCe(`heroic-specter-${id}`, Number(atlasId), `英灵逢魔：${name}`, {
       mlbValue: 10,
+      cost: 9,
       target: fsnTarget,
     }),
   ),
 ];
+
+export const EMPTY_CRAFT_ESSENCE: ResolvedBondCraftEssence = {
+  id: "empty",
+  name: "不装备羁绊礼装",
+  shortName: "空礼装位",
+  effect: "percent",
+  baseOwnedValue: 0,
+  mlbOwnedValue: 0,
+  baseSupportValue: 0,
+  mlbSupportValue: 0,
+  hasMlbEffect: false,
+  cost: 0,
+  image: "",
+  isEmpty: true,
+  state: "mlb",
+  ownedValue: 0,
+  supportValue: 0,
+};
 
 export const resolveCraftEssence = (
   craftEssence: BondCraftEssence,

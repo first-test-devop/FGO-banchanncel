@@ -99,6 +99,7 @@ export const CraftEssencePicker = ({
                       ? `固定羁绊 +${craftEssence.mlbOwnedValue}`
                       : craftEssence.target?.label ??
                         `羁绊 +${craftEssence.baseOwnedValue}% / ${craftEssence.mlbOwnedValue}%`}
+                    {" · "}Cost {craftEssence.cost}
                   </small>
                 </span>
                 <i aria-hidden="true">{selected ? "✓" : "+"}</i>
