@@ -29,7 +29,7 @@ export const PartyCard = ({
   onSwapWithSupport,
 }: PartyCardProps) => {
   const supportCraftEssence =
-    slot.kind === "support" && slot.supportCraftEssence
+    slot.kind === "support" && slot.supportCraftEssence?.id
       ? BOND_CRAFT_ESSENCES.find(
           ({ id }) => id === slot.supportCraftEssence?.id,
         )
@@ -102,6 +102,17 @@ export const PartyCard = ({
             </span>
           </div>
         )}
+        {slot.kind === "support" &&
+          slot.supportCraftEssence &&
+          !slot.supportCraftEssence.id && (
+            <div className="support-ce-badge support-ce-empty-badge">
+              <span className="support-empty-icon">—</span>
+              <span>
+                <small>固定助战礼装</small>
+                <strong>不携带礼装</strong>
+              </span>
+            </div>
+          )}
         <button
           aria-label={`移除${slot.servant.name}`}
           className="clear-slot"

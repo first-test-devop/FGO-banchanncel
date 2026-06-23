@@ -72,7 +72,7 @@ export const App = () => {
   const [pendingSupport, setPendingSupport] = useState<{
     index: number;
     servant: Servant;
-    initialCraftEssenceId?: string;
+    initialCraftEssenceId?: string | null;
     initialState?: "base" | "mlb";
   } | null>(null);
   const pointerDragRef = useRef<{

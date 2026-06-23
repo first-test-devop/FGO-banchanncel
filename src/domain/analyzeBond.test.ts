@@ -265,4 +265,28 @@ describe("analyzeBond", () => {
       }),
     ).toThrow("五名自有从者已占用 80 Cost");
   });
+
+  it("supports a support servant without a craft essence", () => {
+    const partyWithoutSupportCe = fullParty.map((slot) =>
+      slot.kind === "support"
+        ? {
+            ...slot,
+            supportCraftEssence: { id: null, state: "mlb" as const },
+          }
+        : slot,
+    );
+    const result = analyzeBond(partyWithoutSupportCe, {
+      baseBond: 1000,
+      maxPartyCost: 999,
+      craftEssenceStates: ALL_MLB_CRAFT_ESSENCE_STATES,
+    });
+
+    expect(result.recommendations[5].craftEssence.isEmpty).toBe(true);
+    expect(result.recommendations[5].reason).toContain("未携带礼装");
+    expect(
+      result.recommendations[0].calculation?.equipmentBreakdown.some(
+        ({ name, value }) => name === "迦勒底午茶时光" && value === 15,
+      ),
+    ).toBe(false);
+  });
 });

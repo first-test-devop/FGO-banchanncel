@@ -17,7 +17,7 @@ export interface PartySlot {
   kind: SlotKind;
   servant: Servant | null;
   supportCraftEssence?: {
-    id: string;
+    id: string | null;
     state: Exclude<CraftEssenceState, "none">;
   } | null;
 }

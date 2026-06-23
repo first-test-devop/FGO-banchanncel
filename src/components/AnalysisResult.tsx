@@ -113,7 +113,9 @@ export const AnalysisResult = ({
               <span>
                 <small>
                   {slot.kind === "support"
-                    ? "助战已固定礼装"
+                    ? item.craftEssence.isEmpty
+                      ? "助战已固定 · 不携带礼装"
+                      : "助战已固定礼装"
                     : item.craftEssence.isEmpty
                       ? "Cost 限制 · 空礼装位"
                       : item.craftEssence.target &&

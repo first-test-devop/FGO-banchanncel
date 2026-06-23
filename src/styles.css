@@ -564,6 +564,34 @@ footer {
   white-space: nowrap;
 }
 
+.support-ce-empty-badge {
+  min-height: 41px;
+}
+
+.support-empty-icon,
+.support-empty-preview {
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgba(102, 227, 232, 0.28);
+  color: #66818b;
+}
+
+.support-empty-icon {
+  width: 34px;
+  height: 43px;
+  flex: 0 0 auto;
+}
+
+.support-empty-preview {
+  width: 34px;
+  height: 44px;
+}
+
+.support-empty-state {
+  color: var(--muted);
+  font-size: 9px;
+}
+
 .trait-tags {
   display: flex !important;
   flex-wrap: wrap;

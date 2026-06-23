@@ -7,11 +7,11 @@ import type {
 
 interface SupportCraftEssencePickerProps {
   servant: Servant | null;
-  initialCraftEssenceId?: string;
+  initialCraftEssenceId?: string | null;
   initialState?: Exclude<CraftEssenceState, "none">;
   onCancel: () => void;
   onConfirm: (
-    craftEssenceId: string,
+    craftEssenceId: string | null,
     state: Exclude<CraftEssenceState, "none">,
   ) => void;
 }
@@ -24,11 +24,13 @@ export const SupportCraftEssencePicker = ({
   onConfirm,
 }: SupportCraftEssencePickerProps) => {
   const defaultId =
-    initialCraftEssenceId ??
-    BOND_CRAFT_ESSENCES.find(({ id }) => id === "chaldea-teatime")?.id ??
-    BOND_CRAFT_ESSENCES[0].id;
+    initialCraftEssenceId === null
+      ? null
+      : initialCraftEssenceId ??
+        BOND_CRAFT_ESSENCES.find(({ id }) => id === "chaldea-teatime")?.id ??
+        BOND_CRAFT_ESSENCES[0].id;
   const [query, setQuery] = useState("");
-  const [selectedId, setSelectedId] = useState(defaultId);
+  const [selectedId, setSelectedId] = useState<string | null>(defaultId);
   const [state, setState] =
     useState<Exclude<CraftEssenceState, "none">>(initialState);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -58,7 +60,7 @@ export const SupportCraftEssencePicker = ({
   }, [query]);
   const selected = BOND_CRAFT_ESSENCES.find(({ id }) => id === selectedId);
 
-  if (!servant || !selected) return null;
+  if (!servant) return null;
 
   return (
     <div className="modal-backdrop" role="presentation" onMouseDown={onCancel}>
@@ -92,6 +94,21 @@ export const SupportCraftEssencePicker = ({
           />
         </label>
         <div className="support-ce-results">
+          <button
+            aria-pressed={selectedId === null}
+            className={`ce-picker-result support-empty-ce${
+              selectedId === null ? " is-selected" : ""
+            }`}
+            onClick={() => setSelectedId(null)}
+            type="button"
+          >
+            <span className="support-empty-icon">—</span>
+            <span>
+              <strong>不携带礼装</strong>
+              <small>助战不提供礼装羁绊加成</small>
+            </span>
+            <i aria-hidden="true">{selectedId === null ? "✓" : "+"}</i>
+          </button>
           {results.map((craftEssence) => (
             <button
               aria-pressed={craftEssence.id === selectedId}
@@ -118,36 +135,47 @@ export const SupportCraftEssencePicker = ({
         </div>
         <div className="support-ce-footer">
           <div>
-            <img alt="" src={selected.image} />
+            {selected ? (
+              <img alt="" src={selected.image} />
+            ) : (
+              <span className="support-empty-preview">—</span>
+            )}
             <span>
               <small>当前助战礼装</small>
-              <strong>{selected.name}</strong>
+              <strong>{selected?.name ?? "不携带礼装"}</strong>
             </span>
           </div>
-          <label>
-            <span>突破状态</span>
-            <select
-              aria-label="助战礼装突破状态"
-              onChange={(event) =>
-                setState(
-                  event.target.value as Exclude<CraftEssenceState, "none">,
-                )
-              }
-              value={selected.hasMlbEffect ? state : "mlb"}
-            >
-              {selected.hasMlbEffect ? (
-                <>
-                  <option value="base">未满破</option>
-                  <option value="mlb">满破</option>
-                </>
-              ) : (
-                <option value="mlb">已持有</option>
-              )}
-            </select>
-          </label>
+          {selected ? (
+            <label>
+              <span>突破状态</span>
+              <select
+                aria-label="助战礼装突破状态"
+                onChange={(event) =>
+                  setState(
+                    event.target.value as Exclude<CraftEssenceState, "none">,
+                  )
+                }
+                value={selected.hasMlbEffect ? state : "mlb"}
+              >
+                {selected.hasMlbEffect ? (
+                  <>
+                    <option value="base">未满破</option>
+                    <option value="mlb">满破</option>
+                  </>
+                ) : (
+                  <option value="mlb">已持有</option>
+                )}
+              </select>
+            </label>
+          ) : (
+            <span className="support-empty-state">无需设置突破状态</span>
+          )}
           <button
             onClick={() =>
-              onConfirm(selected.id, selected.hasMlbEffect ? state : "mlb")
+              onConfirm(
+                selected?.id ?? null,
+                selected?.hasMlbEffect ? state : "mlb",
+              )
             }
             type="button"
           >

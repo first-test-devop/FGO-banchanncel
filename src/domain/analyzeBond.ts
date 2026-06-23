@@ -104,7 +104,9 @@ const describeContribution = (
 ) => {
   const value = valueForEquippedSlot(craftEssence, kind);
   if (craftEssence.isEmpty) {
-    return "受编队 Cost 上限影响，此槽位不装备羁绊礼装。";
+    return kind === "support"
+      ? "该助战从者未携带礼装，因此不提供礼装羁绊加成。"
+      : "受编队 Cost 上限影响，此槽位不装备羁绊礼装。";
   }
   const stateLabel = craftEssence.hasMlbEffect
     ? craftEssence.state === "mlb"
@@ -285,16 +287,20 @@ export const analyzeBond = (
   if (!supportSlot?.supportCraftEssence) {
     throw new Error("请选择助战英灵携带的羁绊礼装及其突破状态。");
   }
-  const supportCraftEssenceDefinition = BOND_CRAFT_ESSENCES.find(
-    ({ id }) => id === supportSlot.supportCraftEssence?.id,
-  );
-  if (!supportCraftEssenceDefinition) {
+  const supportCraftEssenceDefinition = supportSlot.supportCraftEssence.id
+    ? BOND_CRAFT_ESSENCES.find(
+        ({ id }) => id === supportSlot.supportCraftEssence?.id,
+      )
+    : null;
+  if (supportSlot.supportCraftEssence.id && !supportCraftEssenceDefinition) {
     throw new Error("助战礼装数据无效，请重新选择助战配置。");
   }
-  const supportCraftEssence = resolveCraftEssence(
-    supportCraftEssenceDefinition,
-    supportSlot.supportCraftEssence.state,
-  );
+  const supportCraftEssence = supportCraftEssenceDefinition
+    ? resolveCraftEssence(
+        supportCraftEssenceDefinition,
+        supportSlot.supportCraftEssence.state,
+      )
+    : EMPTY_CRAFT_ESSENCE;
   const servantCost = selectedSlots.reduce(
     (total, slot) =>
       total + (slot.kind === "owned" ? slot.servant.cost : 0),
@@ -432,7 +438,7 @@ export const analyzeBond = (
         : "第二步：助战位于后备，无法获得首发 20% 且不触发平摊；首发自有英灵乘 1.20，后备自有英灵乘 1.00，结果向下取整。",
       "第三步：在前两步完成后，再加上英灵肖像等固定羁绊值；固定值不参与前面的百分比乘算。",
       `Cost 约束：五名自有从者共 ${servantCost} Cost，推荐的自有礼装共 ${craftEssenceCost} Cost，合计 ${partyCost}/${settings.maxPartyCost}；助战从者及其固定礼装不计入玩家编队 Cost。`,
-      "助战礼装在选择助战时已经固定，分析器不会替换；自有礼装则从库存中选择在 Cost 上限内使整队羁绊最高的组合，必要时允许空礼装位。",
+      "助战礼装在选择助战时已经固定，也可以选择不携带礼装，分析器不会替换；自有礼装则从库存中选择在 Cost 上限内使整队羁绊最高的组合，必要时允许空礼装位。",
       "礼装效果对首发与后备成员均生效；助战英灵自身不计入你的羁绊收益。每张礼装按选择的未满破或满破效果计算。",
       "特性限定礼装不要求佩戴者本人符合条件；它会为队内所有符合条件的自有英灵提供加成。结果中的“受益对象”会列出实际命中的英灵与条件。",
       "“拥有灵衣之人”是系统固定特性：即使你的账号尚未取得灵衣开放权、尚未开放或当前未穿着，也符合「至诚的一针」的加成条件。",
