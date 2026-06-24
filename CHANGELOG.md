@@ -4,7 +4,9 @@
 
 ## [Unreleased]
 
-暂无未发布变更。
+### Added
+
+- README 新增 Cloudflare Pages Beta 访问地址与部署说明。
 
 ## [0.3.0] - 2026-06-24
 

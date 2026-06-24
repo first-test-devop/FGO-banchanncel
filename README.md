@@ -4,6 +4,13 @@
 
 > 当前版本：`v0.3.0`（2026-06-24）。这是可运行的 Web MVP，游戏数据与规则可能随服务器版本更新，请以游戏内说明为准。
 
+## 线上 Beta
+
+- Cloudflare Pages：<https://015beb0f.chaldea-bond-beta.pages.dev>
+- Cloudflare 项目名：`chaldea-bond-beta`
+- 部署方式：Cloudflare Pages Direct Upload
+- 当前用途：个人与小范围朋友试用，暂未接入自定义域名、访问统计或错误上报。
+
 ## v0.3.0 版本更新
 
 相较 `v0.2.0`，本版本重点把“推荐得出来”推进到“玩家实际带得上”，并覆盖冠位战的多礼装位场景：
@@ -71,6 +78,23 @@ pnpm lint
 pnpm test
 pnpm build
 ```
+
+## 部署
+
+当前 Beta 版部署在 Cloudflare Pages 免费项目中。根据 Cloudflare Pages 的 React 部署说明，生产分支为 `main`，构建命令为 `pnpm build`，发布目录为 `dist`。
+
+本地直传部署：
+
+```bash
+pnpm build
+pnpm dlx wrangler pages deploy dist --project-name chaldea-bond-beta --branch main
+```
+
+后续如果改为 Cloudflare GitHub 自动部署，平台配置保持：
+
+- Production branch：`main`
+- Build command：`pnpm build`
+- Build output directory：`dist`
 
 ## 数据更新
 
