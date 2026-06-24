@@ -8,7 +8,7 @@
 
 - Cloudflare Pages：<https://015beb0f.chaldea-bond-beta.pages.dev>
 - Cloudflare 项目名：`chaldea-bond-beta`
-- 部署方式：Cloudflare Pages Direct Upload
+- 部署方式：Cloudflare Pages Direct Upload + GitHub Actions
 - 当前用途：个人与小范围朋友试用，暂未接入自定义域名、访问统计或错误上报。
 
 ## v0.3.0 版本更新
@@ -81,7 +81,9 @@ pnpm build
 
 ## 部署
 
-当前 Beta 版部署在 Cloudflare Pages 免费项目中。根据 Cloudflare Pages 的 React 部署说明，生产分支为 `main`，构建命令为 `pnpm build`，发布目录为 `dist`。
+当前 Beta 版部署在 Cloudflare Pages 免费项目中。`main` 分支推送后会触发 `.github/workflows/release.yml`：先执行 `pnpm lint`、`pnpm test`、`pnpm build`，通过后将 `dist` 发布到 Cloudflare Pages。
+
+GitHub Actions 自动发布需要配置 `CLOUDFLARE_ACCOUNT_ID` 与 `CLOUDFLARE_API_TOKEN` 两个仓库 Secret。详细配置见 [docs/deployment.md](./docs/deployment.md)。
 
 本地直传部署：
 
@@ -89,12 +91,6 @@ pnpm build
 pnpm build
 pnpm dlx wrangler pages deploy dist --project-name chaldea-bond-beta --branch main
 ```
-
-后续如果改为 Cloudflare GitHub 自动部署，平台配置保持：
-
-- Production branch：`main`
-- Build command：`pnpm build`
-- Build output directory：`dist`
 
 ## 数据更新
 
