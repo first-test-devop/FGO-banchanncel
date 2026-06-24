@@ -16,6 +16,8 @@
 4. 执行 `pnpm build`；
 5. 将 `dist` 发布到 Cloudflare Pages。
 
+CI 使用 Node.js 24 与 pnpm 11，与本地开发要求保持一致。
+
 也可以在 GitHub Actions 页面手动触发 `Release` workflow。
 
 ## 必需的 GitHub Secrets

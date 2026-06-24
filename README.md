@@ -64,7 +64,7 @@ src/
 
 ## 本地开发
 
-要求 Node.js 20 或更高版本、pnpm 11。
+要求 Node.js 24 或更高版本、pnpm 11。
 
 ```bash
 pnpm install
