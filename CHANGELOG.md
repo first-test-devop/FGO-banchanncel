@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+暂无未发布变更。
+
+## [0.3.0] - 2026-06-24
+
 ### Added
 
 - 新增“普通关卡 / 冠位战”模式切换。
@@ -20,6 +24,12 @@
 - 优化器只为五名自有从者分配礼装，并在 Cost 上限内最大化整队羁绊。
 - Cost 不足时允许输出空礼装位，而不是推荐无法实际编成的方案。
 - 助战从者和助战礼装不计入玩家 Cost，助战礼装不再由优化器替换。
+
+### Validation
+
+- ESLint 检查通过。
+- Vitest：5 个测试文件、18 项测试通过。
+- TypeScript 与 Vite 生产构建通过。
 
 ## [0.2.0] - 2026-06-23
 
@@ -60,5 +70,6 @@
 - 常驻羁绊礼装池和最优装备分析。
 - 三步羁绊计算过程与推荐理由展示。
 
+[0.3.0]: https://github.com/first-test-devop/FGO-banchanncel/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/first-test-devop/FGO-banchanncel/compare/1bc7fb7...v0.2.0
 [0.1.0]: https://github.com/first-test-devop/FGO-banchanncel/tree/1bc7fb7
