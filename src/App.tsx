@@ -12,6 +12,7 @@ import { ServantPicker } from "./components/ServantPicker";
 import { SettingsPanel } from "./components/SettingsPanel";
 import { SupportCraftEssencePicker } from "./components/SupportCraftEssencePicker";
 import { DEFAULT_CRAFT_ESSENCE_STATES } from "./data/bondCraftEssences";
+import { DATA_MANIFEST } from "./data/dataManifest";
 import servantsData from "./data/servants.json";
 import { analyzeBond } from "./domain/analyzeBond";
 import { reorderParty } from "./domain/reorderParty";
@@ -277,7 +278,9 @@ export const App = () => {
         </a>
         <div className="data-badge">
           <span />
-          国服英灵数据 · 441
+          数据 {DATA_MANIFEST.dataVersion} · 英灵{" "}
+          {DATA_MANIFEST.servants.count} · 羁绊礼装{" "}
+          {DATA_MANIFEST.bondCraftEssences.count}
         </div>
       </nav>
 
@@ -434,10 +437,14 @@ export const App = () => {
       {analysis && <AnalysisResult analysis={analysis} party={party} />}
 
       <footer>
-        <span>CHALDEA BOND / v0.2.0</span>
+        <span>
+          CHALDEA BOND / v{DATA_MANIFEST.appVersion} / 数据{" "}
+          {DATA_MANIFEST.dataVersion}
+        </span>
         <p>
           本工具为非官方玩家项目。游戏素材版权归 TYPE-MOON / FGO PROJECT
-          所有。
+          所有。英灵数据来自 {DATA_MANIFEST.sources.servants}
+          ；羁绊礼装规则为人工审核数据。
         </p>
       </footer>
 

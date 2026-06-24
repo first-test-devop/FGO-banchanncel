@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "data:check": "node scripts/check-data-update.mjs",
+    "data:generate-servants": "node scripts/generate-servants.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.4.1",

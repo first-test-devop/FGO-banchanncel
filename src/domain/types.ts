@@ -28,6 +28,7 @@ export interface PartySlot {
 
 export interface BondCraftEssence {
   id: string;
+  atlasId?: number;
   name: string;
   shortName: string;
   effect: "percent" | "flat";

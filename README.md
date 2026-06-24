@@ -109,6 +109,15 @@ node scripts/generate-servants.mjs \
 
 生成器只保留产品需要的字段，避免把上游大型数据文件直接打包进前端。
 
+长期数据维护采用“自动检查 + 人工确认 + 版本发布”流程：
+
+- `pnpm data:check` 会拉取 Atlas Academy 国服导出，生成从者差异与疑似羁绊礼装候选报告。
+- `.github/workflows/data-freshness.yml` 每周自动运行一次数据检查，并上传报告。
+- 新增羁绊礼装不会自动进入正式计算，必须确认效果、数值、目标特性、助战特殊倍率与 Cost 后再入库。
+- 页面会展示当前数据版本，版本信息维护在 `src/data/dataManifest.ts`。
+
+详细流程见 [docs/data-maintenance.md](./docs/data-maintenance.md)。
+
 ## 当前计算边界
 
 - 按常驻关卡结算规则计算，前三个首发槽位中的自有英灵额外获得 20% 羁绊。

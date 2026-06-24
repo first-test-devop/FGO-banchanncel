@@ -21,6 +21,7 @@ const percentCe = (
   const normalValue = baseValue ?? mlbValue;
   return {
     id,
+    atlasId,
     name,
     shortName: name,
     effect: "percent",
@@ -104,6 +105,7 @@ export const BOND_CRAFT_ESSENCES: BondCraftEssence[] = [
     mlbSupportValue: 50,
     hasMlbEffect: false,
     cost: 5,
+    atlasId: 9400970,
     image: atlasFace(9400970),
   },
   percentCe("love-from-nff", 9407480, "来自ＮＦＦ的爱", {

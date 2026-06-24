@@ -7,6 +7,8 @@
 ### Added
 
 - README 新增 Cloudflare Pages Beta 访问地址与部署说明。
+- 新增数据版本 manifest、页面数据版本展示、Atlas 数据检查脚本和每周数据新鲜度 GitHub Actions。
+- 新增数据维护文档，明确从者自动更新与羁绊礼装人工确认流程。
 
 ## [0.3.0] - 2026-06-24
 

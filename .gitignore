@@ -2,6 +2,7 @@ node_modules/
 .pnpm-store/
 dist/
 coverage/
+reports/
 .DS_Store
 *.local
 *.log

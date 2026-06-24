@@ -1,0 +1,31 @@
+name: Data freshness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * 1"
+
+jobs:
+  check-data:
+    name: Check Atlas CN data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate data update report
+        run: node scripts/check-data-update.mjs --out data-update-report.md
+
+      - name: Publish report to job summary
+        run: cat data-update-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-update-report
+          path: data-update-report.md
