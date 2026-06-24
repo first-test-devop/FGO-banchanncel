@@ -9,8 +9,10 @@
 - README 新增 Cloudflare Pages Beta 访问地址与部署说明。
 - 新增数据版本 manifest、页面数据版本展示、Atlas 数据检查脚本和每周数据新鲜度 GitHub Actions。
 - 新增数据维护文档，明确从者自动更新与羁绊礼装人工确认流程。
-- 新增 GitHub Actions 自动发布流程，`main` 分支通过检查后可部署到 Cloudflare Pages。
-- CI 与本地开发说明统一为 Node.js 24 + pnpm 11。
+
+### Changed
+
+- 移除 Cloudflare Pages 自动发布 workflow，当前继续采用手动 Direct Upload 发布。
 
 ## [0.3.0] - 2026-06-24
 
